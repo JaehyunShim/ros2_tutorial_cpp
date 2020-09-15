@@ -17,6 +17,8 @@ endif()
 ################################################################################
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(rclcpp_components REQUIRED)
+find_package(std_msgs REQUIRED)
 
 ################################################################################
 # Build
@@ -27,17 +29,22 @@ include_directories(
 
 set(dependencies
   "rclcpp"
+  "rclcpp_components"
+  "std_msgs"
 )
 
-add_executable(${PROJECT_NAME} src/ros2_tutorial_cpp.cpp)
+
+add_library(${PROJECT_NAME} SHARED
+  src/talker.cpp
+  src/listener.cpp)
 ament_target_dependencies(${PROJECT_NAME} ${dependencies})
 
 ################################################################################
 # Install
 ################################################################################
-install(TARGETS ${PROJECT_NAME}
-  DESTINATION lib/${PROJECT_NAME}
-)
+# install(TARGETS ${PROJECT_NAME}
+#   DESTINATION lib/${PROJECT_NAME}
+# )
 
 ################################################################################
 # Test
