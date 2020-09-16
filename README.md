@@ -15,7 +15,9 @@
 2. Visibility Control (ToDo)
 
 ## Practice
-1. Write Pub/Sub/Cli/Srv
+1. Write ROS Pubisher/Subscriber
+2. Write ROS Client/Server
+3. Write ROS Parameter
 
 ## Reference
 1. [ROS2 Demo](https://github.com/ros2/demos)

@@ -1,0 +1,6 @@
+ros2_tutorial_cpp:
+  ros__parameters:
+    name: "RyanBot"
+    sim: false
+    control_period: 0.010
+    control_mode: 1  # 1: position, 2: velocity, 3: Torque

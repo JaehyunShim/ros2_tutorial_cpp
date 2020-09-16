@@ -51,6 +51,7 @@ set(dependencies
   "rclcpp_components"
 )
 
+# Add topic libraries
 add_library(${PROJECT_NAME}_topic_libs SHARED
   src/talker.cpp
   src/listener.cpp
@@ -61,6 +62,7 @@ rosidl_target_interfaces(${PROJECT_NAME}_topic_libs
   "rosidl_typesupport_cpp"
 )
 
+# Add service libraries
 add_library(${PROJECT_NAME}_service_libs SHARED
   src/requester.cpp
   src/responsor.cpp
@@ -71,6 +73,13 @@ rosidl_target_interfaces(${PROJECT_NAME}_service_libs
   "rosidl_typesupport_cpp"
 )
 
+# Add param libraries
+add_library(${PROJECT_NAME}_param_libs SHARED
+  src/param.cpp
+)
+ament_target_dependencies(${PROJECT_NAME}_param_libs ${dependencies})
+
+# Register topic nodes
 rclcpp_components_register_node(${PROJECT_NAME}_topic_libs
   PLUGIN "ros2_tutorial_cpp::Talker"
   EXECUTABLE talker
@@ -80,6 +89,7 @@ rclcpp_components_register_node(${PROJECT_NAME}_topic_libs
   EXECUTABLE listener
 )
 
+# Register service nodes
 rclcpp_components_register_node(${PROJECT_NAME}_service_libs
   PLUGIN "ros2_tutorial_cpp::Requester"
   EXECUTABLE requester
@@ -89,12 +99,19 @@ rclcpp_components_register_node(${PROJECT_NAME}_service_libs
   EXECUTABLE responsor
 )
 
+# Register param nodes
+rclcpp_components_register_node(${PROJECT_NAME}_param_libs
+  PLUGIN "ros2_tutorial_cpp::Param"
+  EXECUTABLE param
+)
+
 ###########################################################################
 # Install
 ################################################################################
 install(TARGETS
   ${PROJECT_NAME}_topic_libs
   ${PROJECT_NAME}_service_libs
+  ${PROJECT_NAME}_param_libs
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin
