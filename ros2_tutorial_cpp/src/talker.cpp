@@ -32,13 +32,14 @@ namespace ros2_tutorial_cpp
 class Talker : public rclcpp::Node
 {
 public:
-  explicit Talker(const rclcpp::NodeOptions & options)
+  explicit Talker(const rclcpp::NodeOptions & options)  // options for what ???
   : Node("talker", options)
   {
+    // Control stdout buffering
     setvbuf(stdout, NULL, _IONBF, BUFSIZ);
 
     // ROS Publisher
-    rclcpp::QoS qos(rclcpp::KeepLast(7));
+    rclcpp::QoS qos(rclcpp::KeepLast(10));
     count_pub_ = this->create_publisher<std_msgs::msg::Int8>("chatter", qos);
 
     // ROS Timer

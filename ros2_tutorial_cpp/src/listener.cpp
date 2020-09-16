@@ -31,6 +31,7 @@ public:
   explicit Listener(const rclcpp::NodeOptions & options)
   : Node("listener", options)
   {
+    // Control stdout buffering
     setvbuf(stdout, NULL, _IONBF, BUFSIZ);
 
     // ROS Subscriber
