@@ -11,8 +11,11 @@
 7. Bloom
 
 ## New Features
-1. Component
-2. Visibility Control
+1. Component (Done)
+2. Visibility Control (ToDo)
+
+## Practice
+1. Write Pub/Sub/Cli/Srv
 
 ## Reference
 1. [ROS2 Demo](https://github.com/ros2/demos)

@@ -39,14 +39,14 @@ public:
 
     // ROS Client
     inquiry_cli_ = create_client<ros2_tutorial_cpp::srv::Inquiry>("inquiry");
-    queue_async_request();
 
-    RCLCPP_INFO(this->get_logger(), "Initialized Requester.");
+    RCLCPP_INFO(this->get_logger(), "Initialized Requester");
+    queue_async_request();
   }
 
   ~Requester()
   {
-    RCLCPP_INFO(this->get_logger(), "Terminated Requester.");
+    RCLCPP_INFO(this->get_logger(), "Terminated Requester");
   }
 
   void queue_async_request()
@@ -63,13 +63,13 @@ public:
     // Define a service request
     auto request = std::make_shared<ros2_tutorial_cpp::srv::Inquiry::Request>();
     request->question = "ryan smart?";
-    RCLCPP_INFO(this->get_logger(), "Request: %s", request->question);
+    RCLCPP_INFO(this->get_logger(), "Request: %s", request->question.c_str());
 
     // Call async_send_request() method
     using ServiceResponseFuture = rclcpp::Client<ros2_tutorial_cpp::srv::Inquiry>::SharedFuture;
     auto response_received_callback = [this](ServiceResponseFuture future) {
         auto result = future.get();
-        RCLCPP_INFO(this->get_logger(), "Response: %s", result->answer);
+        RCLCPP_INFO(this->get_logger(), "Response: %s", result->answer.c_str());
         rclcpp::shutdown();
       };
     auto future_result = inquiry_cli_->async_send_request(request, response_received_callback);
