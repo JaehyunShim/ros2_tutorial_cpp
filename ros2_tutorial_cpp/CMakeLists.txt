@@ -108,6 +108,7 @@ rclcpp_components_register_node(${PROJECT_NAME}_param_libs
 ###########################################################################
 # Install
 ################################################################################
+# Install libraries
 install(TARGETS
   ${PROJECT_NAME}_topic_libs
   ${PROJECT_NAME}_service_libs
@@ -115,6 +116,21 @@ install(TARGETS
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin
+)
+
+# Install launch files
+install(DIRECTORY
+  launch
+  DESTINATION share/${PROJECT_NAME}/
+)
+
+# Install message, service, param files
+install(
+  DIRECTORY
+  msg
+  srv
+  param
+  DESTINATION share/${PROJECT_NAME}
 )
 
 ################################################################################

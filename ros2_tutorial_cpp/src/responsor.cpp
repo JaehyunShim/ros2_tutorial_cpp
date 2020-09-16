@@ -44,9 +44,8 @@ public:
         std::shared_ptr<ros2_tutorial_cpp::srv::Inquiry::Response> response) -> void
       {
         (void)request_header;
-        RCLCPP_INFO(this->get_logger(), "Request: %s", request->question.c_str());
+        RCLCPP_INFO(this->get_logger(), "Received Request: %s", request->question.c_str());
         response->answer = "n...yes";
-        RCLCPP_INFO(this->get_logger(), "Response: %s", response->answer.c_str());
       };
     inquiry_srv_ = create_service<ros2_tutorial_cpp::srv::Inquiry>("inquiry", inquiry_callback);
 
