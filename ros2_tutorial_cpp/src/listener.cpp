@@ -28,7 +28,7 @@ namespace ros2_tutorial_cpp
 class Listener : public rclcpp::Node
 {
 public:
-  Listener(const rclcpp::NodeOptions & options)
+  explicit Listener(const rclcpp::NodeOptions & options)
   : Node("listener", options)
   {
     setvbuf(stdout, NULL, _IONBF, BUFSIZ);

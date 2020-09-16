@@ -16,6 +16,7 @@
 
 #include <chrono>
 #include <memory>
+#include <utility>
 
 #include "rclcpp/rclcpp.hpp"
 #include "rclcpp_components/register_node_macro.hpp"
@@ -31,7 +32,7 @@ namespace ros2_tutorial_cpp
 class Talker : public rclcpp::Node
 {
 public:
-  Talker(const rclcpp::NodeOptions & options)
+  explicit Talker(const rclcpp::NodeOptions & options)
   : Node("talker", options)
   {
     setvbuf(stdout, NULL, _IONBF, BUFSIZ);

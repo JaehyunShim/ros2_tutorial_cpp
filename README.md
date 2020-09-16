@@ -14,7 +14,7 @@
 
 ## New Features
 1. Component
-
+2. Visibility Control
 
 ## Reference
 1. [ROS2 Demo](https://github.com/ros2/demos)
