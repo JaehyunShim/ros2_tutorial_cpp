@@ -18,7 +18,21 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_components REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
 find_package(std_msgs REQUIRED)
+
+################################################################################
+# Declare ROS messages, services and actions
+################################################################################
+set(srv_files
+  "srv/Inquiry.srv"
+)
+
+rosidl_generate_interfaces(${PROJECT_NAME}_srvs
+  ${srv_files}
+  DEPENDENCIES std_msgs
+  ADD_LINTER_TESTS
+)
 
 ################################################################################
 # Build
@@ -33,13 +47,19 @@ set(dependencies
   "std_msgs"
 )
 
-
-add_library(${PROJECT_NAME} SHARED
+add_library(${PROJECT_NAME}_topics_library SHARED
   src/talker.cpp
   src/listener.cpp)
-ament_target_dependencies(${PROJECT_NAME} ${dependencies})
+ament_target_dependencies(${PROJECT_NAME}_topics_library ${dependencies})
 
-################################################################################
+add_library(${PROJECT_NAME}_services_lib SHARED
+  src/requester.cpp
+  src/responsor.cpp)
+ament_target_dependencies(${PROJECT_NAME}_services_lib ${dependencies})
+rosidl_target_interfaces(${PROJECT_NAME}_services_lib
+  ${PROJECT_NAME}_srvs "rosidl_typesupport_cpp")
+
+###########################################################################
 # Install
 ################################################################################
 # install(TARGETS ${PROJECT_NAME}
@@ -71,4 +91,7 @@ ament_target_dependencies(${PROJECT_NAME} ${dependencies})
 ################################################################################
 ament_export_include_directories(include)
 ament_export_dependencies(rclcpp)
+ament_export_dependencies(rclcpp_components)
+ament_export_dependencies(rosidl_default_runtime)
+ament_export_dependencies(std_msgs)
 ament_package()
