@@ -24,13 +24,18 @@ find_package(std_msgs REQUIRED)
 ################################################################################
 # Declare ROS messages, services and actions
 ################################################################################
+set(msg_files
+  "msg/Count.msg"
+)
+
 set(srv_files
   "srv/Inquiry.srv"
 )
 
-rosidl_generate_interfaces(${PROJECT_NAME}_srvs
+rosidl_generate_interfaces(${PROJECT_NAME}
+  ${msg_files}
   ${srv_files}
-  DEPENDENCIES std_msgs
+  # DEPENDENCIES std_msgs
   ADD_LINTER_TESTS
 )
 
@@ -44,27 +49,56 @@ include_directories(
 set(dependencies
   "rclcpp"
   "rclcpp_components"
-  "std_msgs"
 )
 
-add_library(${PROJECT_NAME}_topics_library SHARED
+add_library(${PROJECT_NAME}_topic_libs SHARED
   src/talker.cpp
-  src/listener.cpp)
-ament_target_dependencies(${PROJECT_NAME}_topics_library ${dependencies})
+  src/listener.cpp
+)
+ament_target_dependencies(${PROJECT_NAME}_topic_libs ${dependencies})
+rosidl_target_interfaces(${PROJECT_NAME}_topic_libs
+  ${PROJECT_NAME}
+  "rosidl_typesupport_cpp"
+)
 
-add_library(${PROJECT_NAME}_services_lib SHARED
+add_library(${PROJECT_NAME}_service_libs SHARED
   src/requester.cpp
-  src/responsor.cpp)
-ament_target_dependencies(${PROJECT_NAME}_services_lib ${dependencies})
-rosidl_target_interfaces(${PROJECT_NAME}_services_lib
-  ${PROJECT_NAME}_srvs "rosidl_typesupport_cpp")
+  src/responsor.cpp
+)
+ament_target_dependencies(${PROJECT_NAME}_service_libs ${dependencies})
+rosidl_target_interfaces(${PROJECT_NAME}_service_libs
+  ${PROJECT_NAME}
+  "rosidl_typesupport_cpp"
+)
+
+rclcpp_components_register_node(${PROJECT_NAME}_topic_libs
+  PLUGIN "ros2_tutorial_cpp::Talker"
+  EXECUTABLE talker
+)
+rclcpp_components_register_node(${PROJECT_NAME}_topic_libs
+  PLUGIN "ros2_tutorial_cpp::Listener"
+  EXECUTABLE listener
+)
+
+rclcpp_components_register_node(${PROJECT_NAME}_service_libs
+  PLUGIN "ros2_tutorial_cpp::Requester"
+  EXECUTABLE requester
+)
+rclcpp_components_register_node(${PROJECT_NAME}_service_libs
+  PLUGIN "ros2_tutorial_cpp::Responsor"
+  EXECUTABLE responsor
+)
 
 ###########################################################################
 # Install
 ################################################################################
-# install(TARGETS ${PROJECT_NAME}
-#   DESTINATION lib/${PROJECT_NAME}
-# )
+install(TARGETS
+  ${PROJECT_NAME}_topic_libs
+  ${PROJECT_NAME}_service_libs
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin
+)
 
 ################################################################################
 # Test

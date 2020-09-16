@@ -19,7 +19,7 @@
 #include "rclcpp/rclcpp.hpp"
 #include "rclcpp_components/register_node_macro.hpp"
 
-#include "std_msgs/msg/int8.hpp"
+#include "ros2_tutorial_cpp/msg/count.hpp"
 
 #include "ros2_tutorial_cpp/visibility_control.hpp"
 
@@ -36,22 +36,22 @@ public:
 
     // ROS Subscriber
     auto count_callback =
-      [this](const std_msgs::msg::Int8::SharedPtr msg) -> void
+      [this](const ros2_tutorial_cpp::msg::Count::SharedPtr msg) -> void
       {
         RCLCPP_INFO(this->get_logger(), "%d", msg->data);
       };
-    count_sub_ = create_subscription<std_msgs::msg::Int8>("chatter", 10, count_callback);
+    count_sub_ = create_subscription<ros2_tutorial_cpp::msg::Count>("chatter", 10, count_callback);
 
-    RCLCPP_INFO(this->get_logger(), "Initialized Listener.");
+    RCLCPP_INFO(this->get_logger(), "Initialized Listener");
   }
 
   ~Listener()
   {
-    RCLCPP_INFO(this->get_logger(), "Terminated Listener.");
+    RCLCPP_INFO(this->get_logger(), "Terminated Listener");
   }
 
 private:
-  rclcpp::Subscription<std_msgs::msg::Int8>::SharedPtr count_sub_;
+  rclcpp::Subscription<ros2_tutorial_cpp::msg::Count>::SharedPtr count_sub_;
 };
 }  // namespace ros2_tutorial_cpp
 

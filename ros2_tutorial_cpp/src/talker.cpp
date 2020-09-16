@@ -21,7 +21,7 @@
 #include "rclcpp/rclcpp.hpp"
 #include "rclcpp_components/register_node_macro.hpp"
 
-#include "std_msgs/msg/int8.hpp"
+#include "ros2_tutorial_cpp/msg/count.hpp"
 
 #include "ros2_tutorial_cpp/visibility_control.hpp"
 
@@ -40,29 +40,30 @@ public:
 
     // ROS Publisher
     rclcpp::QoS qos(rclcpp::KeepLast(10));
-    count_pub_ = this->create_publisher<std_msgs::msg::Int8>("chatter", qos);
+    count_pub_ = this->create_publisher<ros2_tutorial_cpp::msg::Count>("chatter", qos);
 
     // ROS Timer
     auto timer_callback =
       [this]() -> void
       {
-        msg_ = std::make_unique<std_msgs::msg::Int8>();
+        msg_ = std::make_unique<ros2_tutorial_cpp::msg::Count>();
         msg_->data = count_++;
+        RCLCPP_INFO(this->get_logger(), "%d", msg_->data);
         count_pub_->publish(std::move(msg_));
       };
-    timer_ = this->create_wall_timer(10s, timer_callback);
+    timer_ = this->create_wall_timer(1s, timer_callback);
 
-    RCLCPP_INFO(this->get_logger(), "Initialized Talker.");
+    RCLCPP_INFO(this->get_logger(), "Initialized Talker");
   }
   ~Talker()
   {
-    RCLCPP_INFO(this->get_logger(), "Terminated Talker.");
+    RCLCPP_INFO(this->get_logger(), "Terminated Talker");
   }
 
 private:
   uint16_t count_ = 0;
-  std::unique_ptr<std_msgs::msg::Int8> msg_;
-  rclcpp::Publisher<std_msgs::msg::Int8>::SharedPtr count_pub_;
+  std::unique_ptr<ros2_tutorial_cpp::msg::Count> msg_;
+  rclcpp::Publisher<ros2_tutorial_cpp::msg::Count>::SharedPtr count_pub_;
   rclcpp::TimerBase::SharedPtr timer_;
 };
 }  // namespace ros2_tutorial_cpp
