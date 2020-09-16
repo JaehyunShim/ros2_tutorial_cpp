@@ -32,9 +32,14 @@ set(srv_files
   "srv/Inquiry.srv"
 )
 
+set(action_files
+  "action/Fetch.action"
+)
+
 rosidl_generate_interfaces(${PROJECT_NAME}
   ${msg_files}
   ${srv_files}
+  ${action_files}
   # DEPENDENCIES std_msgs
   ADD_LINTER_TESTS
 )
@@ -79,6 +84,17 @@ add_library(${PROJECT_NAME}_param_libs SHARED
 )
 ament_target_dependencies(${PROJECT_NAME}_param_libs ${dependencies})
 
+# Add action libraries
+add_library(${PROJECT_NAME}_action_libs SHARED
+  src/action_client.cpp
+  src/action_server.cpp
+)
+ament_target_dependencies(${PROJECT_NAME}_action_libs ${dependencies})
+rosidl_target_interfaces(${PROJECT_NAME}_action_libs
+  ${PROJECT_NAME}
+  "rosidl_typesupport_cpp"
+)
+
 # Register topic nodes
 rclcpp_components_register_node(${PROJECT_NAME}_topic_libs
   PLUGIN "ros2_tutorial_cpp::Talker"
@@ -105,6 +121,16 @@ rclcpp_components_register_node(${PROJECT_NAME}_param_libs
   EXECUTABLE param
 )
 
+# Register action nodes
+rclcpp_components_register_node(${PROJECT_NAME}_action_libs
+  PLUGIN "ros2_tutorial_cpp::ActionClient"
+  EXECUTABLE action_client
+)
+rclcpp_components_register_node(${PROJECT_NAME}_action_libs
+  PLUGIN "ros2_tutorial_cpp::ActionServer"
+  EXECUTABLE action_server
+)
+
 ###########################################################################
 # Install
 ################################################################################
@@ -113,6 +139,7 @@ install(TARGETS
   ${PROJECT_NAME}_topic_libs
   ${PROJECT_NAME}_service_libs
   ${PROJECT_NAME}_param_libs
+  ${PROJECT_NAME}_action_libs
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin
@@ -130,6 +157,7 @@ install(
   msg
   srv
   param
+  action
   DESTINATION share/${PROJECT_NAME}
 )
 

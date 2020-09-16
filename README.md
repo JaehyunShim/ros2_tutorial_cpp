@@ -26,22 +26,28 @@
 
 ## Run
 ```sh
-# Topic example
+# Topic examples
 $ ros2 run ros2_tutorial_cpp talker
 $ ros2 run ros2_tutorial_cpp listener
 $ ros2 launch ros2_tutorial_cpp talker_listener.launch.py
 $ ros2 launch ros2_tutorial_cpp talker_listener.launch.xml
 
-# Service example
+# Service examples
 $ ros2 run ros2_tutorial_cpp requester
 $ ros2 run ros2_tutorial_cpp responsor
 $ ros2 launch ros2_tutorial_cpp requester_responsor.launch.py
 $ ros2 launch ros2_tutorial_cpp requester_responsor.launch.xml
 
-# Param example
+# Param examples
 $ ros2 run ros2_tutorial_cpp param
 $ ros2 launch ros2_tutorial_cpp param.launch.py
 $ ros2 launch ros2_tutorial_cpp param.launch.xml
+
+# Action examples
+$ ros2 run ros2_tutorial_cpp action_client
+$ ros2 run ros2_tutorial_cpp action_server
+$ ros2 launch ros2_tutorial_cpp action_client_server.launch.py
+$ ros2 launch ros2_tutorial_cpp action_client_server.launch.xml
 ```
 
 ## Reference
