@@ -40,13 +40,13 @@ public:
     // ROS Client
     inquiry_cli_ = create_client<ros2_tutorial_cpp::srv::Inquiry>("inquiry");
 
-    RCLCPP_INFO(this->get_logger(), "Initialized Requester");
+    RCLCPP_INFO(this->get_logger(), "Initialized requester node");
     queue_async_request();
   }
 
   ~Requester()
   {
-    RCLCPP_INFO(this->get_logger(), "Terminated Requester");
+    RCLCPP_INFO(this->get_logger(), "Terminated requester node");
   }
 
   void queue_async_request()

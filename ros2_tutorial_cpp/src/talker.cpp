@@ -53,11 +53,11 @@ public:
       };
     timer_ = this->create_wall_timer(1s, timer_callback);
 
-    RCLCPP_INFO(this->get_logger(), "Initialized Talker");
+    RCLCPP_INFO(this->get_logger(), "Initialized talker node");
   }
   ~Talker()
   {
-    RCLCPP_INFO(this->get_logger(), "Terminated Talker");
+    RCLCPP_INFO(this->get_logger(), "Terminated talker node");
   }
 
 private:

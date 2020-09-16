@@ -42,12 +42,12 @@ public:
       };
     count_sub_ = create_subscription<ros2_tutorial_cpp::msg::Count>("chatter", 10, count_callback);
 
-    RCLCPP_INFO(this->get_logger(), "Initialized Listener");
+    RCLCPP_INFO(this->get_logger(), "Initialized listener node");
   }
 
   ~Listener()
   {
-    RCLCPP_INFO(this->get_logger(), "Terminated Listener");
+    RCLCPP_INFO(this->get_logger(), "Terminated listener node");
   }
 
 private:

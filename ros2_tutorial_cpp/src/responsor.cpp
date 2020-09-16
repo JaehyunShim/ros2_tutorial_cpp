@@ -50,12 +50,12 @@ public:
       };
     inquiry_srv_ = create_service<ros2_tutorial_cpp::srv::Inquiry>("inquiry", inquiry_callback);
 
-    RCLCPP_INFO(this->get_logger(), "Initialized Responsor");
+    RCLCPP_INFO(this->get_logger(), "Initialized responsor node");
   }
 
   ~Responsor()
   {
-    RCLCPP_INFO(this->get_logger(), "Terminated Responsor");
+    RCLCPP_INFO(this->get_logger(), "Terminated responsor node");
   }
 
 private:
