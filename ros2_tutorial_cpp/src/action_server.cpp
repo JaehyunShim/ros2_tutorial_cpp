@@ -22,7 +22,7 @@
 #include "rclcpp_components/register_node_macro.hpp"
 
 #include "ros2_tutorial_cpp/action/fetch.hpp"
-#include "ros2_tutorial_cpp/visibility_control.hpp"
+#include "ros2_tutorial_cpp/visibility_control.h"
 
 namespace ros2_tutorial_cpp
 {
@@ -32,12 +32,11 @@ public:
   using Fetch = ros2_tutorial_cpp::action::Fetch;
   using GoalHandleFetch = rclcpp_action::ServerGoalHandle<Fetch>;
 
-  ROS2_TUTORIAL_CPP_PUBLIC
+  ROS2_TUTORIAL_CPP_PUBLIC  // Usage???
   explicit ActionServer(const rclcpp::NodeOptions & options = rclcpp::NodeOptions())
   : Node("action_server", options)
   {
-    RCLCPP_INFO(this->get_logger(), "Initialized action server node");
-    // using namespace std::placeholders;
+    using namespace std::placeholders;
 
     // this->action_server_ = rclcpp_action::create_server<Fetch>(
     //   this->get_node_base_interface(),
@@ -48,6 +47,13 @@ public:
     //   std::bind(&ActionServer::handle_goal, this, _1, _2),
     //   std::bind(&ActionServer::handle_cancel, this, _1),
     //   std::bind(&ActionServer::handle_accepted, this, _1));
+
+    RCLCPP_INFO(this->get_logger(), "Initialized action server node");
+  }
+
+  ~ActionServer()
+  {
+    RCLCPP_INFO(this->get_logger(), "Terminated action server node");
   }
 
 private:

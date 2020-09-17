@@ -22,7 +22,7 @@
 #include "rclcpp/rclcpp.hpp"
 #include "rclcpp_components/register_node_macro.hpp"
 
-#include "ros2_tutorial_cpp/visibility_control.hpp"
+#include "ros2_tutorial_cpp/visibility_control.h"
 
 using namespace std::chrono_literals;
 

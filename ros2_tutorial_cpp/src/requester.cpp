@@ -22,7 +22,7 @@
 
 #include "ros2_tutorial_cpp/srv/inquiry.hpp"
 
-#include "ros2_tutorial_cpp/visibility_control.hpp"
+#include "ros2_tutorial_cpp/visibility_control.h"
 
 using namespace std::chrono_literals;
 

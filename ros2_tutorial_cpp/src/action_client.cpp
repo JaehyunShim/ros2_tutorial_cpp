@@ -24,7 +24,7 @@
 #include "rclcpp_components/register_node_macro.hpp"
 
 #include "ros2_tutorial_cpp/action/fetch.hpp"
-#include "ros2_tutorial_cpp/visibility_control.hpp"
+#include "ros2_tutorial_cpp/visibility_control.h"
 
 namespace ros2_tutorial_cpp
 {
@@ -32,24 +32,24 @@ class ActionClient : public rclcpp::Node
 {
 public:
   using Fetch = ros2_tutorial_cpp::action::Fetch;
-//   using GoalHandleFetch = rclcpp_action::ClientGoalHandle<Fetch>;
+  using GoalHandleFetch = rclcpp_action::ClientGoalHandle<Fetch>;
 
-//   ROS2_TUTORIAL_CPP_PUBLIC
+  ROS2_TUTORIAL_CPP_PUBLIC  // Usage???
   explicit ActionClient(const rclcpp::NodeOptions & node_options = rclcpp::NodeOptions())
   : Node("action_client", node_options)
   {
+    // this->client_ptr_ = rclcpp_action::create_client<Fetch>(
+    //   this->get_node_base_interface(),
+    //   this->get_node_graph_interface(),
+    //   this->get_node_logging_interface(),
+    //   this->get_node_waitables_interface(),
+    //   "fetch");
+
     RCLCPP_INFO(this->get_logger(), "Initialized action client node");
 
-//     this->client_ptr_ = rclcpp_action::create_client<Fetch>(
-//       this->get_node_base_interface(),
-//       this->get_node_graph_interface(),
-//       this->get_node_logging_interface(),
-//       this->get_node_waitables_interface(),
-//       "fetch");
-
-//     this->timer_ = this->create_wall_timer(
-//       std::chrono::milliseconds(500),
-//       std::bind(&ActionClient::send_goal, this));
+    // this->timer_ = this->create_wall_timer(
+    //   std::chrono::milliseconds(500),
+    //   std::bind(&ActionClient::send_goal, this));
   }
 
 //   ROS2_TUTORIAL_CPP_PUBLIC
@@ -82,7 +82,7 @@ public:
 
   ~ActionClient()
   {
-    RCLCPP_INFO(this->get_logger(), "Terminated listener node");
+    RCLCPP_INFO(this->get_logger(), "Terminated action client node");
   }
 
 private:

@@ -39,8 +39,8 @@ jobs:
     strategy:
       fail-fast: false
     steps:
-      - uses: ros-tooling/setup-ros@0.0.23
-      - uses: ros-tooling/action-ros-ci@0.0.17
+      - uses: ros-tooling/setup-ros@0.0.25
+      - uses: ros-tooling/action-ros-ci@0.0.19
         with:
           package-name:  |
             ros2_tutorial
