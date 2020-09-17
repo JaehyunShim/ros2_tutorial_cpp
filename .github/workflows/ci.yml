@@ -42,6 +42,7 @@ jobs:
       - uses: ros-tooling/setup-ros@0.0.25
       - uses: ros-tooling/action-ros-ci@0.0.19
         with:
+          target-ros2-distro: foxy
           package-name:  |
             ros2_tutorial
             ros2_tutorial_cpp
