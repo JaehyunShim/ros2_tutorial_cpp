@@ -16,7 +16,6 @@
 
 #include <memory>
 #include <string>
-#include <sstream>
 
 #include "rclcpp/rclcpp.hpp"
 // TODO(jacobperron): Remove this once it is included as part of 'rclcpp.hpp'
@@ -26,47 +25,59 @@
 #include "ros2_tutorial_cpp/action/fetch.hpp"
 #include "ros2_tutorial_cpp/visibility_control.h"
 
+using namespace std::placeholders;
+using Fetch = ros2_tutorial_cpp::action::Fetch;
+using GoalHandleFetch = rclcpp_action::ClientGoalHandle<Fetch>;
+
 namespace ros2_tutorial_cpp
 {
 class ActionClient : public rclcpp::Node
 {
 public:
-  using Fetch = ros2_tutorial_cpp::action::Fetch;
-  using GoalHandleFetch = rclcpp_action::ClientGoalHandle<Fetch>;
-
   ROS2_TUTORIAL_CPP_PUBLIC  // Usage???
   explicit ActionClient(const rclcpp::NodeOptions & node_options = rclcpp::NodeOptions())
   : Node("action_client", node_options)
   {
-    this->client_ptr_ = rclcpp_action::create_client<Fetch>(
+    // Control stdout buffering
+    setvbuf(stdout, NULL, _IONBF, BUFSIZ);
+
+    // ROS Action Client
+    this->fetch_action_cli_ = rclcpp_action::create_client<Fetch>(
       this->get_node_base_interface(),
       this->get_node_graph_interface(),
       this->get_node_logging_interface(),
       this->get_node_waitables_interface(),
       "fetch");
 
-    RCLCPP_INFO(this->get_logger(), "Initialized action client node");
-
+    // ROS Timer
     this->timer_ = this->create_wall_timer(
       std::chrono::milliseconds(500),
       std::bind(&ActionClient::send_goal, this));
+
+    RCLCPP_INFO(this->get_logger(), "Initialized action client node");
+  }
+
+  ~ActionClient()
+  {
+    RCLCPP_INFO(this->get_logger(), "Terminated action client node");
   }
 
   ROS2_TUTORIAL_CPP_PUBLIC
   void send_goal()
   {
-    using namespace std::placeholders;
+    // Cancel timer and send a goal only once
+    timer_->cancel();
 
-    this->timer_->cancel();
-
-    if (!this->client_ptr_->wait_for_action_server(std::chrono::seconds(10))) {
+    // Block until a action service is available
+    if (!fetch_action_cli_->wait_for_action_server(std::chrono::seconds(10))) {
       RCLCPP_ERROR(this->get_logger(), "Action server not available after waiting");
       rclcpp::shutdown();
       return;
     }
 
+    // Define an action goal  (do not know why not using shared pointer)
     auto goal_msg = Fetch::Goal();
-    goal_msg.order = 10;
+    goal_msg.task_time = 10;
 
     RCLCPP_INFO(this->get_logger(), "Sending goal");
 
@@ -77,16 +88,11 @@ public:
       std::bind(&ActionClient::feedback_callback, this, _1, _2);
     send_goal_options.result_callback =
       std::bind(&ActionClient::result_callback, this, _1);
-    this->client_ptr_->async_send_goal(goal_msg, send_goal_options);
-  }
-
-  ~ActionClient()
-  {
-    RCLCPP_INFO(this->get_logger(), "Terminated action client node");
+    this->fetch_action_cli_->async_send_goal(goal_msg, send_goal_options);
   }
 
 private:
-  rclcpp_action::Client<Fetch>::SharedPtr client_ptr_;
+  rclcpp_action::Client<Fetch>::SharedPtr fetch_action_cli_;
   rclcpp::TimerBase::SharedPtr timer_;
 
   ROS2_TUTORIAL_CPP_LOCAL
@@ -105,12 +111,7 @@ private:
     GoalHandleFetch::SharedPtr,
     const std::shared_ptr<const Fetch::Feedback> feedback)
   {
-    std::stringstream ss;
-    ss << "Next number in sequence received: ";
-    for (auto number : feedback->partial_sequence) {
-      ss << number << " ";
-    }
-    RCLCPP_INFO(this->get_logger(), ss.str().c_str());
+    RCLCPP_INFO(this->get_logger(), "Received left time %d", feedback->time_left);
   }
 
   ROS2_TUTORIAL_CPP_LOCAL
@@ -129,12 +130,9 @@ private:
         RCLCPP_ERROR(this->get_logger(), "Unknown result code");
         return;
     }
-    std::stringstream ss;
-    ss << "Result received: ";
-    for (auto number : result.result->sequence) {
-      ss << number << " ";
-    }
-    RCLCPP_INFO(this->get_logger(), ss.str().c_str());
+
+    RCLCPP_INFO(this->get_logger(), "Received result %s", result.result->answer.c_str());
+
     rclcpp::shutdown();
   }
 };  // class ActionClient

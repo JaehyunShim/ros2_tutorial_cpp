@@ -2,11 +2,11 @@
 [![GitHub Action Status](https://github.com/rjshim/ros2_tutorial/workflows/CI/badge.svg)](https://github.com/rjshim/ros2_tutorial) [![GitHub Action Status](https://github.com/rjshim/ros2_tutorial/workflows/Lint/badge.svg)](https://github.com/rjshim/ros2_tutorial) [![codecov](https://codecov.io/gh/rjshim/ros2_tutorial/branch/master/graph/badge.svg)](https://codecov.io/gh/rjshim/ros2_tutorial) ![GitHub](https://img.shields.io/github/license/rjshim/ros2_tutorial)
 
 ## Practice
-1. Write ROS Pubisher/Subscriber (Done)
-2. Write ROS Client/Server (Done)
-3. Write ROS Launch (Done)
-4. Write ROS Parameter (Done, TODO for param.launch.xml)
-5. Write ROS Action (TODO)
+1. Write ROS Pubisher/Subscriber with Topic (Done)
+2. Write ROS Client/Server with Serivce (Done)
+3. Write ROS Action (Done)
+4. Write ROS Parameter (Done)
+5. Write ROS Launch (Done)
 6. Write ROS Plugin (TODO)
 7. Write ROS Lifecycle (TODO)
 
@@ -39,17 +39,21 @@ $ ros2 run ros2_tutorial_cpp server
 $ ros2 launch ros2_tutorial_cpp client_server.launch.py
 $ ros2 launch ros2_tutorial_cpp client_server.launch.xml
 
-# Param examples
-$ ros2 run ros2_tutorial_cpp param
-$ ros2 launch ros2_tutorial_cpp param.launch.py
-$ ros2 launch ros2_tutorial_cpp param.launch.xml
-
 # Action examples
 $ ros2 run ros2_tutorial_cpp action_client
 $ ros2 run ros2_tutorial_cpp action_server
 $ ros2 launch ros2_tutorial_cpp action_client_action_server.launch.py
 $ ros2 launch ros2_tutorial_cpp action_client_action_server.launch.xml
+
+# Param examples
+$ ros2 run ros2_tutorial_cpp param
+$ ros2 launch ros2_tutorial_cpp param.launch.py
+$ ros2 launch ros2_tutorial_cpp param.launch.xml
 ```
 
 ## Reference
 1. [ROS2 Demo](https://github.com/ros2/demos)
+
+## Issue
+1. arg does not work in launch.xml
+2. Action Cancel does not work [link](https://answers.ros.org/question/361666/ros2-action-goal-canceling-problem/?answer=361754#post-id-361754)

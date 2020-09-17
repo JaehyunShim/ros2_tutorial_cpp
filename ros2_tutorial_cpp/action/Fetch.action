@@ -1,8 +1,8 @@
 # Goal
-int32 order
+int32 task_time
 ---
 # Result
-int32[] sequence
+string answer
 ---
 # Feeback
-int32[] partial_sequence
+int32 time_left

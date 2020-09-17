@@ -15,6 +15,7 @@
 /* Authors: Ryan Shim */
 
 #include <memory>
+#include <string>
 
 #include "rclcpp/rclcpp.hpp"
 // TODO(jacobperron): Remove this once it is included as part of 'rclcpp.hpp'
@@ -24,21 +25,24 @@
 #include "ros2_tutorial_cpp/action/fetch.hpp"
 #include "ros2_tutorial_cpp/visibility_control.h"
 
+using namespace std::placeholders;
+using Fetch = ros2_tutorial_cpp::action::Fetch;
+using GoalHandleFetch = rclcpp_action::ServerGoalHandle<Fetch>;
+
 namespace ros2_tutorial_cpp
 {
 class ActionServer : public rclcpp::Node
 {
 public:
-  using Fetch = ros2_tutorial_cpp::action::Fetch;
-  using GoalHandleFetch = rclcpp_action::ServerGoalHandle<Fetch>;
-
   ROS2_TUTORIAL_CPP_PUBLIC  // Usage???
   explicit ActionServer(const rclcpp::NodeOptions & options = rclcpp::NodeOptions())
   : Node("action_server", options)
   {
-    using namespace std::placeholders;
+    // Control stdout buffering
+    setvbuf(stdout, NULL, _IONBF, BUFSIZ);
 
-    this->action_server_ = rclcpp_action::create_server<Fetch>(
+    // ROS Action Server
+    this->fetch_action_srv_ = rclcpp_action::create_server<Fetch>(
       this->get_node_base_interface(),
       this->get_node_clock_interface(),
       this->get_node_logging_interface(),
@@ -57,17 +61,21 @@ public:
   }
 
 private:
-  rclcpp_action::Server<Fetch>::SharedPtr action_server_;
+  rclcpp_action::Server<Fetch>::SharedPtr fetch_action_srv_;
 
   ROS2_TUTORIAL_CPP_LOCAL
   rclcpp_action::GoalResponse handle_goal(
     const rclcpp_action::GoalUUID & uuid,
     std::shared_ptr<const Fetch::Goal> goal)
   {
-    RCLCPP_INFO(this->get_logger(), "Received goal request with order %d", goal->order);
+    RCLCPP_INFO(this->get_logger(), "Received goal request with task time %d", goal->task_time);
+
+    // Not used
     (void)uuid;
-    // Let's reject sequences that are over 9000
-    if (goal->order > 9000) {
+
+    // Let's reject task_time that are less than 5
+    if (goal->task_time < 5) {
+      RCLCPP_INFO(this->get_logger(), "Received too short task time. Rejected goal");
       return rclcpp_action::GoalResponse::REJECT;
     }
     return rclcpp_action::GoalResponse::ACCEPT_AND_EXECUTE;
@@ -94,25 +102,26 @@ private:
   void execute(const std::shared_ptr<GoalHandleFetch> goal_handle)
   {
     RCLCPP_INFO(this->get_logger(), "Executing goal");
+
+    // Print received goal
     rclcpp::Rate loop_rate(1);
     const auto goal = goal_handle->get_goal();
     auto feedback = std::make_shared<Fetch::Feedback>();
-    auto & sequence = feedback->partial_sequence;
-    sequence.push_back(0);
-    sequence.push_back(1);
     auto result = std::make_shared<Fetch::Result>();
 
-    for (int i = 1; (i < goal->order) && rclcpp::ok(); ++i) {
+    for (int i = 1; (i < goal->task_time) && rclcpp::ok(); ++i) {
       // Check if there is a cancel request
       if (goal_handle->is_canceling()) {
-        result->sequence = sequence;
+        std::string answer;
+        answer.assign("Goal Canceled");
+        result->answer = answer;
         goal_handle->canceled(result);
         RCLCPP_INFO(this->get_logger(), "Goal canceled");
         return;
       }
-      // Update sequence
-      sequence.push_back(sequence[i] + sequence[i - 1]);
+
       // Publish feedback
+      feedback->time_left = goal->task_time - i;
       goal_handle->publish_feedback(feedback);
       RCLCPP_INFO(this->get_logger(), "Publish feedback");
 
@@ -121,7 +130,10 @@ private:
 
     // Check if goal is done
     if (rclcpp::ok()) {
-      result->sequence = sequence;
+      // char * answer = "Fetched a sandwich";
+      std::string answer;
+      answer.assign("Fetched a sandwich");
+      result->answer = answer;
       goal_handle->succeed(result);
       RCLCPP_INFO(this->get_logger(), "Goal succeeded");
     }
