@@ -23,20 +23,21 @@
 5. Test Doxygen
 6. Create User Manual
 7. Bloom
+8. ROS2 CheatSheet
 
 ## Run
 ```sh
 # Topic examples
-$ ros2 run ros2_tutorial_cpp talker
-$ ros2 run ros2_tutorial_cpp listener
-$ ros2 launch ros2_tutorial_cpp talker_listener.launch.py
-$ ros2 launch ros2_tutorial_cpp talker_listener.launch.xml
+$ ros2 run ros2_tutorial_cpp publisher
+$ ros2 run ros2_tutorial_cpp subscriber
+$ ros2 launch ros2_tutorial_cpp publisher_subscriber.launch.py
+$ ros2 launch ros2_tutorial_cpp publisher_subscriber.launch.xml
 
 # Service examples
-$ ros2 run ros2_tutorial_cpp requester
-$ ros2 run ros2_tutorial_cpp responsor
-$ ros2 launch ros2_tutorial_cpp requester_responsor.launch.py
-$ ros2 launch ros2_tutorial_cpp requester_responsor.launch.xml
+$ ros2 run ros2_tutorial_cpp client
+$ ros2 run ros2_tutorial_cpp server
+$ ros2 launch ros2_tutorial_cpp client_server.launch.py
+$ ros2 launch ros2_tutorial_cpp client_server.launch.xml
 
 # Param examples
 $ ros2 run ros2_tutorial_cpp param
@@ -46,8 +47,8 @@ $ ros2 launch ros2_tutorial_cpp param.launch.xml
 # Action examples
 $ ros2 run ros2_tutorial_cpp action_client
 $ ros2 run ros2_tutorial_cpp action_server
-$ ros2 launch ros2_tutorial_cpp action_client_server.launch.py
-$ ros2 launch ros2_tutorial_cpp action_client_server.launch.xml
+$ ros2 launch ros2_tutorial_cpp action_client_action_server.launch.py
+$ ros2 launch ros2_tutorial_cpp action_client_action_server.launch.xml
 ```
 
 ## Reference

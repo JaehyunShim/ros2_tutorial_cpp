@@ -22,13 +22,13 @@ def generate_launch_description():
     return LaunchDescription([
         launch_ros.actions.Node(
             package='ros2_tutorial_cpp',
-            executable='requester',
-            name='requester',
+            executable='client',
+            name='client',
             output='screen'),
 
         launch_ros.actions.Node(
             package='ros2_tutorial_cpp',
-            executable='responsor',
-            name='responsor',
+            executable='server',
+            name='server',
             output='screen'),
     ])

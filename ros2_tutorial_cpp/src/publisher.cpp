@@ -29,11 +29,11 @@ using namespace std::chrono_literals;
 
 namespace ros2_tutorial_cpp
 {
-class Talker : public rclcpp::Node
+class Publisher : public rclcpp::Node
 {
 public:
-  explicit Talker(const rclcpp::NodeOptions & options)  // options for what ???
-  : Node("talker", options)
+  explicit Publisher(const rclcpp::NodeOptions & options)  // options for what ???
+  : Node("publisher", options)
   {
     // Control stdout buffering
     setvbuf(stdout, NULL, _IONBF, BUFSIZ);
@@ -53,11 +53,11 @@ public:
       };
     timer_ = this->create_wall_timer(1s, timer_callback);
 
-    RCLCPP_INFO(this->get_logger(), "Initialized talker node");
+    RCLCPP_INFO(this->get_logger(), "Initialized publisher node");
   }
-  ~Talker()
+  ~Publisher()
   {
-    RCLCPP_INFO(this->get_logger(), "Terminated talker node");
+    RCLCPP_INFO(this->get_logger(), "Terminated publisher node");
   }
 
 private:
@@ -68,4 +68,4 @@ private:
 };
 }  // namespace ros2_tutorial_cpp
 
-RCLCPP_COMPONENTS_REGISTER_NODE(ros2_tutorial_cpp::Talker)
+RCLCPP_COMPONENTS_REGISTER_NODE(ros2_tutorial_cpp::Publisher)

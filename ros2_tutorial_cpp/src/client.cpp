@@ -28,11 +28,11 @@ using namespace std::chrono_literals;
 
 namespace ros2_tutorial_cpp
 {
-class Requester : public rclcpp::Node
+class Client : public rclcpp::Node
 {
 public:
-  explicit Requester(const rclcpp::NodeOptions & options)
-  : Node("Requester", options)
+  explicit Client(const rclcpp::NodeOptions & options)
+  : Node("Client", options)
   {
     // Control stdout buffering
     setvbuf(stdout, NULL, _IONBF, BUFSIZ);
@@ -40,13 +40,13 @@ public:
     // ROS Client
     inquiry_cli_ = create_client<ros2_tutorial_cpp::srv::Inquiry>("inquiry");
 
-    RCLCPP_INFO(this->get_logger(), "Initialized requester node");
+    RCLCPP_INFO(this->get_logger(), "Initialized client node");
     queue_async_request();
   }
 
-  ~Requester()
+  ~Client()
   {
-    RCLCPP_INFO(this->get_logger(), "Terminated requester node");
+    RCLCPP_INFO(this->get_logger(), "Terminated client node");
   }
 
   void queue_async_request()
@@ -79,4 +79,4 @@ private:
 };
 }  // namespace ros2_tutorial_cpp
 
-RCLCPP_COMPONENTS_REGISTER_NODE(ros2_tutorial_cpp::Requester)
+RCLCPP_COMPONENTS_REGISTER_NODE(ros2_tutorial_cpp::Client)

@@ -28,11 +28,11 @@ using namespace std::chrono_literals;
 
 namespace ros2_tutorial_cpp
 {
-class Responsor : public rclcpp::Node
+class Server : public rclcpp::Node
 {
 public:
-  explicit Responsor(const rclcpp::NodeOptions & options)
-  : Node("Responsor", options)
+  explicit Server(const rclcpp::NodeOptions & options)
+  : Node("Server", options)
   {
     // Control stdout buffering
     setvbuf(stdout, NULL, _IONBF, BUFSIZ);
@@ -49,12 +49,12 @@ public:
       };
     inquiry_srv_ = create_service<ros2_tutorial_cpp::srv::Inquiry>("inquiry", inquiry_callback);
 
-    RCLCPP_INFO(this->get_logger(), "Initialized responsor node");
+    RCLCPP_INFO(this->get_logger(), "Initialized server node");
   }
 
-  ~Responsor()
+  ~Server()
   {
-    RCLCPP_INFO(this->get_logger(), "Terminated responsor node");
+    RCLCPP_INFO(this->get_logger(), "Terminated server node");
   }
 
 private:
@@ -62,4 +62,4 @@ private:
 };
 }  // namespace ros2_tutorial_cpp
 
-RCLCPP_COMPONENTS_REGISTER_NODE(ros2_tutorial_cpp::Responsor)
+RCLCPP_COMPONENTS_REGISTER_NODE(ros2_tutorial_cpp::Server)

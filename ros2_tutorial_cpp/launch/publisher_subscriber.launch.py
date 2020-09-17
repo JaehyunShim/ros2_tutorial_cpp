@@ -22,15 +22,15 @@ def generate_launch_description():
     return LaunchDescription([
         launch_ros.actions.Node(
             package='ros2_tutorial_cpp',
-            executable='talker',
-            name='talker',
+            executable='publisher',
+            name='publisher',
             # remappings=[('/chatter', '/remapped_chatter')],
             output='screen'),
 
         launch_ros.actions.Node(
             package='ros2_tutorial_cpp',
-            executable='listener',
-            name='listener',
+            executable='subscriber',
+            name='subscriber',
             # remappings=[('/chatter', '/remapped_chatter')],
             output='screen'),
     ])

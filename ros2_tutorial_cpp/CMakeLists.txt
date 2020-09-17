@@ -60,8 +60,8 @@ set(dependencies
 
 # Add topic libraries
 add_library(${PROJECT_NAME}_topic_libs SHARED
-  src/talker.cpp
-  src/listener.cpp
+  src/publisher.cpp
+  src/subscriber.cpp
 )
 ament_target_dependencies(${PROJECT_NAME}_topic_libs ${dependencies})
 rosidl_target_interfaces(${PROJECT_NAME}_topic_libs
@@ -71,8 +71,8 @@ rosidl_target_interfaces(${PROJECT_NAME}_topic_libs
 
 # Add service libraries
 add_library(${PROJECT_NAME}_service_libs SHARED
-  src/requester.cpp
-  src/responsor.cpp
+  src/client.cpp
+  src/server.cpp
 )
 ament_target_dependencies(${PROJECT_NAME}_service_libs ${dependencies})
 rosidl_target_interfaces(${PROJECT_NAME}_service_libs
@@ -99,22 +99,22 @@ rosidl_target_interfaces(${PROJECT_NAME}_action_libs
 
 # Register topic nodes
 rclcpp_components_register_node(${PROJECT_NAME}_topic_libs
-  PLUGIN "ros2_tutorial_cpp::Talker"
-  EXECUTABLE talker
+  PLUGIN "ros2_tutorial_cpp::Publisher"
+  EXECUTABLE publisher
 )
 rclcpp_components_register_node(${PROJECT_NAME}_topic_libs
-  PLUGIN "ros2_tutorial_cpp::Listener"
-  EXECUTABLE listener
+  PLUGIN "ros2_tutorial_cpp::Subscriber"
+  EXECUTABLE subscriber
 )
 
 # Register service nodes
 rclcpp_components_register_node(${PROJECT_NAME}_service_libs
-  PLUGIN "ros2_tutorial_cpp::Requester"
-  EXECUTABLE requester
+  PLUGIN "ros2_tutorial_cpp::Client"
+  EXECUTABLE client
 )
 rclcpp_components_register_node(${PROJECT_NAME}_service_libs
-  PLUGIN "ros2_tutorial_cpp::Responsor"
-  EXECUTABLE responsor
+  PLUGIN "ros2_tutorial_cpp::Server"
+  EXECUTABLE server
 )
 
 # Register param nodes

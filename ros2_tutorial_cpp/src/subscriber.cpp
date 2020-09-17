@@ -25,11 +25,11 @@
 
 namespace ros2_tutorial_cpp
 {
-class Listener : public rclcpp::Node
+class Subscriber : public rclcpp::Node
 {
 public:
-  explicit Listener(const rclcpp::NodeOptions & options)
-  : Node("listener", options)
+  explicit Subscriber(const rclcpp::NodeOptions & options)
+  : Node("subscriber", options)
   {
     // Control stdout buffering
     setvbuf(stdout, NULL, _IONBF, BUFSIZ);
@@ -42,12 +42,12 @@ public:
       };
     count_sub_ = create_subscription<ros2_tutorial_cpp::msg::Count>("chatter", 10, count_callback);
 
-    RCLCPP_INFO(this->get_logger(), "Initialized listener node");
+    RCLCPP_INFO(this->get_logger(), "Initialized subscriber node");
   }
 
-  ~Listener()
+  ~Subscriber()
   {
-    RCLCPP_INFO(this->get_logger(), "Terminated listener node");
+    RCLCPP_INFO(this->get_logger(), "Terminated subscriber node");
   }
 
 private:
@@ -55,4 +55,4 @@ private:
 };
 }  // namespace ros2_tutorial_cpp
 
-RCLCPP_COMPONENTS_REGISTER_NODE(ros2_tutorial_cpp::Listener)
+RCLCPP_COMPONENTS_REGISTER_NODE(ros2_tutorial_cpp::Subscriber)
