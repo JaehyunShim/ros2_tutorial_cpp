@@ -28,4 +28,8 @@ jobs:
           linter: ${{ matrix.linter }}
           package-name: |
             ros2_tutorial
-            ros2_tutorial_cpp
+            action_example
+            lifecycle_example
+            param_example
+            service_example
+            topic_example

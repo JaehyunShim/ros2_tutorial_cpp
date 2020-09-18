@@ -2,7 +2,7 @@
 # Set minimum required version of cmake, project name and compile options
 ################################################################################
 cmake_minimum_required(VERSION 3.5)
-project(lifecycle_example)
+project(topic_example)
 
 if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 14)
@@ -18,10 +18,20 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_components REQUIRED)
-find_package(rclcpp_lifecycle REQUIRED)
-find_package(lifecycle_msgs REQUIRED)
-find_package(rcutils REQUIRED)
-find_package(std_msgs REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
+
+################################################################################
+# Declare ROS messages, services and actions
+################################################################################
+set(msg_files
+  "msg/Count.msg"
+)
+
+rosidl_generate_interfaces(${PROJECT_NAME}
+  ${msg_files}
+  # DEPENDENCIES imported_message_type
+  ADD_LINTER_TESTS
+)
 
 ################################################################################
 # Build
@@ -33,27 +43,27 @@ include_directories(
 set(dependencies
   "rclcpp"
   "rclcpp_components"
-  "rclcpp_lifecycle"
-  "lifecycle_msgs"
-  "rcutils"
-  "std_msgs"
 )
 
 # Add topic libraries
-add_library(${PROJECT_NAME}_lifecycle_libs SHARED
-  src/lifecycle_publisher.cpp
-  src/lifecycle_subscriber.cpp
+add_library(${PROJECT_NAME}_topic_libs SHARED
+  src/publisher.cpp
+  src/subscriber.cpp
 )
-ament_target_dependencies(${PROJECT_NAME}_lifecycle_libs ${dependencies})
+ament_target_dependencies(${PROJECT_NAME}_topic_libs ${dependencies})
+rosidl_target_interfaces(${PROJECT_NAME}_topic_libs
+  ${PROJECT_NAME}
+  "rosidl_typesupport_cpp"
+)
 
 # Register topic nodes
-rclcpp_components_register_node(${PROJECT_NAME}_lifecycle_libs
-  PLUGIN "lifecycle_example::LifecyclePublisher"
-  EXECUTABLE lifecycle_publisher
+rclcpp_components_register_node(${PROJECT_NAME}_topic_libs
+  PLUGIN "topic_example::Publisher"
+  EXECUTABLE publisher
 )
-rclcpp_components_register_node(${PROJECT_NAME}_lifecycle_libs
-  PLUGIN "lifecycle_example::LifecycleSubscriber"
-  EXECUTABLE lifecycle_subscriber
+rclcpp_components_register_node(${PROJECT_NAME}_topic_libs
+  PLUGIN "topic_example::Subscriber"
+  EXECUTABLE subscriber
 )
 
 ###########################################################################
@@ -61,7 +71,7 @@ rclcpp_components_register_node(${PROJECT_NAME}_lifecycle_libs
 ################################################################################
 # Install libraries
 install(TARGETS
-  ${PROJECT_NAME}_lifecycle_libs
+  ${PROJECT_NAME}_topic_libs
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin
@@ -71,6 +81,12 @@ install(TARGETS
 install(DIRECTORY
   launch
   DESTINATION share/${PROJECT_NAME}/
+)
+
+# Install message files
+install(DIRECTORY
+  msg
+  DESTINATION share/${PROJECT_NAME}
 )
 
 ################################################################################
@@ -86,11 +102,11 @@ install(DIRECTORY
 #     "rclcpp"
 #   )
 
-#   ament_add_gtest(test_lifecycle_example
-#     test/test_lifecycle_example.cpp
-#     src/lifecycle_example.cpp)
-#   target_include_directories(test_lifecycle_example PRIVATE include)
-#   ament_target_dependencies(test_lifecycle_example ${test_dependencies})
+#   ament_add_gtest(test_topic_example
+#     test/test_topic_example.cpp
+#     src/topic_example.cpp)
+#   target_include_directories(test_topic_example PRIVATE include)
+#   ament_target_dependencies(test_topic_example ${test_dependencies})
 # endif()
 
 ################################################################################
@@ -99,8 +115,5 @@ install(DIRECTORY
 ament_export_include_directories(include)
 ament_export_dependencies(rclcpp)
 ament_export_dependencies(rclcpp_components)
-ament_export_dependencies(rclcpp_lifecycle)
-ament_export_dependencies(lifecycle_msgs)
-ament_export_dependencies(rcutils)
-ament_export_dependencies(std_msgs)
+ament_export_dependencies(rosidl_default_runtime)
 ament_package()

@@ -6,7 +6,7 @@
 2. Write ROS Client/Server with Serivce (Done)
 3. Write ROS Action (Done)
 4. Write ROS Parameter (Done)
-5. Write ROS Launch (Done)
+5. Write ROS Launch (TODO)
 6. Write ROS Lifecycle (Done, TOSTUDYFURTHER)
 7. Write ROS Plugin (TODO)
 
@@ -37,27 +37,29 @@
 ## Run
 ```sh
 # Topic examples
-$ ros2 run ros2_tutorial_cpp publisher
-$ ros2 run ros2_tutorial_cpp subscriber
-$ ros2 launch ros2_tutorial_cpp publisher_subscriber.launch.py
-$ ros2 launch ros2_tutorial_cpp publisher_subscriber.launch.xml
+$ ros2 run topic_example publisher
+$ ros2 run topic_example subscriber
+$ ros2 launch topic_example publisher_subscriber.launch.py
+$ ros2 launch topic_example publisher_subscriber.launch.xml
 
 # Service examples
-$ ros2 run ros2_tutorial_cpp client
-$ ros2 run ros2_tutorial_cpp server
-$ ros2 launch ros2_tutorial_cpp client_server.launch.py
-$ ros2 launch ros2_tutorial_cpp client_server.launch.xml
+$ ros2 run service_example client
+$ ros2 run service_example server
+$ ros2 launch service_example client_server.launch.py
+$ ros2 launch service_example client_server.launch.xml
 
 # Action examples
-$ ros2 run ros2_tutorial_cpp action_client
-$ ros2 run ros2_tutorial_cpp action_server
-$ ros2 launch ros2_tutorial_cpp action_client_action_server.launch.py
-$ ros2 launch ros2_tutorial_cpp action_client_action_server.launch.xml
+$ ros2 run action_example action_client
+$ ros2 run action_example action_server
+$ ros2 launch action_example action_client_action_server.launch.py
+$ ros2 launch action_example action_client_action_server.launch.xml
 
 # Param examples
-$ ros2 run ros2_tutorial_cpp param
-$ ros2 launch ros2_tutorial_cpp param.launch.py
-$ ros2 launch ros2_tutorial_cpp param.launch.xml
+$ ros2 run param_example param
+$ ros2 launch param_example param.launch.py
+$ ros2 launch param_example param.launch.xml
+
+# Launch examples
 
 # Lifecycle examples
 $ ros2 run lifecycle_example lifecycle_publisher
@@ -70,6 +72,9 @@ $ ros2 lifecycle get /lifecycle_subscriber
 
 $ ros2 launch lifecycle_example lifecycle_publisher_lifecycle_subscriber.launch.py
 $ ros2 launch lifecycle_example lifecycle_publisher_lifecycle_subscriber.launch.xml
+
+# Plugin examples
+
 ```
 
 ## Reference

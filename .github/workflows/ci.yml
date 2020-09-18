@@ -45,7 +45,11 @@ jobs:
           target-ros2-distro: foxy
           package-name:  |
             ros2_tutorial
-            ros2_tutorial_cpp
+            action_example
+            lifecycle_example
+            param_example
+            service_example
+            topic_example
           vcs-repo-file-url: |
             https://raw.githubusercontent.com/ros2/ros2/master/ros2.repos
           colcon-mixin-name: coverage-gcc

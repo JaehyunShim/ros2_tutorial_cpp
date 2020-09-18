@@ -2,7 +2,7 @@
 # Set minimum required version of cmake, project name and compile options
 ################################################################################
 cmake_minimum_required(VERSION 3.5)
-project(lifecycle_example)
+project(service_example)
 
 if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 14)
@@ -18,10 +18,19 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_components REQUIRED)
-find_package(rclcpp_lifecycle REQUIRED)
-find_package(lifecycle_msgs REQUIRED)
-find_package(rcutils REQUIRED)
-find_package(std_msgs REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
+
+################################################################################
+# Declare ROS messages, services and actions
+################################################################################
+set(srv_files
+  "srv/Inquiry.srv"
+)
+
+rosidl_generate_interfaces(${PROJECT_NAME}
+  ${srv_files}
+  ADD_LINTER_TESTS
+)
 
 ################################################################################
 # Build
@@ -33,27 +42,27 @@ include_directories(
 set(dependencies
   "rclcpp"
   "rclcpp_components"
-  "rclcpp_lifecycle"
-  "lifecycle_msgs"
-  "rcutils"
-  "std_msgs"
 )
 
-# Add topic libraries
-add_library(${PROJECT_NAME}_lifecycle_libs SHARED
-  src/lifecycle_publisher.cpp
-  src/lifecycle_subscriber.cpp
+# Add service libraries
+add_library(${PROJECT_NAME}_service_libs SHARED
+  src/client.cpp
+  src/server.cpp
 )
-ament_target_dependencies(${PROJECT_NAME}_lifecycle_libs ${dependencies})
+ament_target_dependencies(${PROJECT_NAME}_service_libs ${dependencies})
+rosidl_target_interfaces(${PROJECT_NAME}_service_libs
+  ${PROJECT_NAME}
+  "rosidl_typesupport_cpp"
+)
 
-# Register topic nodes
-rclcpp_components_register_node(${PROJECT_NAME}_lifecycle_libs
-  PLUGIN "lifecycle_example::LifecyclePublisher"
-  EXECUTABLE lifecycle_publisher
+# Register service nodes
+rclcpp_components_register_node(${PROJECT_NAME}_service_libs
+  PLUGIN "service_example::Client"
+  EXECUTABLE client
 )
-rclcpp_components_register_node(${PROJECT_NAME}_lifecycle_libs
-  PLUGIN "lifecycle_example::LifecycleSubscriber"
-  EXECUTABLE lifecycle_subscriber
+rclcpp_components_register_node(${PROJECT_NAME}_service_libs
+  PLUGIN "service_example::Server"
+  EXECUTABLE server
 )
 
 ###########################################################################
@@ -61,7 +70,7 @@ rclcpp_components_register_node(${PROJECT_NAME}_lifecycle_libs
 ################################################################################
 # Install libraries
 install(TARGETS
-  ${PROJECT_NAME}_lifecycle_libs
+  ${PROJECT_NAME}_service_libs
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin
@@ -71,6 +80,12 @@ install(TARGETS
 install(DIRECTORY
   launch
   DESTINATION share/${PROJECT_NAME}/
+)
+
+# Install service files
+install(DIRECTORY
+  srv
+  DESTINATION share/${PROJECT_NAME}
 )
 
 ################################################################################
@@ -86,11 +101,11 @@ install(DIRECTORY
 #     "rclcpp"
 #   )
 
-#   ament_add_gtest(test_lifecycle_example
-#     test/test_lifecycle_example.cpp
-#     src/lifecycle_example.cpp)
-#   target_include_directories(test_lifecycle_example PRIVATE include)
-#   ament_target_dependencies(test_lifecycle_example ${test_dependencies})
+#   ament_add_gtest(test_service_example
+#     test/test_service_example.cpp
+#     src/service_example.cpp)
+#   target_include_directories(test_service_example PRIVATE include)
+#   ament_target_dependencies(test_service_example ${test_dependencies})
 # endif()
 
 ################################################################################
@@ -99,8 +114,5 @@ install(DIRECTORY
 ament_export_include_directories(include)
 ament_export_dependencies(rclcpp)
 ament_export_dependencies(rclcpp_components)
-ament_export_dependencies(rclcpp_lifecycle)
-ament_export_dependencies(lifecycle_msgs)
-ament_export_dependencies(rcutils)
-ament_export_dependencies(std_msgs)
+ament_export_dependencies(rosidl_default_runtime)
 ament_package()

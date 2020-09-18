@@ -2,7 +2,7 @@
 # Set minimum required version of cmake, project name and compile options
 ################################################################################
 cmake_minimum_required(VERSION 3.5)
-project(lifecycle_example)
+project(action_example)
 
 if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 14)
@@ -17,11 +17,21 @@ endif()
 ################################################################################
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(rclcpp_action REQUIRED)
 find_package(rclcpp_components REQUIRED)
-find_package(rclcpp_lifecycle REQUIRED)
-find_package(lifecycle_msgs REQUIRED)
-find_package(rcutils REQUIRED)
-find_package(std_msgs REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
+
+################################################################################
+# Declare ROS messages, services and actions
+################################################################################
+set(action_files
+  "action/Fetch.action"
+)
+
+rosidl_generate_interfaces(${PROJECT_NAME}
+  ${action_files}
+  ADD_LINTER_TESTS
+)
 
 ################################################################################
 # Build
@@ -32,28 +42,29 @@ include_directories(
 
 set(dependencies
   "rclcpp"
+  "rclcpp_action"
   "rclcpp_components"
-  "rclcpp_lifecycle"
-  "lifecycle_msgs"
-  "rcutils"
-  "std_msgs"
 )
 
-# Add topic libraries
-add_library(${PROJECT_NAME}_lifecycle_libs SHARED
-  src/lifecycle_publisher.cpp
-  src/lifecycle_subscriber.cpp
+# Add action libraries
+add_library(${PROJECT_NAME}_action_libs SHARED
+  src/action_client.cpp
+  src/action_server.cpp
 )
-ament_target_dependencies(${PROJECT_NAME}_lifecycle_libs ${dependencies})
+ament_target_dependencies(${PROJECT_NAME}_action_libs ${dependencies})
+rosidl_target_interfaces(${PROJECT_NAME}_action_libs
+  ${PROJECT_NAME}
+  "rosidl_typesupport_cpp"
+)
 
-# Register topic nodes
-rclcpp_components_register_node(${PROJECT_NAME}_lifecycle_libs
-  PLUGIN "lifecycle_example::LifecyclePublisher"
-  EXECUTABLE lifecycle_publisher
+# Register action nodes
+rclcpp_components_register_node(${PROJECT_NAME}_action_libs
+  PLUGIN "action_example::ActionClient"
+  EXECUTABLE action_client
 )
-rclcpp_components_register_node(${PROJECT_NAME}_lifecycle_libs
-  PLUGIN "lifecycle_example::LifecycleSubscriber"
-  EXECUTABLE lifecycle_subscriber
+rclcpp_components_register_node(${PROJECT_NAME}_action_libs
+  PLUGIN "action_example::ActionServer"
+  EXECUTABLE action_server
 )
 
 ###########################################################################
@@ -61,7 +72,7 @@ rclcpp_components_register_node(${PROJECT_NAME}_lifecycle_libs
 ################################################################################
 # Install libraries
 install(TARGETS
-  ${PROJECT_NAME}_lifecycle_libs
+  ${PROJECT_NAME}_action_libs
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin
@@ -71,6 +82,12 @@ install(TARGETS
 install(DIRECTORY
   launch
   DESTINATION share/${PROJECT_NAME}/
+)
+
+# Install action files
+install(DIRECTORY
+  action
+  DESTINATION share/${PROJECT_NAME}
 )
 
 ################################################################################
@@ -86,11 +103,11 @@ install(DIRECTORY
 #     "rclcpp"
 #   )
 
-#   ament_add_gtest(test_lifecycle_example
-#     test/test_lifecycle_example.cpp
-#     src/lifecycle_example.cpp)
-#   target_include_directories(test_lifecycle_example PRIVATE include)
-#   ament_target_dependencies(test_lifecycle_example ${test_dependencies})
+#   ament_add_gtest(test_action_example
+#     test/test_action_example.cpp
+#     src/action_example.cpp)
+#   target_include_directories(test_action_example PRIVATE include)
+#   ament_target_dependencies(test_action_example ${test_dependencies})
 # endif()
 
 ################################################################################
@@ -98,9 +115,7 @@ install(DIRECTORY
 ################################################################################
 ament_export_include_directories(include)
 ament_export_dependencies(rclcpp)
+ament_export_dependencies(rclcpp_action)
 ament_export_dependencies(rclcpp_components)
-ament_export_dependencies(rclcpp_lifecycle)
-ament_export_dependencies(lifecycle_msgs)
-ament_export_dependencies(rcutils)
-ament_export_dependencies(std_msgs)
+ament_export_dependencies(rosidl_default_runtime)
 ament_package()
