@@ -1,0 +1,14 @@
+<launch>
+  <!--.........................-->
+  <!-- arg doesn't work yet... -->
+  <!--.........................-->
+  <!-- <arg name="robot_name" default="RyanBot"/> -->
+
+  <!-- <node pkg="launch_example" exec="launch_example" name="launch_example" output="screen" args="$(arg RyanBot)"> -->
+  <node pkg="launch_example" exec="launch_example" name="launch_example" output="screen">
+
+    <remap from="chatter" to="remapped_chatter"/>
+    <!-- <param name="robot_name" value="$(arg robot_name)"/> -->
+    <param name="robot_name" value="RyanBot"/>
+  </node>
+</launch>

@@ -60,6 +60,8 @@ $ ros2 launch param_example param.launch.py
 $ ros2 launch param_example param.launch.xml
 
 # Launch examples
+$ ros2 launch launch.launch.py
+$ ros2 launch launch.launch.xml
 
 # Lifecycle examples
 $ ros2 run lifecycle_example lifecycle_publisher
@@ -78,7 +80,8 @@ $ ros2 launch lifecycle_example lifecycle_publisher_lifecycle_subscriber.launch.
 ```
 
 ## Reference
-1. [ROS2 Demo](https://github.com/ros2/demos)
+1. [ROS2 Demos](https://github.com/ros2/demos)
+2. [ROS2 Examples](https://github.com/ros2/examples)
 
 ## Issue
 1. arg does not work in launch.xml
