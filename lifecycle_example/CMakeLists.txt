@@ -40,18 +40,18 @@ set(dependencies
 )
 
 # Add topic libraries
-add_library(${PROJECT_NAME}_lifecycle_libs SHARED
+add_library(${PROJECT_NAME}_libs SHARED
   src/lifecycle_publisher.cpp
   src/lifecycle_subscriber.cpp
 )
-ament_target_dependencies(${PROJECT_NAME}_lifecycle_libs ${dependencies})
+ament_target_dependencies(${PROJECT_NAME}_libs ${dependencies})
 
 # Register topic nodes
-rclcpp_components_register_node(${PROJECT_NAME}_lifecycle_libs
+rclcpp_components_register_node(${PROJECT_NAME}_libs
   PLUGIN "lifecycle_example::LifecyclePublisher"
   EXECUTABLE lifecycle_publisher
 )
-rclcpp_components_register_node(${PROJECT_NAME}_lifecycle_libs
+rclcpp_components_register_node(${PROJECT_NAME}_libs
   PLUGIN "lifecycle_example::LifecycleSubscriber"
   EXECUTABLE lifecycle_subscriber
 )
@@ -61,7 +61,7 @@ rclcpp_components_register_node(${PROJECT_NAME}_lifecycle_libs
 ################################################################################
 # Install libraries
 install(TARGETS
-  ${PROJECT_NAME}_lifecycle_libs
+  ${PROJECT_NAME}_libs
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin

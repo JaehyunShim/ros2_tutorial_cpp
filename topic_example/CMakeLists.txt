@@ -46,22 +46,22 @@ set(dependencies
 )
 
 # Add topic libraries
-add_library(${PROJECT_NAME}_topic_libs SHARED
+add_library(${PROJECT_NAME}_libs SHARED
   src/publisher.cpp
   src/subscriber.cpp
 )
-ament_target_dependencies(${PROJECT_NAME}_topic_libs ${dependencies})
-rosidl_target_interfaces(${PROJECT_NAME}_topic_libs
+ament_target_dependencies(${PROJECT_NAME}_libs ${dependencies})
+rosidl_target_interfaces(${PROJECT_NAME}_libs
   ${PROJECT_NAME}
   "rosidl_typesupport_cpp"
 )
 
 # Register topic nodes
-rclcpp_components_register_node(${PROJECT_NAME}_topic_libs
+rclcpp_components_register_node(${PROJECT_NAME}_libs
   PLUGIN "topic_example::Publisher"
   EXECUTABLE publisher
 )
-rclcpp_components_register_node(${PROJECT_NAME}_topic_libs
+rclcpp_components_register_node(${PROJECT_NAME}_libs
   PLUGIN "topic_example::Subscriber"
   EXECUTABLE subscriber
 )
@@ -71,7 +71,7 @@ rclcpp_components_register_node(${PROJECT_NAME}_topic_libs
 ################################################################################
 # Install libraries
 install(TARGETS
-  ${PROJECT_NAME}_topic_libs
+  ${PROJECT_NAME}_libs
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin

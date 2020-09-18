@@ -45,22 +45,22 @@ set(dependencies
 )
 
 # Add service libraries
-add_library(${PROJECT_NAME}_service_libs SHARED
+add_library(${PROJECT_NAME}_libs SHARED
   src/client.cpp
   src/server.cpp
 )
-ament_target_dependencies(${PROJECT_NAME}_service_libs ${dependencies})
-rosidl_target_interfaces(${PROJECT_NAME}_service_libs
+ament_target_dependencies(${PROJECT_NAME}_libs ${dependencies})
+rosidl_target_interfaces(${PROJECT_NAME}_libs
   ${PROJECT_NAME}
   "rosidl_typesupport_cpp"
 )
 
 # Register service nodes
-rclcpp_components_register_node(${PROJECT_NAME}_service_libs
+rclcpp_components_register_node(${PROJECT_NAME}_libs
   PLUGIN "service_example::Client"
   EXECUTABLE client
 )
-rclcpp_components_register_node(${PROJECT_NAME}_service_libs
+rclcpp_components_register_node(${PROJECT_NAME}_libs
   PLUGIN "service_example::Server"
   EXECUTABLE server
 )
@@ -70,7 +70,7 @@ rclcpp_components_register_node(${PROJECT_NAME}_service_libs
 ################################################################################
 # Install libraries
 install(TARGETS
-  ${PROJECT_NAME}_service_libs
+  ${PROJECT_NAME}_libs
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin

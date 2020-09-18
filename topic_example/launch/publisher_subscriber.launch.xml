@@ -1,4 +1,4 @@
 <launch>
-  <node pkg="topic_example" exec="publisher" name="publisher" output="screen" />
-  <node pkg="topic_example" exec="subscriber" name="subscriber" output="screen" />
+  <node pkg="topic_example" exec="publisher" output="screen" />
+  <node pkg="topic_example" exec="subscriber" output="screen" />
 </launch>

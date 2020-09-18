@@ -1,4 +1,4 @@
 <launch>
-  <node pkg="service_example" exec="client" name="client" output="screen" />
-  <node pkg="service_example" exec="server" name="server" output="screen" />
+  <node pkg="service_example" exec="client" output="screen" />
+  <node pkg="service_example" exec="server" output="screen" />
 </launch>

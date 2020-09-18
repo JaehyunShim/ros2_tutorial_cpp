@@ -23,14 +23,10 @@ def generate_launch_description():
         launch_ros.actions.Node(
             package='topic_example',
             executable='publisher',
-            name='publisher',
-            # remappings=[('/chatter', '/remapped_chatter')],
             output='screen'),
 
         launch_ros.actions.Node(
             package='topic_example',
             executable='subscriber',
-            name='subscriber',
-            # remappings=[('/chatter', '/remapped_chatter')],
             output='screen'),
     ])

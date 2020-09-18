@@ -23,12 +23,10 @@ def generate_launch_description():
         launch_ros.actions.Node(
             package='action_example',
             executable='action_client',
-            name='action_client',
             output='screen'),
 
         launch_ros.actions.Node(
             package='action_example',
             executable='action_server',
-            name='action_server',
             output='screen'),
     ])

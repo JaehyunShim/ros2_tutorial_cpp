@@ -32,13 +32,13 @@ set(dependencies
 )
 
 # Add param libraries
-add_library(${PROJECT_NAME}_param_libs SHARED
+add_library(${PROJECT_NAME}_libs SHARED
   src/param.cpp
 )
-ament_target_dependencies(${PROJECT_NAME}_param_libs ${dependencies})
+ament_target_dependencies(${PROJECT_NAME}_libs ${dependencies})
 
 # Register param nodes
-rclcpp_components_register_node(${PROJECT_NAME}_param_libs
+rclcpp_components_register_node(${PROJECT_NAME}_libs
   PLUGIN "param_example::Param"
   EXECUTABLE param
 )
@@ -48,7 +48,7 @@ rclcpp_components_register_node(${PROJECT_NAME}_param_libs
 ################################################################################
 # Install libraries
 install(TARGETS
-  ${PROJECT_NAME}_param_libs
+  ${PROJECT_NAME}_libs
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin

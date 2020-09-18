@@ -23,12 +23,10 @@ def generate_launch_description():
         launch_ros.actions.Node(
             package='lifecycle_example',
             executable='lifecycle_publisher',
-            name='lifecycle_publisher',
             output='screen'),
 
         launch_ros.actions.Node(
             package='lifecycle_example',
             executable='lifecycle_subscriber',
-            name='lifecycle_subscriber',
             output='screen'),
     ])

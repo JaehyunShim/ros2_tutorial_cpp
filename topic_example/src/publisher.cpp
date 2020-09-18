@@ -61,7 +61,7 @@ public:
 
 private:
   uint16_t count_ = 0;
-  std::unique_ptr<topic_example::msg::Count> msg_;
+  std::unique_ptr<topic_example::msg::Count> msg_;  // why unique pointer for this?
   rclcpp::Publisher<topic_example::msg::Count>::SharedPtr count_pub_;
   rclcpp::TimerBase::SharedPtr timer_;
 };

@@ -1,4 +1,4 @@
 <launch>
-  <node pkg="lifecycle_example" exec="lifecycle_publisher" name="lifecycle_publisher" output="screen" />
-  <node pkg="lifecycle_example" exec="lifecycle_subscriber" name="lifecycle_subscriber" output="screen" />
+  <node pkg="lifecycle_example" exec="lifecycle_publisher" output="screen" />
+  <node pkg="lifecycle_example" exec="lifecycle_subscriber" output="screen" />
 </launch>

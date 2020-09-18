@@ -47,22 +47,22 @@ set(dependencies
 )
 
 # Add action libraries
-add_library(${PROJECT_NAME}_action_libs SHARED
+add_library(${PROJECT_NAME}_libs SHARED
   src/action_client.cpp
   src/action_server.cpp
 )
-ament_target_dependencies(${PROJECT_NAME}_action_libs ${dependencies})
-rosidl_target_interfaces(${PROJECT_NAME}_action_libs
+ament_target_dependencies(${PROJECT_NAME}_libs ${dependencies})
+rosidl_target_interfaces(${PROJECT_NAME}_libs
   ${PROJECT_NAME}
   "rosidl_typesupport_cpp"
 )
 
 # Register action nodes
-rclcpp_components_register_node(${PROJECT_NAME}_action_libs
+rclcpp_components_register_node(${PROJECT_NAME}_libs
   PLUGIN "action_example::ActionClient"
   EXECUTABLE action_client
 )
-rclcpp_components_register_node(${PROJECT_NAME}_action_libs
+rclcpp_components_register_node(${PROJECT_NAME}_libs
   PLUGIN "action_example::ActionServer"
   EXECUTABLE action_server
 )
@@ -72,7 +72,7 @@ rclcpp_components_register_node(${PROJECT_NAME}_action_libs
 ################################################################################
 # Install libraries
 install(TARGETS
-  ${PROJECT_NAME}_action_libs
+  ${PROJECT_NAME}_libs
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin
