@@ -15,17 +15,17 @@
 # Authors: Ryan Shim
 
 from launch import LaunchDescription
-import launch_ros.actions
+from launch_ros.actions import Node
 
 
 def generate_launch_description():
     return LaunchDescription([
-        launch_ros.actions.Node(
+        Node(
             package='service_example',
             executable='client',
             output='screen'),
 
-        launch_ros.actions.Node(
+        Node(
             package='service_example',
             executable='server',
             output='screen'),

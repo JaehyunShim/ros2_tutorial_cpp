@@ -21,12 +21,7 @@ from launch_ros.actions import Node
 def generate_launch_description():
     return LaunchDescription([
         Node(
-            package='topic_example',
-            executable='publisher',
-            output='screen'),
-
-        Node(
-            package='topic_example',
-            executable='subscriber',
-            output='screen'),
+            package='plugin_example',
+            executable='plugin',
+            output='plugin'),
     ])

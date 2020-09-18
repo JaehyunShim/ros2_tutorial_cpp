@@ -35,7 +35,7 @@ Launch::Launch()
 
   // ROS Timer
   timer_ = this->create_wall_timer(
-    1s,
+    1ms,
     std::bind(&Launch::timer_callback, this));
   RCLCPP_INFO(this->get_logger(), "Initialized launch example node");
 }
@@ -51,14 +51,13 @@ void Launch::timer_callback()
   static uint16_t count_ = 0;
   msg_ = std::make_unique<std_msgs::msg::Int64>();
   msg_->data = count_++;
-  RCLCPP_INFO(this->get_logger(), "%d", msg_->data);
   pub_->publish(std::move(msg_));
 
-  // Print time
+  // Jitter test
   rclcpp::Time time_now = rclcpp::Clock().now();
   RCLCPP_INFO(
     this->get_logger(),
-    "current time: %ld",
+    "[Jitter Test] current time: %ld",
     static_cast<uint64_t>(time_now.nanoseconds()));
 }
 }  // namespace launch_example

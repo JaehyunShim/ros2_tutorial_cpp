@@ -1,0 +1,7 @@
+<library path="plugin_example">
+  <class name="plugin_example/Plugin" type="plugin_example::Plugin" base_class_type="plugin_example::PluginBase">
+    <description>
+      Plugin Example
+    </description>
+  </class>
+</library>

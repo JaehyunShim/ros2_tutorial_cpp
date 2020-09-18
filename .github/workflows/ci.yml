@@ -46,6 +46,7 @@ jobs:
           package-name:  |
             ros2_tutorial
             action_example
+            launch_example
             lifecycle_example
             param_example
             service_example

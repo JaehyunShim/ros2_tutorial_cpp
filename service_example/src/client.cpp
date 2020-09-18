@@ -40,7 +40,8 @@ public:
     inquiry_cli_ = create_client<service_example::srv::Inquiry>("inquiry");
 
     RCLCPP_INFO(this->get_logger(), "Initialized client node");
-    queue_async_request();
+    while(1)
+      queue_async_request();
   }
 
   ~Client()

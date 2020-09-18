@@ -1,0 +1,3 @@
+<launch>
+  <node pkg="plugin_example" exec="plugin" output="screen" />
+</launch>
