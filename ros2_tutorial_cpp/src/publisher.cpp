@@ -22,7 +22,6 @@
 #include "rclcpp_components/register_node_macro.hpp"
 
 #include "ros2_tutorial_cpp/msg/count.hpp"
-
 #include "ros2_tutorial_cpp/visibility_control.h"
 
 using namespace std::chrono_literals;
@@ -35,7 +34,7 @@ public:
   explicit Publisher(const rclcpp::NodeOptions & options)  // options for what ???
   : Node("publisher", options)
   {
-    // Control stdout buffering
+    // Force flush of the stdout buffer
     setvbuf(stdout, NULL, _IONBF, BUFSIZ);
 
     // ROS Publisher

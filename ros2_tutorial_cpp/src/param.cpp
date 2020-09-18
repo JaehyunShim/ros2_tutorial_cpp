@@ -35,7 +35,7 @@ public:
   explicit Param(const rclcpp::NodeOptions & options)
   : Node("param", options)
   {
-    // Control stdout buffering
+    // Force flush of the stdout buffer
     setvbuf(stdout, NULL, _IONBF, BUFSIZ);
 
     // ROS Parameter

@@ -38,7 +38,7 @@ public:
   explicit ActionClient(const rclcpp::NodeOptions & node_options = rclcpp::NodeOptions())
   : Node("action_client", node_options)
   {
-    // Control stdout buffering
+    // Force flush of the stdout buffer
     setvbuf(stdout, NULL, _IONBF, BUFSIZ);
 
     // ROS Action Client

@@ -38,7 +38,7 @@ public:
   explicit ActionServer(const rclcpp::NodeOptions & options = rclcpp::NodeOptions())
   : Node("action_server", options)
   {
-    // Control stdout buffering
+    // Force flush of the stdout buffer
     setvbuf(stdout, NULL, _IONBF, BUFSIZ);
 
     // ROS Action Server

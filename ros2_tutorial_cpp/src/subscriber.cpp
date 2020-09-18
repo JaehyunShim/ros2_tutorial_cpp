@@ -20,7 +20,6 @@
 #include "rclcpp_components/register_node_macro.hpp"
 
 #include "ros2_tutorial_cpp/msg/count.hpp"
-
 #include "ros2_tutorial_cpp/visibility_control.h"
 
 namespace ros2_tutorial_cpp
@@ -31,7 +30,7 @@ public:
   explicit Subscriber(const rclcpp::NodeOptions & options)
   : Node("subscriber", options)
   {
-    // Control stdout buffering
+    // Force flush of the stdout buffer
     setvbuf(stdout, NULL, _IONBF, BUFSIZ);
 
     // ROS Subscriber
