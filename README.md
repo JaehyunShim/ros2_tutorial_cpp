@@ -7,8 +7,17 @@
 3. Write ROS Action (Done)
 4. Write ROS Parameter (Done)
 5. Write ROS Launch (Done)
-6. Write ROS Plugin (TODO)
-7. Write ROS Lifecycle (TODO)
+6. Write ROS Lifecycle (Done, TOSTUDYFURTHER)
+7. Write ROS Plugin (TODO)
+
+## Practice2
+4. Write ROS in Python
+1. Write URDF + Rviz
+2. Write Gazebo
+3. Write Ignition
+4. Write ROS Control
+4. Write ROS Perception
+4. Write ROS Tools
 
 ## New Features
 1. Component (Done)
@@ -23,7 +32,7 @@
 5. Test Doxygen
 6. Create User Manual
 7. Bloom
-8. ROS2 CheatSheet
+8. Write CheatSheet
 
 ## Run
 ```sh
@@ -49,6 +58,18 @@ $ ros2 launch ros2_tutorial_cpp action_client_action_server.launch.xml
 $ ros2 run ros2_tutorial_cpp param
 $ ros2 launch ros2_tutorial_cpp param.launch.py
 $ ros2 launch ros2_tutorial_cpp param.launch.xml
+
+# Lifecycle examples
+$ ros2 run lifecycle_example lifecycle_publisher
+$ ros2 lifecycle set /lifecycle_publisher configure # activate, deactivate, cleanup, shutdown
+$ ros2 lifecycle get /lifecycle_publisher
+
+$ ros2 run lifecycle_example lifecycle_subscriber
+$ ros2 lifecycle set /lifecycle_subscriber configure # activate, deactivate, cleanup, shutdown
+$ ros2 lifecycle get /lifecycle_subscriber
+
+$ ros2 launch lifecycle_example lifecycle_publisher_lifecycle_subscriber.launch.py
+$ ros2 launch lifecycle_example lifecycle_publisher_lifecycle_subscriber.launch.xml
 ```
 
 ## Reference
