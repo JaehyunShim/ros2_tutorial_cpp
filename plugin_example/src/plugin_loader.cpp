@@ -38,6 +38,7 @@ void active_handler(int dummy)
 int main(int argc, char ** argv)
 {
   // init
+  setvbuf(stdout, NULL, _IONBF, BUFSIZ);
   rclcpp::init(argc, argv);
 
   // plugin

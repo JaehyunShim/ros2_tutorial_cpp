@@ -2,16 +2,16 @@
 [![GitHub Action Status](https://github.com/rjshim/ros2_tutorial/workflows/CI/badge.svg)](https://github.com/rjshim/ros2_tutorial) [![GitHub Action Status](https://github.com/rjshim/ros2_tutorial/workflows/Lint/badge.svg)](https://github.com/rjshim/ros2_tutorial) [![codecov](https://codecov.io/gh/rjshim/ros2_tutorial/branch/master/graph/badge.svg)](https://codecov.io/gh/rjshim/ros2_tutorial) ![GitHub](https://img.shields.io/github/license/rjshim/ros2_tutorial)
 
 ## Contents
-- Write ROS Pubisher/Subscriber with Topic (Done)
-- Write ROS Client/Server with Serivce (Done)
-- Write ROS Action (Done)
-- Write ROS Parameter (Done)
-- Write ROS Launch (Done)
-- Write ROS Lifecycle (Done)
-- Write ROS Plugin (Done)
-- Write ROS Intra Process Communication (TODO)
+- Write ROS Topic (Pubisher/Subscriber)
+- Write ROS Service (Client/Server)
+- Write ROS Action (Action Client/Action Server)
+- Write ROS Parameter
+- Write ROS Launch
+- Write ROS Lifecycle
+- Write ROS Plugin
+- Write ROS Intra Process
 
-## Contents2
+## Contents2 (TODO)
 - Write ROS in Python
 - Write ROS URDF + Rviz
 - Write ROSGazebo
@@ -22,7 +22,7 @@
 - Write ROS Qt
 - Write ROS Security
 
-## Contents3
+## Contents3 (TODO)
 - Study Gtest Usage
 - Study Codecov
 - Study Doxygen
@@ -50,7 +50,7 @@ $ ros2 run action_example action_server
 $ ros2 launch action_example action_client_action_server.launch.py
 $ ros2 launch action_example action_client_action_server.launch.xml
 
-# Param examples
+# Parameter examples
 $ ros2 run param_example param
 $ ros2 launch param_example param.launch.py
 $ ros2 launch param_example param.launch.xml
@@ -72,6 +72,11 @@ $ ros2 launch lifecycle_example lifecycle_publisher_lifecycle_subscriber.launch.
 $ ros2 launch lifecycle_example lifecycle_publisher_lifecycle_subscriber.launch.xml
 
 # Plugin examples
+$ ros2 run plugin_example plugin_loader
+$ ros2 launch plugin_example plugin.launch.py
+$ ros2 launch plugin_example plugin.launch.xml
+
+# Intra process examples
 $ ros2 run plugin_example plugin_loader
 $ ros2 launch plugin_example plugin.launch.py
 $ ros2 launch plugin_example plugin.launch.xml

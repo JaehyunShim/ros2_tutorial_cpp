@@ -1,0 +1,3 @@
+<launch>
+  <node pkg="intra_process_example" exec="intra_process_example" output="screen" />
+</launch>
