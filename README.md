@@ -91,4 +91,4 @@ $ ros2 launch plugin_example plugin.launch.xml
 - arg does not work in launch.xml
 - action canceling does not work [link](https://answers.ros.org/question/361666/ros2-action-goal-canceling-problem/?answer=361754#post-id-361754)
 - Visibility Control Usage check needed
-- pluginlib has an inner bug crash issue (CI turned off)
+- pluginlib has an inner bug crash issue (removed from CI list)
