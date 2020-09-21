@@ -1,3 +1,3 @@
 <launch>
-  <node pkg="plugin_example" exec="plugin" output="screen" />
+  <node pkg="plugin_example" exec="plugin_loader" output="screen" />
 </launch>

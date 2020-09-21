@@ -22,6 +22,6 @@ def generate_launch_description():
     return LaunchDescription([
         Node(
             package='plugin_example',
-            executable='plugin',
-            output='plugin'),
+            executable='plugin_loader',
+            output='screen'),
     ])

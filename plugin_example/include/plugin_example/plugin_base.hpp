@@ -1,4 +1,4 @@
-// Copyright 2020 ROBOTIS CO., LTD.
+// Copyright (c) 2012, Willow Garage, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,28 +14,23 @@
 
 /* Authors: Ryan Shim */
 
-#ifndef LAUNCH_EXAMPLE__LAUNCH_HPP_
-#define LAUNCH_EXAMPLE__LAUNCH_HPP_
-
-#include <memory>
+#ifndef PLUGIN_EXAMPLE__PLUGIN_BASE_HPP_
+#define PLUGIN_EXAMPLE__PLUGIN_BASE_HPP_
 
 #include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/int64.hpp"
 
-namespace launch_example
+namespace plugin_example
 {
-class Launch : public rclcpp::Node
+class PluginBase : public rclcpp::Node
 {
 public:
-  Launch();
-  virtual ~Launch();
+  virtual void update() = 0;
+  virtual ~PluginBase() {}
 
-private:
-  std::unique_ptr<std_msgs::msg::Int64> msg_;
-  rclcpp::Publisher<std_msgs::msg::Int64>::SharedPtr pub_;
-  rclcpp::TimerBase::SharedPtr timer_;
-  void timer_callback();
+protected:
+  PluginBase()
+  : Node("plugin_base") {}
 };
-}  // namespace launch_example
+}  // namespace plugin_example
 
-#endif  // LAUNCH_EXAMPLE__LAUNCH_HPP_
+#endif  // PLUGIN_EXAMPLE__PLUGIN_BASE_HPP_

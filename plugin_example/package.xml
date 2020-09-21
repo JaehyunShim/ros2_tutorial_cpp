@@ -11,7 +11,9 @@
   <author email="jhshim@robotis.com">Ryan Shim</author>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
+  <depend>pluginlib</depend>
   <depend>rclcpp</depend>
+  <depend>std_msgs</depend>
 
   <!-- For testing and linting-->
   <test_depend>ament_cmake_gtest</test_depend>
@@ -20,9 +22,5 @@
 
   <export>
     <build_type>ament_cmake</build_type>
-    <pluginlib plugin="${prefix}/test_plugins.xml" />
   </export>
 </package>
-<export>
-  <plugin_example plugin="${prefix}/rectangle_plugin.xml" />
-</export>

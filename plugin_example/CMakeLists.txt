@@ -16,7 +16,9 @@ endif()
 # Find and load build settings from external packages
 ################################################################################
 find_package(ament_cmake REQUIRED)
+find_package(pluginlib REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(std_msgs REQUIRED)
 
 ################################################################################
 # Build
@@ -26,29 +28,38 @@ include_directories(
 )
 
 set(dependencies
+  "pluginlib"
   "rclcpp"
+  "std_msgs"
 )
 
-# Add topic libraries
-add_library(${PROJECT_NAME}_libs SHARED
+# Add libraries
+add_library(${PROJECT_NAME} SHARED
   src/plugin.cpp
 )
-ament_target_dependencies(${PROJECT_NAME}_libs ${dependencies})
+ament_target_dependencies(${PROJECT_NAME} ${dependencies})
 
-# Register topic nodes
-rclcpp_components_register_node(${PROJECT_NAME}_libs
-  PLUGIN "plugin_example::Publisher"
-  EXECUTABLE publisher
+# Add executables
+add_executable(plugin_loader
+  src/plugin_loader.cpp
 )
+ament_target_dependencies(plugin_loader ${dependencies})
+
 ###########################################################################
 # Install
 ################################################################################
 # Install libraries
 install(TARGETS
-  ${PROJECT_NAME}_libs
+  ${PROJECT_NAME}
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin
+)
+
+# Install executables
+install(TARGETS
+  plugin_loader
+  DESTINATION lib/${PROJECT_NAME}
 )
 
 # Install launch files
@@ -56,6 +67,19 @@ install(DIRECTORY
   launch
   DESTINATION share/${PROJECT_NAME}/
 )
+
+# Install header files
+install(DIRECTORY
+  include/
+  DESTINATION include/
+)
+
+# Install plugin files
+install(FILES
+  example_plugin.xml
+  DESTINATION share/${PROJECT_NAME}
+)
+pluginlib_export_plugin_description_file(plugin_example example_plugin.xml)
 
 ################################################################################
 # Test
@@ -81,5 +105,7 @@ install(DIRECTORY
 # Macro for ament package
 ################################################################################
 ament_export_include_directories(include)
+ament_export_dependencies(pluginlib)
 ament_export_dependencies(rclcpp)
+ament_export_dependencies(std_msgs)
 ament_package()
