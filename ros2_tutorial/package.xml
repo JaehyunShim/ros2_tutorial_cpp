@@ -16,7 +16,7 @@
   <exec_depend>launch_example</exec_depend>
   <exec_depend>lifecycle_example</exec_depend>
   <exec_depend>param_example</exec_depend>
-  <exec_depend>plugin_example</exec_depend>
+  <!-- <exec_depend>plugin_example</exec_depend> -->
   <exec_depend>service_example</exec_depend>
   <exec_depend>topic_example</exec_depend>
 
