@@ -77,9 +77,9 @@ $ ros2 launch plugin_example plugin.launch.py
 $ ros2 launch plugin_example plugin.launch.xml
 
 # Intra process examples
-$ ros2 run plugin_example plugin_loader
-$ ros2 launch plugin_example plugin.launch.py
-$ ros2 launch plugin_example plugin.launch.xml
+$ ros2 run intra_process_example intra_process_example
+$ ros2 launch intra_process_example intra_process_example.launch.py
+$ ros2 launch intra_process_example intra_process_example.launch.xml
 ```
 
 ## Reference

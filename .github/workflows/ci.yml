@@ -44,7 +44,6 @@ jobs:
         with:
           target-ros2-distro: foxy
           package-name:  |
-            ros2_tutorial
             action_example
             intra_process_example
             launch_example
