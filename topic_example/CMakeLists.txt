@@ -92,22 +92,31 @@ install(DIRECTORY
 ################################################################################
 # Test
 ################################################################################
-# if(BUILD_TESTING)
-#   find_package(ament_cmake_gtest REQUIRED)
-#   find_package(ament_lint_auto REQUIRED)
-#   find_package(rclcpp REQUIRED)
-#   ament_lint_auto_find_test_dependencies()
+if(BUILD_TESTING)
+  find_package(ament_cmake_gtest REQUIRED)
+  find_package(ament_lint_auto REQUIRED)
+  find_package(rclcpp REQUIRED)
+  find_package(rclcpp_components REQUIRED)
+  find_package(interface_examples REQUIRED)
+  ament_lint_auto_find_test_dependencies()
 
-#   set(test_dependencies
-#     "rclcpp"
-#   )
+  set(test_dependencies
+    "rclcpp"
+    "rclcpp_components"
+    "interface_examples"
+  )
 
-#   ament_add_gtest(test_topic_example
-#     test/test_topic_example.cpp
-#     src/topic_example.cpp)
-#   target_include_directories(test_topic_example PRIVATE include)
-#   ament_target_dependencies(test_topic_example ${test_dependencies})
-# endif()
+  ament_add_gtest(test_publisher
+    test/test_publisher.cpp)
+  # target_include_directories(test_publisher PRIVATE include)
+  ament_target_dependencies(test_publisher ${test_dependencies})
+
+  # rosidl_target_interfaces(test_publisher
+  #   ${PROJECT_NAME}
+  #   "rosidl_typesupport_cpp"
+  # )
+
+endif()
 
 ################################################################################
 # Macro for ament package
