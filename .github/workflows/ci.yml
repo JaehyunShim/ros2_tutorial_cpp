@@ -45,13 +45,11 @@ jobs:
           target-ros2-distro: foxy
           package-name:  |
             ros2_tutorial
-          #   action_example
             interface_example
             intra_process_example
             launch_example
             lifecycle_example
             param_example
-          #   plugin_example
             service_example
             topic_example
           vcs-repo-file-url: |
