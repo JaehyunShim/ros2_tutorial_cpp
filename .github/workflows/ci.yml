@@ -39,8 +39,8 @@ jobs:
     strategy:
       fail-fast: false
     steps:
-      - uses: ros-tooling/setup-ros@0.0.20
-      - uses: ros-tooling/action-ros-lint@0.0.6
+      - uses: ros-tooling/setup-ros@0.0.23
+      - uses: ros-tooling/action-ros-ci@0.0.17
         with:
           target-ros2-distro: foxy
           package-name:  |
