@@ -76,22 +76,16 @@ install(DIRECTORY
 ################################################################################
 # Test
 ################################################################################
-# if(BUILD_TESTING)
-#   find_package(ament_cmake_gtest REQUIRED)
-#   find_package(ament_lint_auto REQUIRED)
-#   find_package(rclcpp REQUIRED)
-#   ament_lint_auto_find_test_dependencies()
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  ament_lint_auto_find_test_dependencies()
 
-#   set(test_dependencies
-#     "rclcpp"
-#   )
-
-#   ament_add_gtest(test_lifecycle_example
-#     test/test_lifecycle_example.cpp
-#     src/lifecycle_example.cpp)
-#   target_include_directories(test_lifecycle_example PRIVATE include)
-#   ament_target_dependencies(test_lifecycle_example ${test_dependencies})
-# endif()
+  find_package(ros_testing REQUIRED)
+  add_ros_test(
+    test/test_lifecycle.py
+    TIMEOUT 60
+  )
+endif()
 
 ################################################################################
 # Macro for ament package

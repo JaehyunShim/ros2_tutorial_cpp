@@ -39,19 +39,19 @@ jobs:
     strategy:
       fail-fast: false
     steps:
-      - uses: ros-tooling/setup-ros@0.0.23
-      - uses: ros-tooling/action-ros-ci@0.0.17
+      - uses: ros-tooling/setup-ros@0.0.25
+      - uses: ros-tooling/action-ros-ci@0.0.19
         with:
           target-ros2-distro: foxy
           package-name:  |
             ros2_tutorial
-            action_example
+          #   action_example
             interface_example
             intra_process_example
             launch_example
             lifecycle_example
             param_example
-            plugin_example
+          #   plugin_example
             service_example
             topic_example
           vcs-repo-file-url: |
