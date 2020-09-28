@@ -88,17 +88,26 @@ pluginlib_export_plugin_description_file(plugin_example example_plugin.xml)
 #   find_package(ament_cmake_gtest REQUIRED)
 #   find_package(ament_lint_auto REQUIRED)
 #   find_package(rclcpp REQUIRED)
+#   find_package(rclcpp_components REQUIRED)
+#   find_package(interface_example REQUIRED)
 #   ament_lint_auto_find_test_dependencies()
 
 #   set(test_dependencies
 #     "rclcpp"
+#     "rclcpp_components"
+#     "interface_example"
 #   )
 
-#   ament_add_gtest(test_plugin_example
-#     test/test_plugin_example.cpp
-#     src/plugin_example.cpp)
-#   target_include_directories(test_plugin_example PRIVATE include)
-#   ament_target_dependencies(test_plugin_example ${test_dependencies})
+#   ament_add_gtest(test_publisher
+#     test/test_publisher.cpp)
+#   # target_include_directories(test_publisher PRIVATE include)
+#   ament_target_dependencies(test_publisher ${test_dependencies})
+
+#   # rosidl_target_interfaces(test_publisher
+#   #   ${PROJECT_NAME}
+#   #   "rosidl_typesupport_cpp"
+#   # )
+
 # endif()
 
 ################################################################################

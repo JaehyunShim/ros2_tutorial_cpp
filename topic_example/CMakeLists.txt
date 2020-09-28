@@ -92,31 +92,16 @@ install(DIRECTORY
 ################################################################################
 # Test
 ################################################################################
-if(BUILD_TESTING)
-  find_package(ament_cmake_gtest REQUIRED)
-  find_package(ament_lint_auto REQUIRED)
-  find_package(rclcpp REQUIRED)
-  find_package(rclcpp_components REQUIRED)
-  find_package(interface_example REQUIRED)
-  ament_lint_auto_find_test_dependencies()
+# if(BUILD_TESTING)
+#   find_package(ament_lint_auto REQUIRED)
+#   ament_lint_auto_find_test_dependencies()
 
-  set(test_dependencies
-    "rclcpp"
-    "rclcpp_components"
-    "interface_example"
-  )
-
-  ament_add_gtest(test_publisher
-    test/test_publisher.cpp)
-  # target_include_directories(test_publisher PRIVATE include)
-  ament_target_dependencies(test_publisher ${test_dependencies})
-
-  # rosidl_target_interfaces(test_publisher
-  #   ${PROJECT_NAME}
-  #   "rosidl_typesupport_cpp"
-  # )
-
-endif()
+#   find_package(ros_testing REQUIRED)
+#   add_ros_test(
+#     test/test_publisher.py
+#     TIMEOUT 60
+#   )
+# endif()
 
 ################################################################################
 # Macro for ament package
