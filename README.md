@@ -14,7 +14,7 @@
 ## Contents2 (TODO)
 - Write ROS in Python
 - Write ROS URDF + Rviz
-- Write ROSGazebo
+- Write ROS Gazebo
 - Write ROS Ignition
 - Write ROS Control
 - Write ROS Perception
@@ -89,6 +89,6 @@ $ ros2 launch intra_process_example intra_process_example.launch.xml
 
 ## Issue
 - arg does not work in launch.xml
-- action canceling does not work [link](https://answers.ros.org/question/361666/ros2-action-goal-canceling-problem/?answer=361754#post-id-361754)
+- action cancelling does not work [link](https://answers.ros.org/question/361666/ros2-action-goal-canceling-problem/?answer=361754#post-id-361754)
 - Visibility Control Usage check needed
 - pluginlib has an inner bug crash issue (commented out building process in CMakeLists.txt)
