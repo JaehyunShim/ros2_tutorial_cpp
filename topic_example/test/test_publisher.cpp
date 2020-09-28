@@ -23,7 +23,7 @@
 #include "rclcpp/rclcpp.hpp"
 #include "rclcpp_components/register_node_macro.hpp"
 
-#include "interface_examples/msg/count.hpp"
+#include "interface_example/msg/count.hpp"
 #include "topic_example/visibility_control.h"
 
 using namespace std::chrono_literals;
@@ -41,13 +41,13 @@ public:
 
     // ROS Publisher
     rclcpp::QoS qos(rclcpp::KeepLast(10));
-    count_pub_ = this->create_publisher<interface_examples::msg::Count>("chatter", qos);
+    count_pub_ = this->create_publisher<interface_example::msg::Count>("chatter", qos);
 
     // ROS Timer
     auto timer_callback =
       [this]() -> void
       {
-        msg_ = std::make_unique<interface_examples::msg::Count>();
+        msg_ = std::make_unique<interface_example::msg::Count>();
         msg_->data = count_++;
         RCLCPP_INFO(this->get_logger(), "%d", msg_->data);
         count_pub_->publish(std::move(msg_));
@@ -63,8 +63,8 @@ public:
 
 private:
   uint16_t count_ = 0;
-  std::unique_ptr<interface_examples::msg::Count> msg_;  // why unique pointer for this?
-  rclcpp::Publisher<interface_examples::msg::Count>::SharedPtr count_pub_;
+  std::unique_ptr<interface_example::msg::Count> msg_;  // why unique pointer for this?
+  rclcpp::Publisher<interface_example::msg::Count>::SharedPtr count_pub_;
   rclcpp::TimerBase::SharedPtr timer_;
 };
 }  // namespace topic_example

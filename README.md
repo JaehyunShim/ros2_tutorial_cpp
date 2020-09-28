@@ -91,4 +91,4 @@ $ ros2 launch intra_process_example intra_process_example.launch.xml
 - arg does not work in launch.xml
 - action canceling does not work [link](https://answers.ros.org/question/361666/ros2-action-goal-canceling-problem/?answer=361754#post-id-361754)
 - Visibility Control Usage check needed
-- pluginlib has an inner bug crash issue (removed from CI list)
+- pluginlib has an inner bug crash issue (commented out building process in CMakeLists.txt)

@@ -33,34 +33,34 @@ set(dependencies
   "std_msgs"
 )
 
-# Add libraries
-add_library(${PROJECT_NAME} SHARED
-  src/plugin.cpp
-)
-ament_target_dependencies(${PROJECT_NAME} ${dependencies})
+# # Add libraries
+# add_library(${PROJECT_NAME} SHARED
+#   src/plugin.cpp
+# )
+# ament_target_dependencies(${PROJECT_NAME} ${dependencies})
 
-# Add executables
-add_executable(plugin_loader
-  src/plugin_loader.cpp
-)
-ament_target_dependencies(plugin_loader ${dependencies})
+# # Add executables
+# add_executable(plugin_loader
+#   src/plugin_loader.cpp
+# )
+# ament_target_dependencies(plugin_loader ${dependencies})
 
 ###########################################################################
 # Install
 ################################################################################
-# Install libraries
-install(TARGETS
-  ${PROJECT_NAME}
-  ARCHIVE DESTINATION lib
-  LIBRARY DESTINATION lib
-  RUNTIME DESTINATION bin
-)
+# # Install libraries
+# install(TARGETS
+#   ${PROJECT_NAME}
+#   ARCHIVE DESTINATION lib
+#   LIBRARY DESTINATION lib
+#   RUNTIME DESTINATION bin
+# )
 
-# Install executables
-install(TARGETS
-  plugin_loader
-  DESTINATION lib/${PROJECT_NAME}
-)
+# # Install executables
+# install(TARGETS
+#   plugin_loader
+#   DESTINATION lib/${PROJECT_NAME}
+# )
 
 # Install launch files
 install(DIRECTORY

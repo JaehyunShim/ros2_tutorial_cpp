@@ -97,13 +97,13 @@ if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   find_package(rclcpp REQUIRED)
   find_package(rclcpp_components REQUIRED)
-  find_package(interface_examples REQUIRED)
+  find_package(interface_example REQUIRED)
   ament_lint_auto_find_test_dependencies()
 
   set(test_dependencies
     "rclcpp"
     "rclcpp_components"
-    "interface_examples"
+    "interface_example"
   )
 
   ament_add_gtest(test_publisher
