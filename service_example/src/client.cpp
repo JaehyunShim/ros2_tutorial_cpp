@@ -63,7 +63,7 @@ public:
 
     // Define a service request
     auto request = std::make_shared<service_example::srv::Inquiry::Request>();
-    request->question = "ryan smart?";
+    request->question = "jaehyun smart?";
 
     // Call async_send_request() method
     using ServiceResponseFuture = rclcpp::Client<service_example::srv::Inquiry>::SharedFuture;

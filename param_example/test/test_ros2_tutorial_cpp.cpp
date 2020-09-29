@@ -23,7 +23,7 @@ TEST(TestROS2TutorialCPP, test_param_example)
 {
   rclcpp::init(0, nullptr);
 
-  // TODO(Ryan): Study how to write more general gtest codes!!!
+  // TODO(Jaehyun): Study how to write more general gtest codes!!!
   // Also below hasn't been debugged yet
   // <<< error message
   // The test did not generate a result file.
