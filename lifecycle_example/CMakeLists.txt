@@ -83,7 +83,7 @@ if(BUILD_TESTING)
   find_package(ros_testing REQUIRED)
   add_ros_test(
     test/test_lifecycle.py
-    TIMEOUT 120
+    # TIMEOUT 120
   )
 endif()
 
