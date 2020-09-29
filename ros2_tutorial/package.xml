@@ -5,10 +5,10 @@
   <version>0.0.0</version>
   <description>ROS 2 packages for ros2_tutorial</description>
 
-  <maintainer email="jhshim@robotis.com">Ryan Shim</maintainer>
+  <maintainer email="jhshim@robotis.com">Jaehyun Shim</maintainer>
   <license>Apache 2.0</license>
   <url type="repository">https://github.com/rjshim/ros2_tutorial</url>
-  <author email="jhshim@robotis.com">Ryan Shim</author>
+  <author email="jhshim@robotis.com">Jaehyun Shim</author>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
   <exec_depend>action_example</exec_depend>
