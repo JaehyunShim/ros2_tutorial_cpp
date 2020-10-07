@@ -41,7 +41,6 @@ bin/
 build/
 msg_gen/
 srv_gen/
-docs/
 lib/
 cmake_install.cmake
 Makefile
