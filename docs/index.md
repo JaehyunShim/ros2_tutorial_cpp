@@ -5,27 +5,9 @@
 [![Documentation Status](https://readthedocs.org/projects/ros2-tutorial/badge/?version=latest)](https://ros2-tutorial.readthedocs.io/en/latest/?badge=latest)
 
 
+Please see the [mkdocs usage](mkdocs_usage.md) for further details.  
+Please see the [project license](license.md) for further details.  
+Please see the [getting started](user-guide/getting-started.md) for further details.  
+Please see the [configuration options](user-guide/configuration-options.md) for further details.
 
-# Welcome to MkDocs
-
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
-
-## Commands
-
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
-
-
-https://docs.readthedocs.io/en/stable/intro/getting-started-with-mkdocs.html?highlight=markdown
-https://readthedocs.org/
-https://mkdocs.readthedocs.io/en/0.9/user-guide/writing-your-docs/
-https://mkdocs.readthedocs.io/en/0.9/user-guide/writing-your-docs/
+![Screenshot](img/screenshot.png)

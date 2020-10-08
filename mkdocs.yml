@@ -1,1 +1,6 @@
-site_name: My Docs
+site_name: ROS2 Tutorial
+nav:
+- Home: index.md
+- MkDocs Usage: mkdocs_usage.md
+- License: license.md
+theme: readthedocs
