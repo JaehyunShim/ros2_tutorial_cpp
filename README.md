@@ -30,7 +30,6 @@
 - Study Gtest Usage
 - Study Codecov
 - Study Doxygen
-- Study User Manual
 - Study Bloom
 - Write ROS2 CheatSheet
 

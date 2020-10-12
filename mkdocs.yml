@@ -1,6 +1,6 @@
 site_name: ROS2 Tutorial
 nav:
 - Home: index.md
-- MkDocs Usage: mkdocs_usage.md
+- Tutorial Run Command: run_command.md
 - License: license.md
 theme: readthedocs

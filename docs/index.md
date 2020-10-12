@@ -5,9 +5,5 @@
 [![Documentation Status](https://readthedocs.org/projects/ros2-tutorial/badge/?version=latest)](https://ros2-tutorial.readthedocs.io/en/latest/?badge=latest)
 
 
-Please see the [mkdocs usage](mkdocs_usage.md) for further details.  
-Please see the [project license](license.md) for further details.  
-Please see the [getting started](user-guide/getting-started.md) for further details.  
-Please see the [configuration options](user-guide/configuration-options.md) for further details.
-
-![Screenshot](img/screenshot.png)
+Please see the [run command](run_command.md) for further details.  
+Please see the [project license](license.md) for further details.
