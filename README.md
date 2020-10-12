@@ -31,7 +31,6 @@
 - Study Codecov
 - Study Doxygen
 - Study Bloom
-- Write ROS2 CheatSheet
 
 ## Run
 ```sh
