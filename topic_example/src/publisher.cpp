@@ -28,6 +28,11 @@ using namespace std::chrono_literals;
 
 namespace topic_example
 {
+
+/**
+ * @class Publisher
+ * @brief Publishes "chatter"
+ */
 class Publisher : public rclcpp::Node
 {
 public:

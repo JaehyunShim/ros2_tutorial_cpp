@@ -6,25 +6,25 @@
 [![Documentation Status](https://readthedocs.org/projects/ros2-tutorial/badge/?version=latest)](https://ros2-tutorial.readthedocs.io/en/latest/?badge=latest)
 
 ## Contents
-- Write ROS Topic (Pubisher/Subscriber)
-- Write ROS Service (Client/Server)
-- Write ROS Action (Action Client/Action Server)
-- Write ROS Parameter
-- Write ROS Launch
-- Write ROS Lifecycle
-- Write ROS Plugin
-- Write ROS Intra Process
+- ROS Topic (Pubisher/Subscriber)
+- ROS Service (Client/Server)
+- ROS Action (Action Client/Action Server)
+- ROS Parameter
+- ROS Launch
+- ROS Lifecycle
+- ROS Plugin
+- ROS Intra Process
 
 ## Contents2 (TODO)
-- Write ROS in Python
-- Write ROS URDF + Rviz
-- Write ROS Gazebo
-- Write ROS Ignition
-- Write ROS Control
-- Write ROS Perception
-- Write ROS Tools
-- Write ROS Qt
-- Write ROS Security
+- ROS in Python
+- ROS URDF + Rviz
+- ROS Gazebo
+- ROS Ignition
+- ROS Control
+- ROS Perception
+- ROS Tools
+- ROS Qt
+- ROS Security
 
 ## Contents3 (TODO)
 - Study Gtest Usage
@@ -88,6 +88,8 @@ $ ros2 launch intra_process_example intra_process_example.launch.xml
 - [ROS2 Demos](https://github.com/ros2/demos)
 - [ROS2 Examples](https://github.com/ros2/examples)
 - [ROS Pluginlib Foxy](https://github.com/ros/pluginlib/tree/foxy)
+- [Read the Docs official webpage](https://readthedocs.org)
+- [doxygen/doxygen/Doxyfile](https://github.com/doxygen/doxygen/blob/master/Doxyfile)
 
 ## Issue
 - arg does not work in launch.xml
