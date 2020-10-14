@@ -28,7 +28,6 @@ using namespace std::chrono_literals;
 
 namespace topic_example
 {
-
 /**
  * @class Publisher
  * @brief Publishes "chatter"
@@ -36,6 +35,10 @@ namespace topic_example
 class Publisher : public rclcpp::Node
 {
 public:
+  /**
+   * @brief Constructor
+   * @param options A pointer to the node options
+   */
   explicit Publisher(const rclcpp::NodeOptions & options)  // options for what ???
   : Node("publisher", options)
   {
@@ -59,6 +62,10 @@ public:
 
     RCLCPP_INFO(this->get_logger(), "Initialized publisher node");
   }
+
+  /**
+   * @brief Virtual destructor
+   */
   ~Publisher()
   {
     RCLCPP_INFO(this->get_logger(), "Terminated publisher node");

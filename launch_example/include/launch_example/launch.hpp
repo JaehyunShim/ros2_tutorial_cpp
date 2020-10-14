@@ -24,10 +24,21 @@
 
 namespace launch_example
 {
+/**
+ * @class Launch
+ * @brief Publishes "chatter"
+ */
 class Launch : public rclcpp::Node
 {
 public:
+  /**
+   * @brief Constructor
+   */
   Launch();
+
+  /**
+   * @brief Virtual destructor
+   */
   virtual ~Launch();
 
 private:

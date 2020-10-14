@@ -58,6 +58,9 @@ build-*/
 *.txt.user
 *.gch
 /.project
+*.tag
+*.log
+doxygen_docs/
 
 site/
 __pycache__/
