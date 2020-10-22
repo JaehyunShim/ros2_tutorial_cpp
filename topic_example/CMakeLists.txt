@@ -92,16 +92,22 @@ install(DIRECTORY
 ################################################################################
 # Test
 ################################################################################
-if(BUILD_TESTING)
-  find_package(ament_lint_auto REQUIRED)
-  ament_lint_auto_find_test_dependencies()
+# if(BUILD_TESTING)
+#   find_package(ament_lint_auto REQUIRED)
+#   ament_lint_auto_find_test_dependencies()
 
-  find_package(ros_testing REQUIRED)
-  add_ros_test(
-    test/test_pubsub.py
-    TIMEOUT 60
-  )
-endif()
+#   # find_package(ros_testing REQUIRED)
+#   # add_ros_test(
+#   #   test/test_pubsub.py
+#   #   TIMEOUT 60
+#   # )
+
+#   find_package(ament_cmake_gtest REQUIRED)
+
+#   ament_add_gtest(test_pubsub test/test_pubsub.cpp)
+#   ament_target_dependencies(test_pubsub ${dependencies})
+
+# endif()
 
 ################################################################################
 # Macro for ament package
