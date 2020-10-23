@@ -76,16 +76,16 @@ install(DIRECTORY
 ################################################################################
 # Test
 ################################################################################
-if(BUILD_TESTING)
-  find_package(ament_lint_auto REQUIRED)
-  ament_lint_auto_find_test_dependencies()
+# if(BUILD_TESTING)
+#   find_package(ament_lint_auto REQUIRED)
+#   ament_lint_auto_find_test_dependencies()
 
-  find_package(ros_testing REQUIRED)
-  add_ros_test(
-    test/test_lifecycle.py
-    # TIMEOUT 120
-  )
-endif()
+#   find_package(ros_testing REQUIRED)
+#   add_ros_test(
+#     test/test_lifecycle.py
+#     # TIMEOUT 120
+#   )
+# endif()
 
 ################################################################################
 # Macro for ament package
