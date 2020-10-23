@@ -1,34 +1,32 @@
 # ROS2 Tutorial
-[![GitHub Action Status](https://github.com/rjshim/ros2_tutorial/workflows/CI/badge.svg)](https://github.com/rjshim/ros2_tutorial) [![GitHub Action Status](https://github.com/rjshim/ros2_tutorial/workflows/Lint/badge.svg)](https://github.com/rjshim/ros2_tutorial) [![codecov](https://codecov.io/gh/rjshim/ros2_tutorial/branch/master/graph/badge.svg)](https://codecov.io/gh/rjshim/ros2_tutorial) ![GitHub](https://img.shields.io/github/license/rjshim/ros2_tutorial)
+[![GitHub License](https://img.shields.io/github/license/rjshim/ros2_tutorial)](https://github.com/JaehyunShim/ros2_tutorial/blob/master/LICENSE)
+[![GitHub CI Status](https://github.com/rjshim/ros2_tutorial/workflows/CI/badge.svg)](https://github.com/JaehyunShim/ros2_tutorial/actions?query=workflow%3ACI)
+[![GitHub Lint Status](https://github.com/rjshim/ros2_tutorial/workflows/Lint/badge.svg)](https://github.com/JaehyunShim/ros2_tutorial/actions?query=workflow%3ALint)
+[![Codecov](https://codecov.io/gh/rjshim/ros2_tutorial/branch/master/graph/badge.svg)](https://codecov.io/gh/rjshim/ros2_tutorial)
+[![Documentation Status](https://readthedocs.org/projects/ros2-tutorial/badge/?version=latest)](https://ros2-tutorial.readthedocs.io/en/latest/?badge=latest)
+[![Doxygen](https://img.shields.io/badge/doxygen-documentation-blue.svg)](https://jaehyunshim.github.io/docs.ros2_tutorial.org/)
 
 ## Contents
-- Write ROS Topic (Pubisher/Subscriber)
-- Write ROS Service (Client/Server)
-- Write ROS Action (Action Client/Action Server)
-- Write ROS Parameter
-- Write ROS Launch
-- Write ROS Lifecycle
-- Write ROS Plugin
-- Write ROS Intra Process
+- ROS Topic (Pubisher/Subscriber)
+- ROS Service (Client/Server)
+- ROS Action (Action Client/Action Server)
+- ROS Parameter
+- ROS Launch
+- ROS Lifecycle
+- ROS Plugin
+- ROS Intra Process
 
 ## Contents2 (TODO)
-- Write ROS in Python
-- Write ROS URDF + Rviz
-- Write ROS Gazebo
-- Write ROS Ignition
-- Write ROS Control
-- Write ROS Perception
-- Write ROS Tools
-- Write ROS Qt
-- Write ROS Security
-
-## Contents3 (TODO)
-- Study Gtest Usage
-- Study Codecov
-- Study Doxygen
-- Study User Manual
-- Study Bloom
-- Write ROS2 CheatSheet
+- ROS in Python
+- ROS URDF + Rviz + Rviz Plugin
+- ROS Gazebo + Gazebo Plugin
+- ROS Ignition
+- ROS Control
+- ROS Perception
+- ROS Tools
+- ROS Qt
+- ROS Security
+- ROS Test Code
 
 ## Run
 ```sh
@@ -86,6 +84,8 @@ $ ros2 launch intra_process_example intra_process_example.launch.xml
 - [ROS2 Demos](https://github.com/ros2/demos)
 - [ROS2 Examples](https://github.com/ros2/examples)
 - [ROS Pluginlib Foxy](https://github.com/ros/pluginlib/tree/foxy)
+- [Read the Docs official webpage](https://readthedocs.org)
+- [doxygen/doxygen/Doxyfile](https://github.com/doxygen/doxygen/blob/master/Doxyfile)
 
 ## Issue
 - arg does not work in launch.xml
