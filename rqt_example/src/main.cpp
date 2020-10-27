@@ -18,7 +18,7 @@
 #include <QApplication>
 #include "../include/rqt_example/main_window.hpp"
 
-int main(int argc, char **argv)
+int main(int argc, char ** argv)
 {
   QApplication app(argc, argv);
   rqt_example::MainWindow w(argc, argv);

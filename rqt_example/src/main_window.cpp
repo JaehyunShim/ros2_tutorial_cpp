@@ -23,8 +23,8 @@ namespace rqt_example
 {
 namespace Qt
 {
-MainWindow::MainWindow(int argc, char **argv, QWidget *parent)
-    : QMainWindow(parent), qnode(argc, argv)
+MainWindow::MainWindow(int argc, char ** argv, QWidget * parent)
+: QMainWindow(parent), qnode(argc, argv)
 {
   // Calling this incidentally connects all ui's triggers to on_...() callbacks in this class.
   ui.setupUi(this);
@@ -41,8 +41,7 @@ MainWindow::MainWindow(int argc, char **argv, QWidget *parent)
   ui.view_logging->setModel(qnode.loggingModel());
   QObject::connect(&qnode, SIGNAL(loggingUpdated()), this, SLOT(updateLoggingView()));
 
-  if (ui.checkbox_remember_settings->isChecked())
-  {
+  if (ui.checkbox_remember_settings->isChecked()) {
     on_button_connect_clicked(true);
   }
 }
@@ -71,8 +70,10 @@ void MainWindow::on_button_connect_clicked(bool check)
       ui.button_connect->setEnabled(false);
     }
   } else {
-    if (!qnode.init(ui.line_edit_master->text().toStdString(),
-                    ui.line_edit_host->text().toStdString())) {
+    if (!qnode.init(
+        ui.line_edit_master->text().toStdString(),
+        ui.line_edit_host->text().toStdString()))
+    {
       showNoMasterMessage();
     } else {
       ui.button_connect->setEnabled(false);
@@ -86,8 +87,7 @@ void MainWindow::on_button_connect_clicked(bool check)
 void MainWindow::on_checkbox_use_environment_stateChanged(int state)
 {
   bool enabled;
-  if (state == 0)
-  {
+  if (state == 0) {
     enabled = true;
   } else {
     enabled = false;
@@ -127,8 +127,7 @@ void MainWindow::ReadSettings()
   ui.checkbox_remember_settings->setChecked(remember);
   bool checked = settings.value("use_environment_variables", false).toBool();
   ui.checkbox_use_environment->setChecked(checked);
-  if (checked)
-  {
+  if (checked) {
     ui.line_edit_master->setEnabled(false);
     ui.line_edit_host->setEnabled(false);
     // ui.line_edit_topic->setEnabled(false);
@@ -149,7 +148,7 @@ void MainWindow::WriteSettings()
   settings.setValue("remember_settings", QVariant(ui.checkbox_remember_settings->isChecked()));
 }
 
-void MainWindow::closeEvent(QCloseEvent *event)
+void MainWindow::closeEvent(QCloseEvent * event)
 {
   WriteSettings();
   QMainWindow::closeEvent(event);
