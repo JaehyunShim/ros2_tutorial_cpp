@@ -39,9 +39,6 @@ QT4_WRAP_CPP(QT_MOC_HPP ${QT_MOC})
 
 file(GLOB_RECURSE QT_SOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} FOLLOW_SYMLINKS src/*.cpp)
 
-##############################################################################
-# Binaries
-##############################################################################
 add_executable(rqt_example ${QT_SOURCES} ${QT_RESOURCES_CPP} ${QT_FORMS_HPP} ${QT_MOC_HPP})
 target_link_libraries(rqt_example ${QT_LIBRARIES} ${catkin_LIBRARIES})
 
@@ -57,7 +54,7 @@ install(DIRECTORY include/
   DESTINATION include/
 )
 
-install(DIRECTORY resources ui
+install(DIRECTORY resources
   DESTINATION share/${PROJECT_NAME}
 )
 

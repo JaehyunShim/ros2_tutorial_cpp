@@ -11,25 +11,20 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+//
+// Author: Jaehyun Shim
 
-/* Authors: Jaehyun Shim */
+#include <QtGui>
+#include <QApplication>
+#include "../include/rqt_example/main_window.hpp"
 
-#include <gtest/gtest.h>
-#include <memory>
-
-#include "param_example/param_example.hpp"
-
-TEST(TestROS2TutorialCPP, test_param_example)
+int main(int argc, char **argv)
 {
-  rclcpp::init(0, nullptr);
+  QApplication app(argc, argv);
+  rqt_example::MainWindow w(argc, argv);
+  w.show();
+  app.connect(&app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()));
+  int result = app.exec();
 
-  // TODO(Ryan): Study how to write more general gtest codes!!!
-  // Also below hasn't been debugged yet
-  // <<< error message
-  // The test did not generate a result file.
-  // >>>
-
-  EXPECT_ANY_THROW(
-    auto node = std::make_shared<param_example::ROS2TutorialCPP>();
-  );
+  return result;
 }
