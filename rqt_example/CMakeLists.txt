@@ -2,7 +2,7 @@
 # Set minimum required version of cmake, project name and compile options
 ################################################################################
 cmake_minimum_required(VERSION 3.5)
-project(intra_process_example)
+project(topic_example)
 
 if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 14)
@@ -17,71 +17,53 @@ endif()
 ################################################################################
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(std_msgs REQUIRED)
+find_package(rclcpp_components REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
+
+# qt_build provides the qt cmake glue, roscpp the comms for a default talker
+find_package(qt_build REQUIRED)
+include_directories(${catkin_INCLUDE_DIRS})
+
+# rosbuild_prepare_qt4(QtCore QtGui) # Add the appropriate components to the component list here
 
 ################################################################################
 # Build
 ################################################################################
-include_directories(
-  include
-)
+file(GLOB QT_FORMS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ui/*.ui)
+file(GLOB QT_RESOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} resources/*.qrc)
+file(GLOB_RECURSE QT_MOC RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} FOLLOW_SYMLINKS include/rqt_example/*.hpp)
 
-set(dependencies
-  "rclcpp"
-  "std_msgs"
-)
+QT4_ADD_RESOURCES(QT_RESOURCES_CPP ${QT_RESOURCES})
+QT4_WRAP_UI(QT_FORMS_HPP ${QT_FORMS})
+QT4_WRAP_CPP(QT_MOC_HPP ${QT_MOC})
 
-# Add executables
-add_executable(${PROJECT_NAME}
-  src/intra_process_example.cpp
-)
-ament_target_dependencies(${PROJECT_NAME} ${dependencies})
+file(GLOB_RECURSE QT_SOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} FOLLOW_SYMLINKS src/*.cpp)
+
+##############################################################################
+# Binaries
+##############################################################################
+add_executable(rqt_example ${QT_SOURCES} ${QT_RESOURCES_CPP} ${QT_FORMS_HPP} ${QT_MOC_HPP})
+target_link_libraries(rqt_example ${QT_LIBRARIES} ${catkin_LIBRARIES})
 
 ################################################################################
 # Install
 ################################################################################
-# Install executables
 install(TARGETS
   ${PROJECT_NAME}
   DESTINATION lib/${PROJECT_NAME}
 )
 
-# Install launch files
-install(DIRECTORY
-  launch
-  DESTINATION share/${PROJECT_NAME}/
-)
-
-# Install header files
-install(DIRECTORY
-  include/
+install(DIRECTORY include/
   DESTINATION include/
 )
 
-################################################################################
-# Test
-################################################################################
-# if(BUILD_TESTING)
-#   find_package(ament_cmake_gtest REQUIRED)
-#   find_package(ament_lint_auto REQUIRED)
-#   find_package(rclcpp REQUIRED)
-#   ament_lint_auto_find_test_dependencies()
-
-#   set(test_dependencies
-#     "rclcpp"
-#   )
-
-#   ament_add_gtest(test_plugin_example
-#     test/test_plugin_example.cpp
-#     src/plugin_example.cpp)
-#   target_include_directories(test_plugin_example PRIVATE include)
-#   ament_target_dependencies(test_plugin_example ${test_dependencies})
-# endif()
+install(DIRECTORY resources ui
+  DESTINATION share/${PROJECT_NAME}
+)
 
 ################################################################################
 # Macro for ament package
 ################################################################################
 ament_export_include_directories(include)
 ament_export_dependencies(rclcpp)
-ament_export_dependencies(std_msgs)
 ament_package()
