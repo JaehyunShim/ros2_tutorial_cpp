@@ -53,15 +53,17 @@ void QNode::run()
   rclcpp::Rate loop_rate(1);
   int count = 0;
   while (rclcpp::ok()) {
-    std_msgs::msg::String msg;
-    std::stringstream ss;
-    ss << "hello world " << count;
-    msg.data = ss.str();
-    chatter_pub_->publish(msg);
-    log(Info, std::string("I sent: ") + msg.data);
-    rclcpp::spin_some(node_);
-    loop_rate.sleep();
-    ++count;
+    if (onoff == true) {
+      std_msgs::msg::String msg;
+      std::stringstream ss;
+      ss << "hello world " << count;
+      msg.data = ss.str();
+      chatter_pub_->publish(msg);
+      log(Info, std::string("I sent: ") + msg.data);
+      rclcpp::spin_some(node_);
+      loop_rate.sleep();
+      ++count;
+    }
   }
   std::cout << "ROS shutdown, proceeding to close the gui." << std::endl;
   this->~QNode();

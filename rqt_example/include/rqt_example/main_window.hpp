@@ -29,6 +29,7 @@ class MainWindow
   : public QMainWindow
 {
   Q_OBJECT
+
 public:
   MainWindow(int argc, char ** argv, QWidget * parent = 0);
   ~MainWindow();
@@ -37,7 +38,8 @@ public Q_SLOTS:
   void update_logging_view();
   void on_action_about_triggered();
 
-  void on_checkbox_use_environment_stateChanged(int state);
+  void on_on_button_clicked();
+  void on_off_button_clicked();
 
 private:
   Ui::MainWindowDesign ui_;

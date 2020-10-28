@@ -51,9 +51,10 @@ public:
   QStringListModel * loggingModel() {return &logging_model;}
   void log(const LogLevel & level, const std::string & msg);
 
+  bool onoff = true;
+
 Q_SIGNALS:
   void logging_updated();
-  void rosShutdown();
 
 private:
   int init_argc;
