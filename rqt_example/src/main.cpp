@@ -1,4 +1,4 @@
-// Copyright 2020 ROBOTIS CO., LTD.
+// Copyright 2020, Jaehyun Shim, ROBOTIS CO., LTD.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -11,18 +11,17 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-//
-// Author: Jaehyun Shim
 
 #include <QtGui>
 #include <QApplication>
-#include "../include/rqt_example/main_window.hpp"
+
+#include "rqt_example/main_window.hpp"
 
 int main(int argc, char ** argv)
 {
   QApplication app(argc, argv);
-  rqt_example::MainWindow w(argc, argv);
-  w.show();
+  rqt_example::MainWindow main_window(argc, argv);
+  main_window.show();
   app.connect(&app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()));
   int result = app.exec();
 

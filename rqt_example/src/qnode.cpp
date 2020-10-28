@@ -1,4 +1,4 @@
-// Copyright 2020 ROBOTIS CO., LTD.
+// Copyright 2020, Jaehyun Shim, ROBOTIS CO., LTD.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -11,18 +11,17 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-//
-// Author: Jaehyun Shim
-
-#include <ros/ros.h>
-#include <ros/network.h>
-#include <std_msgs/String.h>
 
 #include <map>
+#include <memory>
 #include <sstream>
 #include <string>
 
-#include "../include/rqt_example/qnode.hpp"
+#include "rclcpp/rclcpp.hpp"
+#include "std_msgs/msg/string.hpp"
+
+#include "rqt_example/qnode.hpp"
+
 
 namespace rqt_example
 {
@@ -34,56 +33,35 @@ QNode::QNode(int argc, char ** argv)
 
 QNode::~QNode()
 {
-  if (ros::isStarted()) {
-    ros::shutdown();    // explicitly needed since we use ros::start();
-    ros::waitForShutdown();
-  }
+  rclcpp::shutdown();    // explicitly needed since we use ros::start();
   wait();
 }
 
 bool QNode::init()
 {
-  ros::init(init_argc, init_argv, "rqt_example");
-  if (!ros::master::check()) {
-    return false;
-  }
-  ros::start();  // explicitly needed since our nodehandle is going out of scope.
-  ros::NodeHandle n;
-  // Add your ros communications here.
-  chatter_publisher = n.advertise<std_msgs::String>("chatter", 1000);
-  start();
-  return true;
-}
+  rclcpp::init(init_argc, init_argv);
+  auto node = std::make_shared<rclcpp::Node>("my_node", "my_ns");
+  auto qos = rclcpp::QoS(rclcpp::KeepLast(10));
+  chatter_pub_ = node->create_publisher<std_msgs::msg::String>("chatter", qos);
 
-bool QNode::init(const std::string & master_url, const std::string & host_url)
-{
-  std::map<std::string, std::string> remappings;
-  remappings["__master"] = master_url;
-  remappings["__hostname"] = host_url;
-  ros::init(remappings, "rqt_example");
-  if (!ros::master::check()) {
-    return false;
-  }
-  ros::start();  // explicitly needed since our nodehandle is going out of scope.
-  ros::NodeHandle n;
-  // Add your ros communications here.
-  chatter_publisher = n.advertise<std_msgs::String>("chatter", 1000);
   start();
+
   return true;
 }
 
 void QNode::run()
 {
-  ros::Rate loop_rate(1);
+  rclcpp::Rate loop_rate(1);
+  auto node = std::make_shared<rclcpp::Node>("my_node", "my_ns");
   int count = 0;
-  while (ros::ok()) {
-    std_msgs::String msg;
+  while (rclcpp::ok()) {
+    std_msgs::msg::String msg;
     std::stringstream ss;
     ss << "hello world " << count;
     msg.data = ss.str();
-    chatter_publisher.publish(msg);
+    chatter_pub_->publish(msg);
     log(Info, std::string("I sent: ") + msg.data);
-    ros::spinOnce();
+    rclcpp::spin_some(node);
     loop_rate.sleep();
     ++count;
   }
@@ -93,32 +71,34 @@ void QNode::run()
 
 void QNode::log(const LogLevel & level, const std::string & msg)
 {
+  auto node = std::make_shared<rclcpp::Node>("my_node", "my_ns");
+
   logging_model.insertRows(logging_model.rowCount(), 1);
   std::stringstream logging_model_msg;
   switch (level) {
     case (Debug): {
-        ROS_DEBUG_STREAM(msg);
-        logging_model_msg << "[DEBUG] [" << ros::Time::now() << "]: " << msg;
+        RCLCPP_DEBUG_STREAM(node->get_logger(), msg);
+        // logging_model_msg << "[DEBUG] [" << std::string(rclcpp::Clock().now()) << "]: " << msg;
         break;
       }
     case (Info): {
-        ROS_INFO_STREAM(msg);
-        logging_model_msg << "[INFO] [" << ros::Time::now() << "]: " << msg;
+        RCLCPP_INFO_STREAM(node->get_logger(), msg);
+        // logging_model_msg << "[INFO] [" << std::string(rclcpp::Clock().now()) << "]: " << msg;
         break;
       }
     case (Warn): {
-        ROS_WARN_STREAM(msg);
-        logging_model_msg << "[INFO] [" << ros::Time::now() << "]: " << msg;
+        RCLCPP_WARN_STREAM(node->get_logger(), msg);
+        // logging_model_msg << "[INFO] [" << std::string(rclcpp::Clock().now()) << "]: " << msg;
         break;
       }
     case (Error): {
-        ROS_ERROR_STREAM(msg);
-        logging_model_msg << "[ERROR] [" << ros::Time::now() << "]: " << msg;
+        RCLCPP_ERROR_STREAM(node->get_logger(), msg);
+        // logging_model_msg << "[ERROR] [" << std::string(rclcpp::Clock().now()) << "]: " << msg;
         break;
       }
     case (Fatal): {
-        ROS_FATAL_STREAM(msg);
-        logging_model_msg << "[FATAL] [" << ros::Time::now() << "]: " << msg;
+        RCLCPP_FATAL_STREAM(node->get_logger(), msg);
+        // logging_model_msg << "[FATAL] [" << std::string(rclcpp::Clock().now()) << "]: " << msg;
         break;
       }
   }

@@ -13,14 +13,19 @@
   <buildtool_depend>ament_cmake</buildtool_depend>
   <depend>rclcpp</depend>
 
-  <!-- <build_depend>qt_build</build_depend>
-  <build_depend>roscpp</build_depend>
-  <build_depend>libqt4-dev</build_depend>
-  <run_depend>qt_build</run_depend>
-  <run_depend>roscpp</run_depend>
-  <run_depend>libqt4-dev</run_depend> -->
+  <build_depend>qtbase5-dev</build_depend>
+  <build_depend>rqt_gui</build_depend>
+  <build_depend>rqt_gui_cpp</build_depend>
+  <build_depend>qt_gui_cpp</build_depend>
+  <build_depend>std_msgs</build_depend>
+
+  <exec_depend>rqt_gui</exec_depend>
+  <exec_depend>rqt_gui_cpp</exec_depend>
+  <exec_depend>qt_gui_cpp</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
+    <rqt_gui plugin="${prefix}/plugin.xml"/>
   </export>
 </package>

@@ -2,7 +2,7 @@
 # Set minimum required version of cmake, project name and compile options
 ################################################################################
 cmake_minimum_required(VERSION 3.5)
-project(topic_example)
+project(rqt_example)
 
 if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 14)
@@ -12,49 +12,90 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
+# To include "ui_main_window.h" file
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
 ################################################################################
 # Find and load build settings from external packages
 ################################################################################
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(rclcpp_components REQUIRED)
-find_package(rosidl_default_generators REQUIRED)
-
-# qt_build provides the qt cmake glue, roscpp the comms for a default talker
-find_package(qt_build REQUIRED)
-include_directories(${catkin_INCLUDE_DIRS})
-
-# rosbuild_prepare_qt4(QtCore QtGui) # Add the appropriate components to the component list here
+find_package(qt_gui_cpp REQUIRED)
+find_package(rqt_gui_cpp REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(Qt5Widgets REQUIRED)
 
 ################################################################################
 # Build
 ################################################################################
-file(GLOB QT_FORMS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ui/*.ui)
-file(GLOB QT_RESOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} resources/*.qrc)
-file(GLOB_RECURSE QT_MOC RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} FOLLOW_SYMLINKS include/rqt_example/*.hpp)
+include_directories(
+  include
+)
 
-QT4_ADD_RESOURCES(QT_RESOURCES_CPP ${QT_RESOURCES})
-QT4_WRAP_UI(QT_FORMS_HPP ${QT_FORMS})
-QT4_WRAP_CPP(QT_MOC_HPP ${QT_MOC})
+set(src_files
+  src/main.cpp
+  src/main_window.cpp
+  src/qnode.cpp
+)
 
-file(GLOB_RECURSE QT_SOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} FOLLOW_SYMLINKS src/*.cpp)
+set(hd_files
+  include/${PROJECT_NAME}/main_window.hpp
+  include/${PROJECT_NAME}/qnode.hpp
+)
 
-add_executable(rqt_example ${QT_SOURCES} ${QT_RESOURCES_CPP} ${QT_FORMS_HPP} ${QT_MOC_HPP})
-target_link_libraries(rqt_example ${QT_LIBRARIES} ${catkin_LIBRARIES})
+set(ui_files
+  ui/main_window.ui
+)
+
+qt5_wrap_cpp(moc_files ${hd_files})
+qt5_wrap_ui(ui_hd_files ${ui_files})
+
+set(dependencies
+  "rclcpp"
+  "qt_gui_cpp"
+  "rqt_gui_cpp"
+  "std_msgs"
+  "Qt5Widgets"
+)
+
+# add_library(${PROJECT_NAME} SHARED
+#   ${src_files}
+#   ${moc_files}
+#   ${ui_hd_files}
+# )
+add_executable(${PROJECT_NAME}
+  ${src_files}
+  ${moc_files}
+  ${ui_hd_files}
+)
+ament_target_dependencies(${PROJECT_NAME} ${dependencies})
+target_link_libraries(
+  ${PROJECT_NAME}
+  ${rclcpp_LIBRARIES}
+  ${qt_gui_cpp_LIBRARIES}
+  ${rqt_gui_cpp_LIBRARIES}
+  Qt5::Widgets
+)
 
 ################################################################################
 # Install
 ################################################################################
-install(TARGETS
-  ${PROJECT_NAME}
+install(TARGETS ${PROJECT_NAME}
   DESTINATION lib/${PROJECT_NAME}
+  # ARCHIVE DESTINATION lib/${PROJECT_NAME}
+  # LIBRARY DESTINATION lib/${PROJECT_NAME}
+  # RUNTIME DESTINATION bin/${PROJECT_NAME}
 )
 
 install(DIRECTORY include/
   DESTINATION include/
 )
 
-install(DIRECTORY resources
+install(DIRECTORY resource ui
+  DESTINATION share/${PROJECT_NAME}
+)
+
+install(FILES plugin.xml
   DESTINATION share/${PROJECT_NAME}
 )
 

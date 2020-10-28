@@ -1,4 +1,4 @@
-// Copyright 2020 ROBOTIS CO., LTD.
+// Copyright 2020, Jaehyun Shim, ROBOTIS CO., LTD.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -11,20 +11,20 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-//
-// Author: Jaehyun Shim
 
 #ifndef RQT_EXAMPLE__QNODE_HPP_
 #define RQT_EXAMPLE__QNODE_HPP_
 
 #ifndef Q_MOC_RUN
-  #include <ros/ros.h>
+  #include "rclcpp/rclcpp.hpp"
 #endif
 
 #include <QThread>
 #include <QStringListModel>
 
 #include <string>
+
+#include "std_msgs/msg/string.hpp"
 
 namespace rqt_example
 {
@@ -36,7 +36,7 @@ public:
   QNode(int argc, char ** argv);
   virtual ~QNode();
   bool init();
-  bool init(const std::string & master_url, const std::string & host_url);
+  // bool init(const std::string & master_url, const std::string & host_url);
   void run();
 
   enum LogLevel
@@ -58,7 +58,8 @@ Q_SIGNALS:
 private:
   int init_argc;
   char ** init_argv;
-  ros::Publisher chatter_publisher;
+  rclcpp::Publisher<std_msgs::msg::String>::SharedPtr chatter_pub_;
+  // rclcpp::Publisher chatter_publisher;
   QStringListModel logging_model;
 };
 
