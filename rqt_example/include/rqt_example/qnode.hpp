@@ -35,9 +35,9 @@ class QNode : public QThread
 public:
   QNode(int argc, char ** argv);
   virtual ~QNode();
-  bool init();
-  // bool init(const std::string & master_url, const std::string & host_url);
   void run();
+
+  bool init();
 
   enum LogLevel
   {
@@ -52,16 +52,15 @@ public:
   void log(const LogLevel & level, const std::string & msg);
 
 Q_SIGNALS:
-  void loggingUpdated();
+  void logging_updated();
   void rosShutdown();
 
 private:
   int init_argc;
   char ** init_argv;
+  rclcpp::Node::SharedPtr node_;
   rclcpp::Publisher<std_msgs::msg::String>::SharedPtr chatter_pub_;
-  // rclcpp::Publisher chatter_publisher;
   QStringListModel logging_model;
 };
-
 }  // namespace rqt_example
 #endif  // RQT_EXAMPLE__QNODE_HPP_

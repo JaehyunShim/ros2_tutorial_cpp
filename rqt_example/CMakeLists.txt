@@ -91,7 +91,7 @@ install(DIRECTORY include/
   DESTINATION include/
 )
 
-install(DIRECTORY resource ui
+install(DIRECTORY ui
   DESTINATION share/${PROJECT_NAME}
 )
 
@@ -104,4 +104,8 @@ install(FILES plugin.xml
 ################################################################################
 ament_export_include_directories(include)
 ament_export_dependencies(rclcpp)
+ament_export_dependencies(qt_gui_cpp)
+ament_export_dependencies(rqt_gui_cpp)
+ament_export_dependencies(std_msgs)
+ament_export_dependencies(Qt5Widgets)
 ament_package()

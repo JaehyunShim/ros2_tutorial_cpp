@@ -13,10 +13,6 @@
   <property name="windowTitle">
    <string>QRosApp</string>
   </property>
-  <property name="windowIcon">
-   <iconset resource="../resources/images.qrc">
-    <normaloff>:/images/icon.png</normaloff>:/images/icon.png</iconset>
-  </property>
   <property name="locale">
    <locale language="English" country="Australia"/>
   </property>
@@ -80,8 +76,8 @@
     </property>
     <addaction name="action_Preferences"/>
     <addaction name="separator"/>
-    <addaction name="actionAbout"/>
-    <addaction name="actionAbout_Qt"/>
+    <addaction name="action_about"/>
+    <addaction name="action_about_Qt"/>
     <addaction name="separator"/>
     <addaction name="action_Quit"/>
    </widget>
@@ -302,12 +298,12 @@
     <string>&amp;Preferences</string>
    </property>
   </action>
-  <action name="actionAbout">
+  <action name="action_about">
    <property name="text">
     <string>&amp;About</string>
    </property>
   </action>
-  <action name="actionAbout_Qt">
+  <action name="action_about_Qt">
    <property name="text">
     <string>About &amp;Qt</string>
    </property>

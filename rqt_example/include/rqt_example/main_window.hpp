@@ -16,8 +16,8 @@
 #define RQT_EXAMPLE__MAIN_WINDOW_HPP_
 
 #include <QMainWindow>
-#include <ui_main_window.h>
 #include <QWidget>
+#include <ui_main_window.h>
 #include <rqt_gui_cpp/plugin.h>
 
 #include "rqt_example/qnode.hpp"
@@ -29,23 +29,15 @@ class MainWindow
   : public QMainWindow
 {
   Q_OBJECT
-
 public:
   MainWindow(int argc, char ** argv, QWidget * parent = 0);
   ~MainWindow();
 
-  void read_settings();  // Load up qt program settings at startup
-  void write_settings();  // Save qt program settings when closing
-
-  void close_event(QCloseEvent * event);  // Overloaded function
-  void showNoMasterMessage();
-
 public Q_SLOTS:
-  void on_actionAbout_triggered();
-  // void on_button_connect_clicked(bool check);
-  void on_checkbox_use_environment_stateChanged(int state);
+  void update_logging_view();
+  void on_action_about_triggered();
 
-  void updateLoggingView();  // no idea why this can't connect automatically
+  void on_checkbox_use_environment_stateChanged(int state);
 
 private:
   Ui::MainWindowDesign ui_;
