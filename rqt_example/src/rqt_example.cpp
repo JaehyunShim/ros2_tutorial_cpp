@@ -17,35 +17,43 @@
 // #include <QtGui>
 // #include <QMessageBox>
 #include <QStringList>
-// #include <iostream>
 
 #include "rqt_example/rqt_example.hpp"
+#include "rclcpp/rclcpp.hpp"
+
+#include <thread>
 
 namespace rqt_example
 {
 RqtExample::RqtExample()
 : rqt_gui_cpp::Plugin(),
   widget_(0)
-// qnode(argc, argv)
 {
   setObjectName("RQT Example");
 }
 
 void RqtExample::initPlugin(qt_gui_cpp::PluginContext & context)
 {
-  // access standalone command line arguments
+  // Access standalone command line arguments
   QStringList argv = context.argv();
-  // create QWidget
+  // Create QWidget
   widget_ = new QWidget();
-  // extend the widget with all attributes and children from UI file
+  // Extend the widget with all attributes and children from UI file
   ui_.setupUi(widget_);
-  // add widget to the user interface
+  // Add widget to the user interface
   context.addWidget(widget_);
-
-  // connect(ui_.action_about_Qt, SIGNAL(triggered(bool)), this, SLOT(aboutQt()));
 
   // ui_.view_logging->setModel(qnode.loggingModel());
   // connect(&qnode, SIGNAL(logging_updated()), this, SLOT(ui_.view_logging->scrollToBottom()));
+
+  connect(ui_.pub_on_button, SIGNAL(clicked(bool)), this, SLOT(on_pub_on_button_clicked()));
+  connect(ui_.pub_off_button, SIGNAL(clicked(bool)), this, SLOT(on_pub_off_button_clicked()));
+  connect(ui_.sub_on_button, SIGNAL(clicked(bool)), this, SLOT(on_sub_on_button_clicked()));
+  connect(ui_.sub_off_button, SIGNAL(clicked(bool)), this, SLOT(on_sub_off_button_clicked()));
+
+  // Run a thread for ros_spin
+  std::thread t(run_ros_thread);
+  t.detach();
 }
 
 void RqtExample::shutdownPlugin()
@@ -69,23 +77,30 @@ void RqtExample::restoreSettings(
   // v = instance_settings.value(k)
 }
 
+// TODO: Find a better way to run ros_spin
+auto qnode_ = std::make_shared<rqt_example::QNode>();
+void RqtExample::run_ros_thread()
+{
+  rclcpp::spin(qnode_);
+}
+
 void RqtExample::on_pub_on_button_clicked()
 {
-  // qnode.pub_onoff = true;
+  qnode_->pub_onoff_ = true;
 }
 
 void RqtExample::on_pub_off_button_clicked()
 {
-  // qnode.pub_onoff = false;
+  qnode_->pub_onoff_ = false;
 }
 void RqtExample::on_sub_on_button_clicked()
 {
-  // qnode.sub_onoff = true;
+  qnode_->sub_onoff_ = true;
 }
 
 void RqtExample::on_sub_off_button_clicked()
 {
-  // qnode.sub_onoff = false;
+  qnode_->sub_onoff_ = false;
 }
 }  // namespace rqt_example
 

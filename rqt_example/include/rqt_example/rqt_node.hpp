@@ -15,29 +15,32 @@
 #ifndef RQT_EXAMPLE__QNODE_HPP_
 #define RQT_EXAMPLE__QNODE_HPP_
 
-#ifndef Q_MOC_RUN
-  #include "rclcpp/rclcpp.hpp"
-#endif
+#include "rclcpp/rclcpp.hpp"
+#include "std_msgs/msg/string.hpp"
 
-#include <QThread>
 #include <QStringListModel>
 
 #include <string>
 
-#include "std_msgs/msg/string.hpp"
-
 namespace rqt_example
 {
-class QNode : public QThread
+class QNode : public rclcpp::Node
 {
-  Q_OBJECT
-
 public:
-  QNode(int argc, char ** argv);
+  QNode();
   virtual ~QNode();
-  void run();
 
-  bool init();
+// protected:
+  bool pub_onoff_ = true;
+  bool sub_onoff_ = false;
+
+private:
+  std::unique_ptr<std_msgs::msg::String> msg_;
+  rclcpp::Publisher<std_msgs::msg::String>::SharedPtr chatter_pub_;
+  rclcpp::Subscription<std_msgs::msg::String>::SharedPtr chatter_sub_;
+  rclcpp::TimerBase::SharedPtr timer_;
+  void chatter_callback(const std_msgs::msg::String::SharedPtr msg);
+  void timer_callback();
 
   enum LogLevel
   {
@@ -48,20 +51,13 @@ public:
     Fatal
   };
 
-  QStringListModel * loggingModel() {return &logging_model;}
-  void log(const LogLevel & level, const std::string & msg);
-
-  bool onoff = true;
-
-Q_SIGNALS:
-  void logging_updated();
-
-private:
-  int init_argc;
-  char ** init_argv;
-  rclcpp::Node::SharedPtr node_;
-  rclcpp::Publisher<std_msgs::msg::String>::SharedPtr chatter_pub_;
   QStringListModel logging_model;
+
+// Q_SIGNALS:
+//   void logging_updated();
+//   QStringListModel * loggingModel() {return &logging_model;}
+//   void log(const LogLevel & level, const std::string & msg);
+
 };
 }  // namespace rqt_example
 #endif  // RQT_EXAMPLE__QNODE_HPP_

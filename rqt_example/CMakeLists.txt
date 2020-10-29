@@ -35,12 +35,12 @@ include_directories(
 
 set(src_files
   src/rqt_example.cpp
-  # src/qnode.cpp
+  src/rqt_node.cpp
 )
 
 set(hd_files
   include/${PROJECT_NAME}/rqt_example.hpp
-  # include/${PROJECT_NAME}/qnode.hpp
+  include/${PROJECT_NAME}/rqt_node.hpp
 )
 
 set(ui_files

@@ -19,18 +19,16 @@
 #include <ui_rqt_example.h>
 #include <QWidget>
 
-// #include "rqt_example/qnode.hpp"
+#include "rqt_example/rqt_node.hpp"
 
 namespace rqt_example
 {
 class RqtExample
   : public rqt_gui_cpp::Plugin
-  // : public QMainWindow
 {
   Q_OBJECT
 
 public:
-  // RqtExample(int argc, char ** argv, QWidget * parent = 0);
   RqtExample();
 
   virtual void initPlugin(qt_gui_cpp::PluginContext & context);
@@ -42,6 +40,8 @@ public:
     const qt_gui_cpp::Settings & plugin_settings,
     const qt_gui_cpp::Settings & instance_settings);
 
+  static void run_ros_thread();
+
 public Q_SLOTS:
   void on_pub_on_button_clicked();
   void on_pub_off_button_clicked();
@@ -51,7 +51,6 @@ public Q_SLOTS:
 private:
   Ui::RqtExampleWidget ui_;
   QWidget * widget_;
-// QNode qnode;
 };
 }  // namespace rqt_example
 #endif  // RQT_EXAMPLE__RQT_EXAMPLE_HPP_
