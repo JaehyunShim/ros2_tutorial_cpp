@@ -1,15 +1,15 @@
 <library path="rqt_example">
-  <class name="rqt_example/MainWindow" type="rqt_example::MainWindow" base_class_type="rqt_gui_cpp::Plugin">
-    <description>A GUI plugin for robot control</description>
+  <class name="rqt_example/RqtExample" type="rqt_example::RqtExample" base_class_type="rqt_gui_cpp::Plugin">
+    <description>Rqt Example for robot control</description>
     <qtgui>
       <group>
         <label>Visualization</label>
         <icon type="theme">folder</icon>
         <statustip>Plugins related to visualization.</statustip>
       </group>
-      <label>Image View</label>
+      <label>RQT Example</label>
       <icon type="theme">image-x-generic</icon>
-      <statustip>A GUI plugin for viewing sensor_msgs/Image topics.</statustip>
+      <statustip>A GUI plugin example.</statustip>
     </qtgui>
   </class>
 </library>

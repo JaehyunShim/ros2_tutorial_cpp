@@ -12,7 +12,7 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-# To include "ui_main_window.h" file
+# Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 ################################################################################
@@ -24,6 +24,7 @@ find_package(qt_gui_cpp REQUIRED)
 find_package(rqt_gui_cpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(Qt5Widgets REQUIRED)
+find_package(ament_cmake_python REQUIRED)
 
 ################################################################################
 # Build
@@ -33,18 +34,17 @@ include_directories(
 )
 
 set(src_files
-  src/main.cpp
-  src/main_window.cpp
-  src/qnode.cpp
+  src/rqt_example.cpp
+  # src/qnode.cpp
 )
 
 set(hd_files
-  include/${PROJECT_NAME}/main_window.hpp
-  include/${PROJECT_NAME}/qnode.hpp
+  include/${PROJECT_NAME}/rqt_example.hpp
+  # include/${PROJECT_NAME}/qnode.hpp
 )
 
 set(ui_files
-  ui/main_window.ui
+  ui/rqt_example.ui
 )
 
 qt5_wrap_cpp(moc_files ${hd_files})
@@ -58,37 +58,30 @@ set(dependencies
   "Qt5Widgets"
 )
 
-# add_library(${PROJECT_NAME} SHARED
-#   ${src_files}
-#   ${moc_files}
-#   ${ui_hd_files}
-# )
-add_executable(${PROJECT_NAME}
+add_library(${PROJECT_NAME} SHARED
   ${src_files}
   ${moc_files}
   ${ui_hd_files}
 )
 ament_target_dependencies(${PROJECT_NAME} ${dependencies})
-target_link_libraries(
-  ${PROJECT_NAME}
-  ${rclcpp_LIBRARIES}
-  ${qt_gui_cpp_LIBRARIES}
-  ${rqt_gui_cpp_LIBRARIES}
-  Qt5::Widgets
-)
 
 ################################################################################
 # Install
 ################################################################################
 install(TARGETS ${PROJECT_NAME}
-  DESTINATION lib/${PROJECT_NAME}
-  # ARCHIVE DESTINATION lib/${PROJECT_NAME}
-  # LIBRARY DESTINATION lib/${PROJECT_NAME}
-  # RUNTIME DESTINATION bin/${PROJECT_NAME}
+  EXPORT ${PROJECT_NAME}
+  ARCHIVE DESTINATION lib/${PROJECT_NAME}
+  LIBRARY DESTINATION lib/${PROJECT_NAME}
+  RUNTIME DESTINATION bin/${PROJECT_NAME}
+  INCLUDES DESTINATION include
 )
 
 install(DIRECTORY include/
   DESTINATION include/
+)
+
+install(PROGRAMS scripts/rqt_example
+  DESTINATION lib/${PROJECT_NAME}
 )
 
 install(DIRECTORY ui
@@ -103,6 +96,8 @@ install(FILES plugin.xml
 # Macro for ament package
 ################################################################################
 ament_export_include_directories(include)
+ament_export_libraries(${PROJECT_NAME})
+pluginlib_export_plugin_description_file(rqt_gui "plugin.xml")
 ament_export_dependencies(rclcpp)
 ament_export_dependencies(qt_gui_cpp)
 ament_export_dependencies(rqt_gui_cpp)
