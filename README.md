@@ -15,6 +15,7 @@
 - ROS Lifecycle
 - ROS Plugin
 - ROS Intra Process
+- ROS RQT
 
 ## Contents2 (TODO)
 - ROS in Python
@@ -24,7 +25,6 @@
 - ROS Control
 - ROS Perception
 - ROS Tools
-- ROS Qt
 - ROS Security
 - ROS Test Code
 
