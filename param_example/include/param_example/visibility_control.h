@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/* Authors: Ryan Shim */
+/* Authors: Jaehyun Shim */
 
 #ifndef PARAM_EXAMPLE__VISIBILITY_CONTROL_H_
 #define PARAM_EXAMPLE__VISIBILITY_CONTROL_H_

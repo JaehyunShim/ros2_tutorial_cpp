@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/* Authors: Ryan Shim */
+/* Authors: Jaehyun Shim */
 
 #ifndef INTRA_PROCESS_EXAMPLE__PUBLISHER_HPP_
 #define INTRA_PROCESS_EXAMPLE__PUBLISHER_HPP_

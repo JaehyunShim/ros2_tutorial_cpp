@@ -1,4 +1,4 @@
-// Copyright 2020 ROBOTIS CO., LTD.
+// Copyright 2020, Jaehyun Shim, ROBOTIS CO., LTD.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,41 +12,33 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/* Authors: Jaehyun Shim */
+#ifndef RQT_EXAMPLE__RQT_NODE_HPP_
+#define RQT_EXAMPLE__RQT_NODE_HPP_
 
-#ifndef LAUNCH_EXAMPLE__LAUNCH_HPP_
-#define LAUNCH_EXAMPLE__LAUNCH_HPP_
+#include <QStringListModel>
 
-#include <memory>
+#include <string>
 
 #include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/int64.hpp"
+#include "std_msgs/msg/string.hpp"
 
-namespace launch_example
+namespace rqt_example
 {
-/**
- * @class Launch
- * @brief Publishes "chatter"
- */
-class Launch : public rclcpp::Node
+class RqtNode : public rclcpp::Node
 {
 public:
-  /**
-   * @brief Constructor
-   */
-  Launch();
+  RqtNode();
+  virtual ~RqtNode();
 
-  /**
-   * @brief Virtual destructor
-   */
-  virtual ~Launch();
+  bool pub_onoff_ = true;
+  bool sub_onoff_ = false;
 
 private:
-  std::unique_ptr<std_msgs::msg::Int64> msg_;
-  rclcpp::Publisher<std_msgs::msg::Int64>::SharedPtr pub_;
+  rclcpp::Publisher<std_msgs::msg::String>::SharedPtr chatter_pub_;
+  rclcpp::Subscription<std_msgs::msg::String>::SharedPtr chatter_sub_;
   rclcpp::TimerBase::SharedPtr timer_;
+  void chatter_callback(const std_msgs::msg::String::SharedPtr msg);
   void timer_callback();
 };
-}  // namespace launch_example
-
-#endif  // LAUNCH_EXAMPLE__LAUNCH_HPP_
+}  // namespace rqt_example
+#endif  // RQT_EXAMPLE__RQT_NODE_HPP_

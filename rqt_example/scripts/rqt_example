@@ -1,4 +1,5 @@
-# Copyright 2018 Open Source Robotics Foundation, Inc.
+#!/usr/bin/env python3
+# Copyright 2020, Jaehyun Shim, ROBOTIS CO., LTD.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,22 +12,18 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
-# Authors: Jaehyun Shim
 
-from launch import LaunchDescription
-from launch_ros.actions import Node
+import sys
+
+from rqt_gui.main import Main
 
 
-def generate_launch_description():
-    return LaunchDescription([
-        Node(
-            package='service_example',
-            executable='client',
-            output='screen'),
+def add_arguments(parser):
+    group = parser.add_argument_group('Options for rqt_example plugin')
+    group.add_argument('topic', nargs='?', help='The topic name to subscribe to')
 
-        Node(
-            package='service_example',
-            executable='server',
-            output='screen'),
-    ])
+main = Main()
+sys.exit(main.main(
+    sys.argv,
+    standalone='rqt_example/RqtExample',
+    plugin_argument_provider=add_arguments))
