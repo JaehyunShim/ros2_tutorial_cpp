@@ -25,7 +25,8 @@ namespace rqt_example
 {
 RqtExample::RqtExample()
 : rqt_gui_cpp::Plugin(),
-  widget_(0)
+  widget_(0),
+  rqt_node_(std::make_shared<rqt_example::RqtNode>())
 {
   setObjectName("RQT Example");
 }
@@ -46,8 +47,9 @@ void RqtExample::initPlugin(qt_gui_cpp::PluginContext & context)
   context.addWidget(widget_);
 
   // Run a thread for ros_spin
-  std::thread ros_thread(run_ros_thread);
-  ros_thread.detach();
+  ros_timer_ = new QTimer(this);
+  connect(ros_timer_, SIGNAL(timeout()), this, SLOT(run_ros_thread()));
+  ros_timer_->start(10);
 
   // Set states
   connect(ui_.pub_on_button, SIGNAL(clicked(bool)), this, SLOT(set_pub_on()));
@@ -56,8 +58,9 @@ void RqtExample::initPlugin(qt_gui_cpp::PluginContext & context)
   connect(ui_.sub_off_button, SIGNAL(clicked(bool)), this, SLOT(set_sub_off()));
 
   // Get & Display states
-  std::thread display_thread(run_display_thread, &ui_);
-  display_thread.detach();
+  display_timer_ = new QTimer(this);
+  connect(display_timer_, SIGNAL(timeout()), this, SLOT(run_display_thread()));
+  display_timer_->start(10);
 }
 
 void RqtExample::shutdownPlugin()
@@ -82,19 +85,15 @@ void RqtExample::restoreSettings(
 }
 
 // TODO(JaehyunShim): Find a better way to run ros_spin
-auto rqt_node_ = std::make_shared<rqt_example::RqtNode>();
 void RqtExample::run_ros_thread()
 {
-  rclcpp::spin(rqt_node_);
+  rclcpp::spin_some(rqt_node_);
 }
 
-// TODO(JaehyunShim): Find a better way to run display_spin
-void RqtExample::run_display_thread(Ui::RqtExampleWidget * ui)
+void RqtExample::run_display_thread()
 {
-  while (1) {
-    ui->pub_onoff_state->setText(get_pub_onff());
-    ui->sub_onoff_state->setText(get_sub_onff());
-  }
+  ui_.pub_onoff_state->setText(get_pub_onff());
+  ui_.sub_onoff_state->setText(get_sub_onff());
 }
 
 QString RqtExample::get_pub_onff()
@@ -130,6 +129,7 @@ void RqtExample::set_pub_off()
 {
   rqt_node_->pub_onoff_ = false;
 }
+
 void RqtExample::set_sub_on()
 {
   rqt_node_->sub_onoff_ = true;
@@ -140,5 +140,4 @@ void RqtExample::set_sub_off()
   rqt_node_->sub_onoff_ = false;
 }
 }  // namespace rqt_example
-
 PLUGINLIB_EXPORT_CLASS(rqt_example::RqtExample, rqt_gui_cpp::Plugin)

@@ -18,6 +18,8 @@
 #include <rqt_gui_cpp/plugin.h>
 #include <ui_rqt_example.h>
 #include <QWidget>
+#include <QTimer>
+#include <memory>
 
 #include "rqt_example/rqt_node.hpp"
 
@@ -40,14 +42,9 @@ public:
     const qt_gui_cpp::Settings & plugin_settings,
     const qt_gui_cpp::Settings & instance_settings);
 
-  static void run_ros_thread();
-  static void run_display_thread(Ui::RqtExampleWidget * ui);
-
-  // TODO(JaehyunShim): Find a better way to use get
-  static QString get_pub_onff();
-  static QString get_sub_onff();
-
 protected slots:
+  void run_ros_thread();
+  void run_display_thread();
 
   void set_pub_on();
   void set_pub_off();
@@ -57,6 +54,12 @@ protected slots:
 private:
   Ui::RqtExampleWidget ui_;
   QWidget * widget_;
+  std::shared_ptr<rqt_example::RqtNode> rqt_node_;
+  QTimer * ros_timer_;
+  QTimer * display_timer_;
+
+  QString get_pub_onff();
+  QString get_sub_onff();
 };
 }  // namespace rqt_example
 #endif  // RQT_EXAMPLE__RQT_EXAMPLE_HPP_

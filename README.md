@@ -78,6 +78,10 @@ $ ros2 launch plugin_example plugin.launch.xml
 $ ros2 run intra_process_example intra_process_example
 $ ros2 launch intra_process_example intra_process_example.launch.py
 $ ros2 launch intra_process_example intra_process_example.launch.xml
+
+# RQT examples
+$ ros2 run rqt_example rqt_example
+$ rqt  # Find the example plugin in the tab
 ```
 
 ## Reference
@@ -93,4 +97,3 @@ $ ros2 launch intra_process_example intra_process_example.launch.xml
 - Visibility Control Usage check needed
 - pluginlib has an inner bug crash issue (commented out building process in CMakeLists.txt)
 - action_example has ci build crash issue (commented out building process in CMakeLists.txt)
-- rqt_example window close bug
