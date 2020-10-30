@@ -39,16 +39,25 @@ void RqtExample::initPlugin(qt_gui_cpp::PluginContext & context)
   // Extend the widget with all attributes and children from UI file
   ui_.setupUi(widget_);
   // Add widget to the user interface
+  if (context.serialNumber() > 1) {
+    widget_->setWindowTitle(
+      widget_->windowTitle() + " (" + QString::number(context.serialNumber()) + ")");
+  }
   context.addWidget(widget_);
 
-  connect(ui_.pub_on_button, SIGNAL(clicked(bool)), this, SLOT(on_pub_on_button_clicked()));
-  connect(ui_.pub_off_button, SIGNAL(clicked(bool)), this, SLOT(on_pub_off_button_clicked()));
-  connect(ui_.sub_on_button, SIGNAL(clicked(bool)), this, SLOT(on_sub_on_button_clicked()));
-  connect(ui_.sub_off_button, SIGNAL(clicked(bool)), this, SLOT(on_sub_off_button_clicked()));
-
   // Run a thread for ros_spin
-  std::thread t(run_ros_thread);
-  t.detach();
+  std::thread ros_thread(run_ros_thread);
+  ros_thread.detach();
+
+  // Set states
+  connect(ui_.pub_on_button, SIGNAL(clicked(bool)), this, SLOT(set_pub_on()));
+  connect(ui_.pub_off_button, SIGNAL(clicked(bool)), this, SLOT(set_pub_off()));
+  connect(ui_.sub_on_button, SIGNAL(clicked(bool)), this, SLOT(set_sub_on()));
+  connect(ui_.sub_off_button, SIGNAL(clicked(bool)), this, SLOT(set_sub_off()));
+
+  // Get & Display states
+  std::thread display_thread(run_display_thread, &ui_);
+  display_thread.detach();
 }
 
 void RqtExample::shutdownPlugin()
@@ -73,29 +82,62 @@ void RqtExample::restoreSettings(
 }
 
 // TODO(JaehyunShim): Find a better way to run ros_spin
-auto qnode_ = std::make_shared<rqt_example::QNode>();
+auto rqt_node_ = std::make_shared<rqt_example::RqtNode>();
 void RqtExample::run_ros_thread()
 {
-  rclcpp::spin(qnode_);
+  rclcpp::spin(rqt_node_);
 }
 
-void RqtExample::on_pub_on_button_clicked()
+// TODO(JaehyunShim): Find a better way to run display_spin
+void RqtExample::run_display_thread(Ui::RqtExampleWidget * ui)
 {
-  qnode_->pub_onoff_ = true;
+  while (1) {
+    ui->pub_onoff_state->setText(get_pub_onff());
+    ui->sub_onoff_state->setText(get_sub_onff());
+  }
 }
 
-void RqtExample::on_pub_off_button_clicked()
+QString RqtExample::get_pub_onff()
 {
-  qnode_->pub_onoff_ = false;
-}
-void RqtExample::on_sub_on_button_clicked()
-{
-  qnode_->sub_onoff_ = true;
+  QString q_str;
+  if (rqt_node_->pub_onoff_ == true) {
+    q_str = "on";
+  } else {
+    q_str = "off";
+  }
+
+  return q_str;
 }
 
-void RqtExample::on_sub_off_button_clicked()
+QString RqtExample::get_sub_onff()
 {
-  qnode_->sub_onoff_ = false;
+  QString q_str;
+  if (rqt_node_->sub_onoff_ == true) {
+    q_str = "on";
+  } else {
+    q_str = "off";
+  }
+
+  return q_str;
+}
+
+void RqtExample::set_pub_on()
+{
+  rqt_node_->pub_onoff_ = true;
+}
+
+void RqtExample::set_pub_off()
+{
+  rqt_node_->pub_onoff_ = false;
+}
+void RqtExample::set_sub_on()
+{
+  rqt_node_->sub_onoff_ = true;
+}
+
+void RqtExample::set_sub_off()
+{
+  rqt_node_->sub_onoff_ = false;
 }
 }  // namespace rqt_example
 

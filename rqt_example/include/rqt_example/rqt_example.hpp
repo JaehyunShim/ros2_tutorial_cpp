@@ -41,12 +41,18 @@ public:
     const qt_gui_cpp::Settings & instance_settings);
 
   static void run_ros_thread();
+  static void run_display_thread(Ui::RqtExampleWidget * ui);
 
-public Q_SLOTS:
-  void on_pub_on_button_clicked();
-  void on_pub_off_button_clicked();
-  void on_sub_on_button_clicked();
-  void on_sub_off_button_clicked();
+  // TODO(JaehyunShim): Find a better way to use get
+  static QString get_pub_onff();
+  static QString get_sub_onff();
+
+protected slots:
+
+  void set_pub_on();
+  void set_pub_off();
+  void set_sub_on();
+  void set_sub_off();
 
 private:
   Ui::RqtExampleWidget ui_;

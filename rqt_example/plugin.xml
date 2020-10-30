@@ -3,13 +3,13 @@
     <description>Rqt Example for robot control</description>
     <qtgui>
       <group>
-        <label>Visualization</label>
+        <label>_Robot Control_</label>
         <icon type="theme">folder</icon>
-        <statustip>Plugins related to visualization.</statustip>
+        <statustip>Plugins related to robot control.</statustip>
       </group>
       <label>RQT Example</label>
       <icon type="theme">image-x-generic</icon>
-      <statustip>A GUI plugin example.</statustip>
+      <statustip>An rqt example.</statustip>
     </qtgui>
   </class>
 </library>

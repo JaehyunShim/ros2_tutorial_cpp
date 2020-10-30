@@ -24,11 +24,11 @@
 
 namespace rqt_example
 {
-class QNode : public rclcpp::Node
+class RqtNode : public rclcpp::Node
 {
 public:
-  QNode();
-  virtual ~QNode();
+  RqtNode();
+  virtual ~RqtNode();
 
   bool pub_onoff_ = true;
   bool sub_onoff_ = false;
