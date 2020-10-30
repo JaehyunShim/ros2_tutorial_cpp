@@ -93,3 +93,4 @@ $ ros2 launch intra_process_example intra_process_example.launch.xml
 - Visibility Control Usage check needed
 - pluginlib has an inner bug crash issue (commented out building process in CMakeLists.txt)
 - action_example has ci build crash issue (commented out building process in CMakeLists.txt)
+- rqt_example window close bug
