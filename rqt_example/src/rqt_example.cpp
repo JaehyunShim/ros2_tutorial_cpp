@@ -13,15 +13,13 @@
 // limitations under the License.
 
 #include <pluginlib/class_list_macros.h>
-
-// #include <QtGui>
-// #include <QMessageBox>
 #include <QStringList>
+#include <memory>
+#include <thread>
 
-#include "rqt_example/rqt_example.hpp"
 #include "rclcpp/rclcpp.hpp"
 
-#include <thread>
+#include "rqt_example/rqt_example.hpp"
 
 namespace rqt_example
 {
@@ -43,9 +41,6 @@ void RqtExample::initPlugin(qt_gui_cpp::PluginContext & context)
   // Add widget to the user interface
   context.addWidget(widget_);
 
-  // ui_.view_logging->setModel(qnode.loggingModel());
-  // connect(&qnode, SIGNAL(logging_updated()), this, SLOT(ui_.view_logging->scrollToBottom()));
-
   connect(ui_.pub_on_button, SIGNAL(clicked(bool)), this, SLOT(on_pub_on_button_clicked()));
   connect(ui_.pub_off_button, SIGNAL(clicked(bool)), this, SLOT(on_pub_off_button_clicked()));
   connect(ui_.sub_on_button, SIGNAL(clicked(bool)), this, SLOT(on_sub_on_button_clicked()));
@@ -58,14 +53,14 @@ void RqtExample::initPlugin(qt_gui_cpp::PluginContext & context)
 
 void RqtExample::shutdownPlugin()
 {
-  // TODO unregister all publishers here
+  // TODO(my_username): unregister all publishers here
 }
 
 void RqtExample::saveSettings(
   qt_gui_cpp::Settings & plugin_settings,
   qt_gui_cpp::Settings & instance_settings) const
 {
-  // TODO save intrinsic configuration, usually using:
+  // TODO(my_username): save intrinsic configuration, usually using:
   // instance_settings.setValue(k, v)
 }
 
@@ -73,11 +68,11 @@ void RqtExample::restoreSettings(
   const qt_gui_cpp::Settings & plugin_settings,
   const qt_gui_cpp::Settings & instance_settings)
 {
-  // TODO restore intrinsic configuration, usually using:
+  // TODO(my_username): restore intrinsic configuration, usually using:
   // v = instance_settings.value(k)
 }
 
-// TODO: Find a better way to run ros_spin
+// TODO(JaehyunShim): Find a better way to run ros_spin
 auto qnode_ = std::make_shared<rqt_example::QNode>();
 void RqtExample::run_ros_thread()
 {

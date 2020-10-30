@@ -12,15 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef RQT_EXAMPLE__QNODE_HPP_
-#define RQT_EXAMPLE__QNODE_HPP_
-
-#include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/string.hpp"
+#ifndef RQT_EXAMPLE__RQT_NODE_HPP_
+#define RQT_EXAMPLE__RQT_NODE_HPP_
 
 #include <QStringListModel>
 
 #include <string>
+
+#include "rclcpp/rclcpp.hpp"
+#include "std_msgs/msg/string.hpp"
 
 namespace rqt_example
 {
@@ -30,34 +30,15 @@ public:
   QNode();
   virtual ~QNode();
 
-// protected:
   bool pub_onoff_ = true;
   bool sub_onoff_ = false;
 
 private:
-  std::unique_ptr<std_msgs::msg::String> msg_;
   rclcpp::Publisher<std_msgs::msg::String>::SharedPtr chatter_pub_;
   rclcpp::Subscription<std_msgs::msg::String>::SharedPtr chatter_sub_;
   rclcpp::TimerBase::SharedPtr timer_;
   void chatter_callback(const std_msgs::msg::String::SharedPtr msg);
   void timer_callback();
-
-  enum LogLevel
-  {
-    Debug,
-    Info,
-    Warn,
-    Error,
-    Fatal
-  };
-
-  QStringListModel logging_model;
-
-// Q_SIGNALS:
-//   void logging_updated();
-//   QStringListModel * loggingModel() {return &logging_model;}
-//   void log(const LogLevel & level, const std::string & msg);
-
 };
 }  // namespace rqt_example
-#endif  // RQT_EXAMPLE__QNODE_HPP_
+#endif  // RQT_EXAMPLE__RQT_NODE_HPP_
