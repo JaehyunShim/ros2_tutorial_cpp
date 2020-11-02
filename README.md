@@ -1,8 +1,8 @@
 # ROS2 Tutorial
-[![GitHub License](https://img.shields.io/github/license/rjshim/ros2_tutorial)](https://github.com/JaehyunShim/ros2_tutorial/blob/master/LICENSE)
-[![GitHub CI Status](https://github.com/rjshim/ros2_tutorial/workflows/CI/badge.svg)](https://github.com/JaehyunShim/ros2_tutorial/actions?query=workflow%3ACI)
-[![GitHub Lint Status](https://github.com/rjshim/ros2_tutorial/workflows/Lint/badge.svg)](https://github.com/JaehyunShim/ros2_tutorial/actions?query=workflow%3ALint)
-[![Codecov](https://codecov.io/gh/rjshim/ros2_tutorial/branch/master/graph/badge.svg)](https://codecov.io/gh/rjshim/ros2_tutorial)
+[![GitHub License](https://img.shields.io/github/license/JaehyunShim/ros2_tutorial)](https://github.com/JaehyunShim/ros2_tutorial/blob/master/LICENSE)
+[![GitHub CI Status](https://github.com/JaehyunShim/ros2_tutorial/workflows/CI/badge.svg)](https://github.com/JaehyunShim/ros2_tutorial/actions?query=workflow%3ACI)
+[![GitHub Lint Status](https://github.com/JaehyunShim/ros2_tutorial/workflows/Lint/badge.svg)](https://github.com/JaehyunShim/ros2_tutorial/actions?query=workflow%3ALint)
+[![codecov](https://codecov.io/gh/JaehyunShim/ros2_tutorial/branch/master/graph/badge.svg?token=O4GP08WB0Q)](undefined)
 [![Documentation Status](https://readthedocs.org/projects/ros2-tutorial/badge/?version=latest)](https://ros2-tutorial.readthedocs.io/en/latest/?badge=latest)
 [![Doxygen](https://img.shields.io/badge/doxygen-documentation-blue.svg)](https://jaehyunshim.github.io/docs.ros2_tutorial.org/)
 
@@ -78,6 +78,10 @@ $ ros2 launch plugin_example plugin.launch.xml
 $ ros2 run intra_process_example intra_process_example
 $ ros2 launch intra_process_example intra_process_example.launch.py
 $ ros2 launch intra_process_example intra_process_example.launch.xml
+
+# RQT examples
+$ ros2 run rqt_example rqt_example
+$ rqt  # Find the example plugin in the tab
 ```
 
 ## Reference

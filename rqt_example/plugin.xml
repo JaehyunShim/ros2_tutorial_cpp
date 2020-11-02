@@ -1,0 +1,15 @@
+<library path="rqt_example">
+  <class name="rqt_example/RqtExample" type="rqt_example::RqtExample" base_class_type="rqt_gui_cpp::Plugin">
+    <description>Rqt Example for robot control</description>
+    <qtgui>
+      <group>
+        <label>_Robot Control_</label>
+        <icon type="theme">folder</icon>
+        <statustip>Plugins related to robot control.</statustip>
+      </group>
+      <label>RQT Example</label>
+      <icon type="theme">image-x-generic</icon>
+      <statustip>An rqt example.</statustip>
+    </qtgui>
+  </class>
+</library>
