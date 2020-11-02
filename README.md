@@ -81,7 +81,9 @@ $ ros2 launch intra_process_example intra_process_example.launch.xml
 
 # RQT examples
 $ ros2 run rqt_example rqt_example
-$ rqt  # Find the example plugin in the tab
+$ ros2 launch rqt_example rqt_example.launch.py
+$ ros2 launch rqt_example rqt_example.launch.xml
+$ rqt  # Find the example plugin on the tab
 ```
 
 ## Reference

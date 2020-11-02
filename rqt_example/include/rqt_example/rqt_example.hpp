@@ -42,15 +42,6 @@ public:
     const qt_gui_cpp::Settings & plugin_settings,
     const qt_gui_cpp::Settings & instance_settings);
 
-protected slots:
-  void run_ros_thread();
-  void run_display_thread();
-
-  void set_pub_on();
-  void set_pub_off();
-  void set_sub_on();
-  void set_sub_off();
-
 private:
   Ui::RqtExampleWidget ui_;
   QWidget * widget_;
@@ -60,6 +51,15 @@ private:
 
   QString get_pub_onff();
   QString get_sub_onff();
+
+private slots:
+  void ros_timer_callback();
+  void display_timer_callback();
+
+  void set_pub_on();
+  void set_pub_off();
+  void set_sub_on();
+  void set_sub_off();
 };
 }  // namespace rqt_example
 #endif  // RQT_EXAMPLE__RQT_EXAMPLE_HPP_

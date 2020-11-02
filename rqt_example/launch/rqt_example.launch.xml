@@ -1,0 +1,3 @@
+<launch>
+  <node pkg="rqt_example" exec="rqt_example" output="screen" />
+</launch>

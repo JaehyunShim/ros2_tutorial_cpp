@@ -84,13 +84,23 @@ install(PROGRAMS scripts/rqt_example
   DESTINATION lib/${PROJECT_NAME}
 )
 
-install(DIRECTORY ui
+install(DIRECTORY launch ui
   DESTINATION share/${PROJECT_NAME}
 )
 
 install(FILES plugin.xml
   DESTINATION share/${PROJECT_NAME}
 )
+
+################################################################################
+# Test
+################################################################################
+# if(BUILD_TESTING)
+#   find_package(ament_cmake_gtest REQUIRED)
+#   find_package(ament_lint_auto REQUIRED)
+#   find_package(rclcpp REQUIRED)
+#   ament_lint_auto_find_test_dependencies()
+# endif()
 
 ################################################################################
 # Macro for ament package
