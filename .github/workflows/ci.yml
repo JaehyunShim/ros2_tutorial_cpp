@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - master
-  schedule:
-    # Run every morning to detect flakiness and broken dependencies
-    - cron: '17 8 * * *'
 
 jobs:
   ci_main_release:
