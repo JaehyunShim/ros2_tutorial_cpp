@@ -49,6 +49,7 @@ jobs:
             lifecycle_example
             param_example
             plugin_example
+            rqt_example
             service_example
             topic_example
           vcs-repo-file-url: |

@@ -16,17 +16,7 @@
 - ROS Plugin
 - ROS Intra Process
 - ROS RQT
-
-## Contents2 (TODO)
-- ROS in Python
 - ROS URDF + Rviz + Rviz Plugin
-- ROS Gazebo + Gazebo Plugin
-- ROS Ignition
-- ROS Control
-- ROS Perception
-- ROS Tools
-- ROS Security
-- ROS Test Code
 
 ## Run
 ```sh

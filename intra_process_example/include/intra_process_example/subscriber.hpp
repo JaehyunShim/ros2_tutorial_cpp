@@ -1,4 +1,5 @@
 // Copyright 2015 Open Source Robotics Foundation, Inc.
+// Copyright 2020, Jaehyun Shim, ROBOTIS CO., LTD.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -11,8 +12,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
-/* Authors: Jaehyun Shim */
 
 #ifndef INTRA_PROCESS_EXAMPLE__SUBSCRIBER_HPP_
 #define INTRA_PROCESS_EXAMPLE__SUBSCRIBER_HPP_
