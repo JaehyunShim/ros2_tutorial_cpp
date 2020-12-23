@@ -13,51 +13,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <chrono>
-#include <memory>
-
-#include "rclcpp/rclcpp.hpp"
-#include "rclcpp_components/register_node_macro.hpp"
-
-#include "service_example/srv/inquiry.hpp"
-#include "service_example/visibility_control.h"
-
-using namespace std::chrono_literals;
-
-namespace service_example
-{
-class Server : public rclcpp::Node
-{
-public:
-  explicit Server(const rclcpp::NodeOptions & options)
-  : Node("Server", options)
-  {
-    // Force flush of the stdout buffer
-    setvbuf(stdout, NULL, _IONBF, BUFSIZ);
-
-    // ROS Client
-    auto inquiry_callback =
-      [this](const std::shared_ptr<rmw_request_id_t> request_header,
-        const std::shared_ptr<service_example::srv::Inquiry::Request> request,
-        std::shared_ptr<service_example::srv::Inquiry::Response> response) -> void
-      {
-        (void)request_header;
-        RCLCPP_INFO(this->get_logger(), "Received Request: %s", request->question.c_str());
-        response->answer = "n...yes";
-      };
-    inquiry_srv_ = create_service<service_example::srv::Inquiry>("inquiry", inquiry_callback);
-
-    RCLCPP_INFO(this->get_logger(), "Initialized server node");
-  }
-
-  ~Server()
-  {
-    RCLCPP_INFO(this->get_logger(), "Terminated server node");
-  }
-
-private:
-  rclcpp::Service<service_example::srv::Inquiry>::SharedPtr inquiry_srv_;
-};
-}  // namespace service_example
+#include "service_example/server.hpp"
 
 RCLCPP_COMPONENTS_REGISTER_NODE(service_example::Server)

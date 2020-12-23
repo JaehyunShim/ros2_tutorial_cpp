@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <pluginlib/class_list_macros.h>
 #include <QStringList>
 #include <memory>
 #include <thread>
 
+#include "pluginlib/class_list_macros.hpp"
 #include "rclcpp/rclcpp.hpp"
 
 #include "rqt_example/rqt_example.hpp"

@@ -23,7 +23,7 @@ from launch.substitutions import LaunchConfiguration
 
 
 def generate_launch_description():
-    robot_name = LaunchConfiguration('robot_name', default='RyanBot')
+    robot_name = LaunchConfiguration('robot_name', default='JaehyunBot')
 
     # Path to parameter files
     param_path = LaunchConfiguration(

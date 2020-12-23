@@ -29,6 +29,7 @@ set(srv_files
 
 rosidl_generate_interfaces(${PROJECT_NAME}
   ${srv_files}
+  # DEPENDENCIES imported_message_type
   ADD_LINTER_TESTS
 )
 
@@ -91,22 +92,18 @@ install(DIRECTORY
 ################################################################################
 # Test
 ################################################################################
-# if(BUILD_TESTING)
-#   find_package(ament_cmake_gtest REQUIRED)
-#   find_package(ament_lint_auto REQUIRED)
-#   find_package(rclcpp REQUIRED)
-#   ament_lint_auto_find_test_dependencies()
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  ament_lint_auto_find_test_dependencies()
 
-#   set(test_dependencies
-#     "rclcpp"
-#   )
-
-#   ament_add_gtest(test_service_example
-#     test/test_service_example.cpp
-#     src/service_example.cpp)
-#   target_include_directories(test_service_example PRIVATE include)
-#   ament_target_dependencies(test_service_example ${test_dependencies})
-# endif()
+  find_package(ament_cmake_gtest REQUIRED)
+  ament_add_gtest(test_client_server test/test_client_server.cpp)
+  ament_target_dependencies(test_client_server ${dependencies})
+  rosidl_target_interfaces(test_client_server
+    ${PROJECT_NAME}
+    "rosidl_typesupport_cpp"
+  )
+endif()
 
 ################################################################################
 # Macro for ament package

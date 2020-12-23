@@ -61,22 +61,10 @@ install(DIRECTORY
 ################################################################################
 # Test
 ################################################################################
-# if(BUILD_TESTING)
-#   find_package(ament_cmake_gtest REQUIRED)
-#   find_package(ament_lint_auto REQUIRED)
-#   find_package(rclcpp REQUIRED)
-#   ament_lint_auto_find_test_dependencies()
-
-#   set(test_dependencies
-#     "rclcpp"
-#   )
-
-#   ament_add_gtest(test_plugin_example
-#     test/test_plugin_example.cpp
-#     src/plugin_example.cpp)
-#   target_include_directories(test_plugin_example PRIVATE include)
-#   ament_target_dependencies(test_plugin_example ${test_dependencies})
-# endif()
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  ament_lint_auto_find_test_dependencies()
+endif()
 
 ################################################################################
 # Macro for ament package

@@ -16,7 +16,7 @@
 - ROS Plugin
 - ROS Intra Process
 - ROS RQT
-- ROS TEST CODE (TODO)
+- ROS Test Code (TODO)
 
 ## Run
 ```sh
@@ -86,6 +86,6 @@ $ rqt  # Find the example plugin on the tab
 ## Issue
 - arg does not work in launch.xml
 - action cancelling does not work [link](https://answers.ros.org/question/361666/ros2-action-goal-canceling-problem/?answer=361754#post-id-361754)
-- Visibility Control Usage check needed
+- Visibility Control usage check needed
 - pluginlib has an inner bug crash issue (commented out building process in CMakeLists.txt)
-- action_example has ci build crash issue (commented out building process in CMakeLists.txt)
+- action_example has a ci build crash issue (commented out building process in CMakeLists.txt)

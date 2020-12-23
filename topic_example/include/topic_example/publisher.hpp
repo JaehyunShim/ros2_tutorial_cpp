@@ -1,3 +1,4 @@
+// Copyright 2014 Open Source Robotics Foundation, Inc.
 // Copyright 2020, Jaehyun Shim, ROBOTIS CO., LTD.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,7 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <gtest/gtest.h>
+#ifndef TOPIC_EXAMPLE__PUBLISHER_HPP_
+#define TOPIC_EXAMPLE__PUBLISHER_HPP_
 
 #include <chrono>
 #include <memory>
@@ -21,76 +23,63 @@
 #include "rclcpp/rclcpp.hpp"
 #include "rclcpp_components/register_node_macro.hpp"
 
-#include "interface_example/msg/count.hpp"
+#include "topic_example/msg/count.hpp"
 #include "topic_example/visibility_control.h"
-
-using namespace std::chrono_literals;
 
 namespace topic_example
 {
+/**
+ * @class Publisher
+ * @brief Publishes "chatter"
+ */
 class Publisher : public rclcpp::Node
 {
 public:
-  Publisher()  // options for what ???
-  : Node("publisher")
+  /**
+   * @brief Constructor
+   * @param options A pointer to the node options
+   */
+  explicit Publisher(const rclcpp::NodeOptions & options)  // options for what ???
+  : Node("publisher", options)
   {
     // Force flush of the stdout buffer
     setvbuf(stdout, NULL, _IONBF, BUFSIZ);
 
     // ROS Publisher
     rclcpp::QoS qos(rclcpp::KeepLast(10));
-    count_pub_ = this->create_publisher<interface_example::msg::Count>("chatter", qos);
+    count_pub_ = this->create_publisher<topic_example::msg::Count>("chatter", qos);
 
     // ROS Timer
     auto timer_callback =
       [this]() -> void
       {
-        msg_ = std::make_unique<interface_example::msg::Count>();
+        msg_ = std::make_unique<topic_example::msg::Count>();
         msg_->data = count_++;
         RCLCPP_INFO(this->get_logger(), "%d", msg_->data);
         count_pub_->publish(std::move(msg_));
+        msg_published = true;
       };
-    timer_ = this->create_wall_timer(1s, timer_callback);
+    timer_ = this->create_wall_timer(std::chrono::seconds(1), timer_callback);
 
     RCLCPP_INFO(this->get_logger(), "Initialized publisher node");
   }
+
+  /**
+   * @brief Virtual destructor
+   */
   ~Publisher()
   {
     RCLCPP_INFO(this->get_logger(), "Terminated publisher node");
   }
 
+  bool msg_published = false;
+
 private:
   uint16_t count_ = 0;
-  std::unique_ptr<interface_example::msg::Count> msg_;  // why unique pointer for this?
-  rclcpp::Publisher<interface_example::msg::Count>::SharedPtr count_pub_;
+  std::unique_ptr<topic_example::msg::Count> msg_;  // why unique pointer for this?
+  rclcpp::Publisher<topic_example::msg::Count>::SharedPtr count_pub_;
   rclcpp::TimerBase::SharedPtr timer_;
 };
 }  // namespace topic_example
 
-TEST(TestPublisher, test_publisher)
-{
-//   // rclcpp::init(0, nullptr);
-
-//   // TODO(Ryan): Study how to write more general gtest codes!!!
-//   // Also below hasn't been debugged yet
-//   // <<< error message
-//   // The test did not generate a result file.
-//   // >>>
-
-  EXPECT_EQ(1, 1);
-
-//   // EXPECT_NO_THROW(
-//   //   auto node = std::make_shared<topic_example::Publisher>();
-//   // );
-}
-
-TEST(TestSuite, initTest)
-{
-  ASSERT_TRUE(true);
-}
-
-int main(int argc, char ** argv)
-{
-  testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
-}
+#endif  // TOPIC_EXAMPLE__PUBLISHER_HPP_

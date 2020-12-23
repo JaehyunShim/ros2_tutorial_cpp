@@ -44,7 +44,7 @@ public:
     this->declare_parameter("control_mode");
 
     // Get parameters from yaml
-    this->get_parameter_or<std::string>("name", name_, std::string("RyanBot"));
+    this->get_parameter_or<std::string>("name", name_, std::string("JaehyunBot"));
     this->get_parameter_or<bool>("sim", sim_, false);
     this->get_parameter_or<double>("control_period", control_period_, 0.050);
     this->get_parameter_or<uint8_t>("control_mode", control_mode_, 2);

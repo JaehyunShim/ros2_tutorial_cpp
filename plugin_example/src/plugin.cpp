@@ -17,10 +17,11 @@
 #include <memory>
 #include <utility>
 
+#include "pluginlib/class_list_macros.hpp"
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/int64.hpp"
 
-#include "pluginlib/class_list_macros.hpp"
+
 #include "plugin_example/plugin_base.hpp"
 
 using namespace std::chrono_literals;
