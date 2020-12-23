@@ -1,4 +1,4 @@
-## Run Command
+## Run
 ```sh
 # Topic examples
 $ ros2 run topic_example publisher

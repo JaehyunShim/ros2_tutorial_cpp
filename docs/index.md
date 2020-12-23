@@ -1,7 +1,8 @@
+# ROS2 Tutorial
 [![GitHub License](https://img.shields.io/github/license/JaehyunShim/ros2_tutorial)](https://github.com/JaehyunShim/ros2_tutorial/blob/master/LICENSE)
 [![GitHub CI Status](https://github.com/JaehyunShim/ros2_tutorial/workflows/CI/badge.svg)](https://github.com/JaehyunShim/ros2_tutorial/actions?query=workflow%3ACI)
 [![GitHub Lint Status](https://github.com/JaehyunShim/ros2_tutorial/workflows/Lint/badge.svg)](https://github.com/JaehyunShim/ros2_tutorial/actions?query=workflow%3ALint)
-[![codecov](https://codecov.io/gh/JaehyunShim/ros2_tutorial/branch/master/graph/badge.svg?token=O4GP08WB0Q)](undefined)
+[![codecov](https://codecov.io/gh/JaehyunShim/ros2_tutorial/branch/master/graph/badge.svg)](https://codecov.io/gh/JaehyunShim/ros2_tutorial)
 [![Documentation Status](https://readthedocs.org/projects/ros2-tutorial/badge/?version=latest)](https://ros2-tutorial.readthedocs.io/en/latest/?badge=latest)
 [![Doxygen](https://img.shields.io/badge/doxygen-documentation-blue.svg)](https://jaehyunshim.github.io/docs.ros2_tutorial.org/)
 
@@ -15,7 +16,7 @@
 - ROS Plugin
 - ROS Intra Process
 - ROS RQT
-- ROS URDF + Rviz + Rviz Plugin
+- ROS Test Code (TODO)
 
 ## Reference
 - [ROS2 Demos](https://github.com/ros2/demos)
@@ -24,6 +25,6 @@
 - [Read the Docs official webpage](https://readthedocs.org)
 - [doxygen/doxygen/Doxyfile](https://github.com/doxygen/doxygen/blob/master/Doxyfile)
 
-
-Please see the [run commands](run_command.md) for further details.  
-Please see the [license](license.md) for further details.
+## Next
+- Please check out the [run](run.md) page for more details.
+- Please  check out the [license](license.md) page for more details.
