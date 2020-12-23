@@ -69,9 +69,9 @@ install(DIRECTORY
 ################################################################################
 # Test
 ################################################################################
-if(BUILD_TESTING)
-  find_package(ament_lint_auto REQUIRED)
-  ament_lint_auto_find_test_dependencies()
+#if(BUILD_TESTING)
+#  find_package(ament_lint_auto REQUIRED)
+#  ament_lint_auto_find_test_dependencies()
 
 #   set(test_dependencies
 #     "rclcpp"
@@ -82,7 +82,7 @@ if(BUILD_TESTING)
 #     src/param_example.cpp)
 #   target_include_directories(test_param_example PRIVATE include)
 #   ament_target_dependencies(test_param_example ${test_dependencies})
-endif()
+#endif()
 
 ################################################################################
 # Macro for ament package
