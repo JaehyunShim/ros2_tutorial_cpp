@@ -3,7 +3,8 @@
 #   round: down
 #   range: "35...100"
 fixes:
-  - "ros_ws/src/ros2_tutorial/::"
+#  - "ros_ws/src/ros2_tutorial/::"
+  - "ros_ws/src/*/ros2_tutorial/::"
 comment:
   layout: "diff, flags, files"
   behavior: default
