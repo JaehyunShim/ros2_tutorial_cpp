@@ -40,7 +40,6 @@ set(src_files
 
 set(hd_files
   include/${PROJECT_NAME}/rqt_example.hpp
-  include/${PROJECT_NAME}/rqt_node.hpp
 )
 
 set(ui_files
