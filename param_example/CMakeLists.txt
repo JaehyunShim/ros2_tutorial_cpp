@@ -40,7 +40,7 @@ ament_target_dependencies(${PROJECT_NAME}_libs ${dependencies})
 # Register param nodes
 rclcpp_components_register_node(${PROJECT_NAME}_libs
   PLUGIN "param_example::Param"
-  EXECUTABLE param
+  EXECUTABLE param_example
 )
 
 ################################################################################

@@ -15,7 +15,7 @@
 -->
 
 <launch>
-  <node pkg="param_example" exec="param" output="screen">
+  <node pkg="param_example" exec="param_example" output="screen">
     <!--........................................................-->
     <!-- no usage sample for coyping params from a yaml file... -->
     <!--........................................................-->
