@@ -8,3 +8,6 @@ fixes:
 comment:
   layout: "diff, flags, files"
   behavior: default
+
+ignore:
+  - "ros_ws/build/*"  # ignore package test directories, e.g. nav2_dwb_controller/costmap_queue/tests
