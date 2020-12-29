@@ -40,7 +40,6 @@ set(src_files
 
 set(hd_files
   include/${PROJECT_NAME}/rqt_example.hpp
-  include/${PROJECT_NAME}/rqt_node.hpp
 )
 
 set(ui_files
@@ -95,10 +94,10 @@ install(FILES plugin.xml
 ################################################################################
 # Test
 ################################################################################
-# if(BUILD_TESTING)
-#   find_package(ament_lint_auto REQUIRED)
-#   ament_lint_auto_find_test_dependencies()
-# endif()
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  ament_lint_auto_find_test_dependencies()
+endif()
 
 ################################################################################
 # Macro for ament package

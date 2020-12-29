@@ -39,7 +39,7 @@ def generate_launch_description():
 
         Node(
             package='param_example',
-            executable='param',
+            executable='param_example',
             parameters=[param_path],
             output='screen'),
     ])

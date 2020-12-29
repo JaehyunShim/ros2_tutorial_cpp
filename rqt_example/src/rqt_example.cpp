@@ -74,6 +74,8 @@ void RqtExample::saveSettings(
 {
   // TODO(my_username): save intrinsic configuration, usually using:
   // instance_settings.setValue(k, v)
+  (void) plugin_settings;
+  (void) instance_settings;
 }
 
 void RqtExample::restoreSettings(
@@ -82,9 +84,10 @@ void RqtExample::restoreSettings(
 {
   // TODO(my_username): restore intrinsic configuration, usually using:
   // v = instance_settings.value(k)
+  (void) plugin_settings;
+  (void) instance_settings;
 }
 
-// TODO(JaehyunShim): Find a better way to run ros_spin
 void RqtExample::ros_timer_callback()
 {
   rclcpp::spin_some(rqt_node_);

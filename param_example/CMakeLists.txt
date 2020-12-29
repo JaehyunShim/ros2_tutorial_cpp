@@ -40,7 +40,7 @@ ament_target_dependencies(${PROJECT_NAME}_libs ${dependencies})
 # Register param nodes
 rclcpp_components_register_node(${PROJECT_NAME}_libs
   PLUGIN "param_example::Param"
-  EXECUTABLE param
+  EXECUTABLE param_example
 )
 
 ################################################################################
@@ -69,20 +69,10 @@ install(DIRECTORY
 ################################################################################
 # Test
 ################################################################################
-#if(BUILD_TESTING)
-#  find_package(ament_lint_auto REQUIRED)
-#  ament_lint_auto_find_test_dependencies()
-
-#   set(test_dependencies
-#     "rclcpp"
-#   )
-
-#   ament_add_gtest(test_param_example
-#     test/test_param_example.cpp
-#     src/param_example.cpp)
-#   target_include_directories(test_param_example PRIVATE include)
-#   ament_target_dependencies(test_param_example ${test_dependencies})
-#endif()
+# if(BUILD_TESTING)
+#   find_package(ament_lint_auto REQUIRED)
+#   ament_lint_auto_find_test_dependencies()
+# endif()
 
 ################################################################################
 # Macro for ament package
