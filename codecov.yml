@@ -1,13 +1,4 @@
-# coverage:
-#   precision: 2
-#   round: down
-#   range: "35...100"
-fixes:
-#  - "ros_ws/src/ros2_tutorial/::"
-  - "ros_ws/src/*/ros2_tutorial/::"
-comment:
-  layout: "diff, flags, files"
-  behavior: default
+# https://github.com/ros2/sros2/blob/master/codecov.yml
 
-ignore:
-  - "ros_ws/build/*"  # ignore package test directories, e.g. nav2_dwb_controller/costmap_queue/tests
+fixes:
+ - "ros_ws/src/ros2_tutorial_cpp/::"

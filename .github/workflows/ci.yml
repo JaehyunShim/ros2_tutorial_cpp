@@ -1,69 +1,66 @@
+# https://github.com/ros-tooling/action-ros-ci#usage
+# https://github.com/ros-controls/ros2_control/blob/master/.github/workflows/ci.yml
+
 name: CI
+
 on:
-  pull_request:
   push:
+    branches:
+      - master
+  pull_request:
     branches:
       - master
 
 jobs:
-  ci_main_release:
-    name: Industrial CI against release repository
+  ci_binary:
+    name: Foxy binary job
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         env:
           - {ROS_DISTRO: foxy, ROS_REPO: main}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: 'ros-industrial/industrial_ci@master'
-        env: ${{matrix.env}}
-
-  ci_testing_release:
-    name: Industrial CI against testing repository
-    strategy:
-      matrix:
-        env:
           - {ROS_DISTRO: foxy, ROS_REPO: testing}
-    runs-on: ubuntu-latest
     steps:
+      - run: sudo apt-get update -qq && sudo apt-get upgrade
       - uses: actions/checkout@v1
-      - uses: 'ros-industrial/industrial_ci@master'
+      - uses: ros-industrial/industrial_ci@master
         env: ${{matrix.env}}
 
   ci_source:
-    name: ros-tooling CI from source
+    name: Foxy source job
     runs-on: ubuntu-20.04
     strategy:
       fail-fast: false
     steps:
       - uses: ros-tooling/setup-ros@v0.1
+        with:
+          required-ros-distributions: foxy
       - uses: ros-tooling/action-ros-ci@v0.1
         with:
           target-ros2-distro: foxy
           package-name:  |
-            ros2_tutorial
+            ros2_tutorial_cpp
+            topic_example
+            service_example
             action_example
+            param_example
             interface_example
             intra_process_example
             launch_example
             lifecycle_example
-            param_example
             plugin_example
             rqt_example
-            service_example
-            topic_example
-          vcs-repo-file-url: |
-            https://raw.githubusercontent.com/ros2/ros2/master/ros2.repos
+          # vcs-repo-file-url: |
+          #   https://raw.githubusercontent.com/ros2/ros2/master/ros2.repos
           colcon-mixin-name: coverage-gcc
           colcon-mixin-repository: https://raw.githubusercontent.com/colcon/colcon-mixin-repository/master/index.yaml
       - uses: codecov/codecov-action@v1
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
           file: ros_ws/lcov/total_coverage.info
           flags: unittests
           name: codecov-umbrella
           yml: ./codecov.yml
-          fail_ci_if_error: true
+          fail_ci_if_error: false
       - uses: actions/upload-artifact@v1
         with:
           name: colcon-logs-${{ matrix.os }}
