@@ -1,5 +1,5 @@
-// Copyright 2014 Open Source Robotics Foundation, Inc.
-// Copyright 2020, Jaehyun Shim, ROBOTIS CO., LTD.
+// Copyright Open Source Robotics Foundation, Inc.
+// Copyright 2021, Jaehyun Shim, ROBOTIS CO., LTD.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -23,7 +23,6 @@
 #include "rclcpp_components/register_node_macro.hpp"
 
 #include "service_example/srv/inquiry.hpp"
-#include "service_example/visibility_control.h"
 
 namespace service_example
 {
@@ -33,9 +32,6 @@ public:
   explicit Server(const rclcpp::NodeOptions & options)
   : Node("Server", options)
   {
-    // Force flush of the stdout buffer
-    setvbuf(stdout, NULL, _IONBF, BUFSIZ);
-
     // ROS Server
     auto inquiry_callback =
       [this](const std::shared_ptr<rmw_request_id_t> request_header,

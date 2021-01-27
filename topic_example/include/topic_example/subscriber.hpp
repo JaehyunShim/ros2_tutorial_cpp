@@ -1,5 +1,5 @@
-// Copyright 2014 Open Source Robotics Foundation, Inc.
-// Copyright 2020, Jaehyun Shim, ROBOTIS CO., LTD.
+// Copyright Open Source Robotics Foundation, Inc.
+// Copyright 2021, Jaehyun Shim, ROBOTIS CO., LTD.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,7 +22,6 @@
 #include "rclcpp_components/register_node_macro.hpp"
 
 #include "topic_example/msg/count.hpp"
-#include "topic_example/visibility_control.h"
 
 namespace topic_example
 {
@@ -32,9 +31,6 @@ public:
   explicit Subscriber(const rclcpp::NodeOptions & options)
   : Node("subscriber", options)
   {
-    // Force flush of the stdout buffer
-    setvbuf(stdout, NULL, _IONBF, BUFSIZ);
-
     // ROS Subscriber
     auto count_callback =
       [this](const topic_example::msg::Count::SharedPtr msg) -> void

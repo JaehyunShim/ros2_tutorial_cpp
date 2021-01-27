@@ -23,6 +23,9 @@
   <!-- <node pkg="launch_example" exec="launch_example" name="launch_example" output="screen" args="$(arg JaehyunBot)"> -->
   <node pkg="launch_example" exec="launch_example" name="launch_example" output="screen">
 
+    <!--........................................................-->
+    <!-- no usage sample for coyping params from a yaml file... -->
+    <!--........................................................-->
     <remap from="chatter" to="remapped_chatter"/>
     <!-- <param name="robot_name" value="$(arg robot_name)"/> -->
     <param name="robot_name" value="JaehyunBot"/>

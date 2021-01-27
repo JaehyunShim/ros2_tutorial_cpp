@@ -23,23 +23,15 @@ from launch.substitutions import LaunchConfiguration
 
 
 def generate_launch_description():
-    # Path to parameter files
-    param_path = LaunchConfiguration(
-        'param_path',
-        default=os.path.join(
-            get_package_share_directory('param_example'),
-            'param',
-            'controller_info.yaml'))
-
     return LaunchDescription([
-        DeclareLaunchArgument(
-            'param_path',
-            default_value=param_path,
-            description='Specifying parameter location'),
-
         Node(
             package='param_example',
             executable='param_example',
-            parameters=[param_path],
+            parameters=[
+                {"name": "JaehyunBot"},
+                {"sim": True},
+                {"control_period": 0.010},
+                {"control_mode": 1},
+            ],
             output='screen'),
     ])

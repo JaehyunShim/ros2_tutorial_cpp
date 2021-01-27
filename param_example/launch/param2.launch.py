@@ -13,19 +13,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import os
+
+from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument
 from launch_ros.actions import Node
+from launch.substitutions import LaunchConfiguration
 
 
 def generate_launch_description():
+    # Path to parameter files
+    param_path = os.path.join(
+        get_package_share_directory('param_example'),
+        'param',
+        'controller_info.yaml')
+
     return LaunchDescription([
         Node(
-            package='topic_example',
-            executable='publisher',
-            output='screen'),
-
-        Node(
-            package='topic_example',
-            executable='subscriber',
+            package='param_example',
+            executable='param_example',
+            parameters=[param_path],
             output='screen'),
     ])

@@ -1,5 +1,5 @@
-// Copyright 2014 Open Source Robotics Foundation, Inc.
-// Copyright 2020, Jaehyun Shim, ROBOTIS CO., LTD.
+// Copyright Open Source Robotics Foundation, Inc.
+// Copyright 2021, Jaehyun Shim, ROBOTIS CO., LTD.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,13 +18,11 @@
 
 #include <chrono>
 #include <memory>
-#include <thread>
 
 #include "rclcpp/rclcpp.hpp"
 #include "rclcpp_components/register_node_macro.hpp"
 
 #include "service_example/srv/inquiry.hpp"
-#include "service_example/visibility_control.h"
 
 namespace service_example
 {
@@ -34,17 +32,14 @@ public:
   explicit Client(const rclcpp::NodeOptions & options)
   : Node("Client", options)
   {
-    // Force flush of the stdout buffer
-    setvbuf(stdout, NULL, _IONBF, BUFSIZ);
-
     // ROS Client
     inquiry_cli_ = create_client<service_example::srv::Inquiry>("inquiry");
 
-    // Run Thread
-    std::thread thread(std::bind(&Client::queue_async_request, this));
-    thread.detach();
-
+    // Print log
     RCLCPP_INFO(this->get_logger(), "Initialized client node");
+
+    // Send request
+    queue_async_request();
   }
 
   ~Client()

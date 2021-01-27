@@ -44,7 +44,7 @@ public:
     this->declare_parameter("control_mode");
 
     // Get parameters from yaml
-    this->get_parameter_or<std::string>("name", name_, std::string("JaehyunBot"));
+    this->get_parameter_or<std::string>("name", name_, std::string("Robot"));
     this->get_parameter_or<bool>("sim", sim_, false);
     this->get_parameter_or<double>("control_period", control_period_, 0.050);
     this->get_parameter_or<uint8_t>("control_mode", control_mode_, 2);
@@ -79,7 +79,7 @@ public:
     // Set several different types of parameters
     auto results = parameters_client->set_parameters(
       {
-        rclcpp::Parameter("name", "JaehyunBot"),
+        rclcpp::Parameter("name", "Robot"),
         rclcpp::Parameter("sim", true),
         rclcpp::Parameter("control_period", 0.030),
         rclcpp::Parameter("control_mode", 3),

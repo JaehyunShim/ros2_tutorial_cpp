@@ -77,12 +77,6 @@ install(TARGETS
   RUNTIME DESTINATION bin
 )
 
-# Install launch files
-install(DIRECTORY
-  launch
-  DESTINATION share/${PROJECT_NAME}/
-)
-
 # Install service files
 install(DIRECTORY
   srv

@@ -7,41 +7,35 @@
 [![Doxygen](https://img.shields.io/badge/doxygen-documentation-blue.svg)](https://jaehyunshim.github.io/docs.ros2_tutorial.org/)
 
 ## Contents
-- ROS Topic (Pubisher/Subscriber)
-- ROS Service (Client/Server)
-- ROS Action (Action Client/Action Server)
-- ROS Parameter
-- ROS Launch
-- ROS Lifecycle
-- ROS Plugin
-- ROS Intra Process
-- ROS RQT
-- ROS Test Code (TODO)
+- ROS2 C++ Topic (Pubisher/Subscriber)
+- ROS2 C++ Service (Client/Server)
+- ROS2 C++ Action (Action Client/Action Server)
+- ROS2 C++ Parameter
+- ROS2 C++ Launch
+- ROS2 C++ Lifecycle
+- ROS2 C++ Plugin
+- ROS2 C++ Intra Process
+- ROS2 C++ RQT
+- ROS2 C++ Test Code (TODO)
 
 ## Run
 ```sh
 # Topic examples
 $ ros2 run topic_example publisher
 $ ros2 run topic_example subscriber
-$ ros2 launch topic_example publisher_subscriber.launch.py
-$ ros2 launch topic_example publisher_subscriber.launch.xml
 
 # Service examples
 $ ros2 run service_example client
 $ ros2 run service_example server
-$ ros2 launch service_example client_server.launch.py
-$ ros2 launch service_example client_server.launch.xml
 
 # Action examples
 $ ros2 run action_example action_client
 $ ros2 run action_example action_server
-$ ros2 launch action_example action_client_action_server.launch.py
-$ ros2 launch action_example action_client_action_server.launch.xml
 
 # Parameter examples
-$ ros2 run param_example param
+$ ros2 run param_example param_example
 $ ros2 launch param_example param.launch.py
-$ ros2 launch param_example param.launch.xml
+$ ros2 launch param_example param2.launch.py
 
 # Launch examples
 $ ros2 launch launch.launch.py
@@ -77,6 +71,7 @@ $ rqt  # Find the example plugin on the tab
 ```
 
 ## Reference
+- [ROS2 Tutorials](https://index.ros.org/doc/ros2/Tutorials/)
 - [ROS2 Demos](https://github.com/ros2/demos)
 - [ROS2 Examples](https://github.com/ros2/examples)
 - [ROS Pluginlib Foxy](https://github.com/ros/pluginlib/tree/foxy)
