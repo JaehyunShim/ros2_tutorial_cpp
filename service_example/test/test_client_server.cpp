@@ -22,8 +22,10 @@ TEST(ClientServerTest, TransferService)
 {
   // Create node pointers
   rclcpp::NodeOptions node_options;
-  auto client = std::make_shared<service_example::Client>(node_options);
+
+  // Server has to be instanticated first as client will wait for server to start up
   auto server = std::make_shared<service_example::Server>(node_options);
+  auto client = std::make_shared<service_example::Client>(node_options);
   EXPECT_FALSE(client->msg_requested);
   EXPECT_FALSE(server->msg_responded);
 

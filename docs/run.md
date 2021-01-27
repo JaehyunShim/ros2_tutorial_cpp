@@ -3,25 +3,19 @@
 # Topic examples
 $ ros2 run topic_example publisher
 $ ros2 run topic_example subscriber
-$ ros2 launch topic_example publisher_subscriber.launch.py
-$ ros2 launch topic_example publisher_subscriber.launch.xml
 
 # Service examples
 $ ros2 run service_example client
 $ ros2 run service_example server
-$ ros2 launch service_example client_server.launch.py
-$ ros2 launch service_example client_server.launch.xml
 
 # Action examples
 $ ros2 run action_example action_client
 $ ros2 run action_example action_server
-$ ros2 launch action_example action_client_action_server.launch.py
-$ ros2 launch action_example action_client_action_server.launch.xml
 
 # Parameter examples
-$ ros2 run param_example param
+$ ros2 run param_example param_example
 $ ros2 launch param_example param.launch.py
-$ ros2 launch param_example param.launch.xml
+$ ros2 launch param_example param2.launch.py
 
 # Launch examples
 $ ros2 launch launch.launch.py
