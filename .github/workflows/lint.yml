@@ -1,4 +1,5 @@
 # https://github.com/ros-tooling/action-ros-lint#usage
+# https://github.com/ros-controls/ros2_control/blob/master/.github/workflows/lint.yml
 
 name: Lint
 
@@ -12,18 +13,17 @@ on:
 
 jobs:
   ament_lint:
-    runs-on: ubuntu-latest
-    container:
-      image: ubuntu:bionic  # To be updated to focal
+    runs-on: ubuntu-20.04
     strategy:
       fail-fast: false
       matrix:
-        linter: [copyright, cppcheck, cpplint, uncrustify, flake8, mypy, pep257, pep8, xmllint]
+        linter: [copyright, cppcheck, cpplint, uncrustify, flake8, pep257, xmllint]
     steps:
-      - uses: actions/checkout@v2
-      - uses: ros-tooling/setup-ros@master
-      - uses: ros-tooling/action-ros-lint@master
+      - uses: actions/checkout@v1
+      - uses: ros-tooling/setup-ros@v0.1
+      - uses: ros-tooling/action-ros-lint@v0.1
         with:
+          distribution: foxy
           linter: ${{ matrix.linter }}
           package-name: |
             ros2_tutorial_cpp
