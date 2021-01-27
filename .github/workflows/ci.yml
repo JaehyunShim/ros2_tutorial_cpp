@@ -50,8 +50,8 @@ jobs:
             lifecycle_example
             plugin_example
             rqt_example
-          # vcs-repo-file-url: |
-          #   https://raw.githubusercontent.com/ros2/ros2/master/ros2.repos
+          vcs-repo-file-url: |
+            https://raw.githubusercontent.com/ros2/ros2/master/ros2.repos
           colcon-mixin-name: coverage-gcc
           colcon-mixin-repository: https://raw.githubusercontent.com/colcon/colcon-mixin-repository/master/index.yaml
       - uses: codecov/codecov-action@v1
