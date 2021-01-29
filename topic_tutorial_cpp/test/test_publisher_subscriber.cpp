@@ -21,6 +21,7 @@
 #include "topic_tutorial_cpp/subscriber_lambda.hpp"
 #include "topic_tutorial_cpp/subscriber_member_function.hpp"
 
+// Any reference for gtest??
 TEST(PublisherSubscriberTest, TransferMessage)
 {
   // Create node pointers
