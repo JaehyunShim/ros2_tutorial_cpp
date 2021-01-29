@@ -27,13 +27,4 @@ jobs:
           linter: ${{ matrix.linter }}
           package-name: |
             ros2_tutorial_cpp
-            topic_example
-            service_example
-            action_example
-            param_example
-            interface_example
-            intra_process_example
-            launch_example
-            lifecycle_example
-            plugin_example
-            rqt_example
+            topic_tutorial_cpp
