@@ -16,14 +16,11 @@ find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 
 # add
-include_directories(
-  include
-)
+include_directories(include)
 
 set(dependencies
   rclcpp
-  std_msgs
-)
+  std_msgs)
 
 add_executable(publisher_member_function src/publisher_member_function.cpp)
 ament_target_dependencies(publisher_member_function ${dependencies})

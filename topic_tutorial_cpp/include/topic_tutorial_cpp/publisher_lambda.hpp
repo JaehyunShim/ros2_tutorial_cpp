@@ -33,8 +33,8 @@ class PublisherLambda : public rclcpp::Node  // inherit from rclcpp::Node
 public:
   PublisherLambda()  // constructor
   : Node("publisher_lambda"),  // initialize Node with the name "publisher_lambda"
-    count_(0),
-    msg_published_(false)
+    msg_published_(false),
+    count_(0)
   {
     publisher_ = this->create_publisher<std_msgs::msg::String>("topic", 10);  // 'this pointer'
                                                                               // can be omitted
