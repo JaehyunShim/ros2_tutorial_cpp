@@ -21,8 +21,10 @@
 ## Run
 ```sh
 # Topic examples
-$ ros2 run topic_example publisher
-$ ros2 run topic_example subscriber
+$ ros2 run topic_tutorial_cpp publisher_lambda
+$ ros2 run topic_tutorial_cpp subscriber_lambda
+$ ros2 run topic_tutorial_cpp publisher_member_function
+$ ros2 run topic_tutorial_cpp subscriber_member_function
 
 # Service examples
 $ ros2 run service_example client
@@ -72,8 +74,8 @@ $ rqt  # Find the example plugin on the tab
 
 ## Reference
 - [ROS2 Tutorials](https://index.ros.org/doc/ros2/Tutorials/)
-- [ROS2 Demos](https://github.com/ros2/demos)
 - [ROS2 Examples](https://github.com/ros2/examples)
+- [ROS2 Demos](https://github.com/ros2/demos)
 - [ROS Pluginlib Foxy](https://github.com/ros/pluginlib/tree/foxy)
 - [Read the Docs official webpage](https://readthedocs.org)
 - [doxygen/doxygen/Doxyfile](https://github.com/doxygen/doxygen/blob/master/Doxyfile)
