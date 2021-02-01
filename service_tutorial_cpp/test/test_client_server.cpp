@@ -19,7 +19,7 @@
 #include "service_tutorial_cpp/client.hpp"
 #include "service_tutorial_cpp/server.hpp"
 
-TEST(ClientServerTest, TransferData)
+TEST(ClientServerTest, TransferService)
 {
   // Create node pointers
   auto client = std::make_shared<service_tutorial_cpp::Client>(1, 2);

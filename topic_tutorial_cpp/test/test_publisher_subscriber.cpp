@@ -22,7 +22,7 @@
 #include "topic_tutorial_cpp/subscriber_member_function.hpp"
 
 // Any reference for gtest??
-TEST(PublisherSubscriberTest, TransferMessage)
+TEST(PublisherSubscriberTest, TransferTopic)
 {
   // Create node pointers
   auto publisher_member_function =
