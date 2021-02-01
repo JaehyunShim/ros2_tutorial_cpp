@@ -31,7 +31,7 @@ public:
   : Node("parameter"),  // initialize 'Node' with the name 'parameter'
     parameter_updated_(false)
   {
-    this->declare_parameter<std::string>("my_parameter", "world");
+    this->declare_parameter<std::string>("my_parameter", "world");  // declare a parameter
     timer_ = this->create_wall_timer(std::chrono::seconds(1), std::bind(&Parameter::update, this));
   }
 

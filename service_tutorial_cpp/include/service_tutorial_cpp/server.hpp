@@ -50,10 +50,10 @@ private:
   {
     response->sum = request->a + request->b;
     RCLCPP_INFO(
-      rclcpp::get_logger("rclcpp"), "Incoming reuqest \na: %ld b: %ld",
+      this->get_logger(), "Incoming request \na: %ld b: %ld",
       request->a, request->b);
     RCLCPP_INFO(
-      rclcpp::get_logger("rclcpp"), "Sending back response: [%ld]",
+      this->get_logger(), "Sending back response: [%ld]",
       response->sum);
     srv_responded_ = true;
     requested_srv_a_ = request->a;

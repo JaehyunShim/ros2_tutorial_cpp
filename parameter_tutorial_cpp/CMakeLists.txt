@@ -1,11 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 project(parameter_tutorial_cpp)
 
-# Default to C99
-if(NOT CMAKE_C_STANDARD)
-  set(CMAKE_C_STANDARD 99)
-endif()
-
 # Default to C++14
 if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 14)
@@ -47,7 +42,7 @@ if(BUILD_TESTING)
     test/test_parameter.cpp)
   ament_target_dependencies(test_parameter ${dependencies})
 
-  # Any way to test launch.py to see if param setting from a launch file works?
+  # Any method to test launch.py to see if param setting from a launch file works?
 endif()
 
 ament_package()

@@ -22,9 +22,8 @@
 TEST(ClientServerTest, TransferData)
 {
   // Create node pointers
-  // Server has to start up first because client waits for server
-  auto server = std::make_shared<service_tutorial_cpp::Server>();
   auto client = std::make_shared<service_tutorial_cpp::Client>(1, 2);
+  auto server = std::make_shared<service_tutorial_cpp::Server>();
 
   // // Check if data service is not requested and responeded yet
   EXPECT_FALSE(client->srv_requested_);

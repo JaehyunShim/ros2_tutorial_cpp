@@ -34,7 +34,11 @@ public:
   {
     client_ = this->create_client<example_interfaces::srv::AddTwoInts>("add_two_ints");
 
-    queue_async_request(a, b);
+    timer_ = this->create_wall_timer(
+      std::chrono::seconds(1),
+      [this, a, b]() {
+        send_request(a, b);
+      });
   }
 
   bool srv_requested_;
@@ -43,8 +47,11 @@ public:
   int responded_srv_;
 
 private:
-  void queue_async_request(int a, int b)
+  void send_request(int a, int b)
   {
+    // Cancel timer and send a request only once
+    timer_->cancel();
+
     auto request = std::make_shared<example_interfaces::srv::AddTwoInts::Request>();
     request->a = a;
     request->b = b;
@@ -71,6 +78,7 @@ private:
   }
 
   rclcpp::Client<example_interfaces::srv::AddTwoInts>::SharedPtr client_;
+  rclcpp::TimerBase::SharedPtr timer_;
 };
 }  // namespace service_tutorial_cpp
 
