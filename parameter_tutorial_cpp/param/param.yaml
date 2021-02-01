@@ -1,0 +1,3 @@
+parameter:  # Should be the same as the node name
+  ros__parameters:
+    my_parameter: "earth"
