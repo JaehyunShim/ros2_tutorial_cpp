@@ -31,14 +31,17 @@ class Server : public rclcpp::Node  // inherit from Node
 public:
   Server()
   : Node("server"),  // name the node "server"
-    srv_responded(false)
+    srv_responded_(false)
   {
     server_ = this->create_service<example_interfaces::srv::AddTwoInts>(
       "add_two_ints",
       std::bind(&Server::service_callback, this, _1, _2));  // to use a non static member function
   }
 
-  bool srv_responded;
+  bool srv_responded_;
+  int requested_srv_a_;
+  int requested_srv_b_;
+  int responded_srv_;
 
 private:
   void service_callback(
@@ -52,7 +55,10 @@ private:
     RCLCPP_INFO(
       rclcpp::get_logger("rclcpp"), "Sending back response: [%ld]",
       response->sum);
-    srv_responded = true;
+    srv_responded_ = true;
+    requested_srv_a_ = request->a;
+    requested_srv_b_ = request->b;
+    responded_srv_ = response->sum;
   }
   rclcpp::Service<example_interfaces::srv::AddTwoInts>::SharedPtr server_;
 };

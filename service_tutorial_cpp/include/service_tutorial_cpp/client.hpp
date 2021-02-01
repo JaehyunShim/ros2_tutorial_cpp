@@ -30,14 +30,17 @@ class Client : public rclcpp::Node  // inherit from Node
 public:
   Client(int a, int b)
   : Node("client"),  // name the node "client"
-    srv_requested(false)
+    srv_requested_(false)
   {
     client_ = this->create_client<example_interfaces::srv::AddTwoInts>("add_two_ints");
 
     queue_async_request(a, b);
   }
 
-  bool srv_requested;
+  bool srv_requested_;
+  int requested_srv_a_;
+  int requested_srv_b_;
+  int responded_srv_;
 
 private:
   void queue_async_request(int a, int b)
@@ -55,13 +58,16 @@ private:
       RCLCPP_INFO(this->get_logger(), "service not available, waiting again...");
     }
 
+    requested_srv_a_ = request->a;
+    requested_srv_b_ = request->b;
     using ServiceResponseFuture = rclcpp::Client<example_interfaces::srv::AddTwoInts>::SharedFuture;
     auto response_received_callback = [this](ServiceResponseFuture future) {
-        auto result = future.get();
-        RCLCPP_INFO(this->get_logger(), "Sum: %ld", result->sum);
-        srv_requested = true;
+        auto response = future.get();
+        RCLCPP_INFO(this->get_logger(), "Sum: %ld", response->sum);
+        srv_requested_ = true;
+        responded_srv_ = response->sum;
       };
-    auto future_result = client_->async_send_request(request, response_received_callback);
+    auto future_response = client_->async_send_request(request, response_received_callback);
   }
 
   rclcpp::Client<example_interfaces::srv::AddTwoInts>::SharedPtr client_;

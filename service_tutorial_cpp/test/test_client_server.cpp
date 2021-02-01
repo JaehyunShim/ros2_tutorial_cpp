@@ -27,8 +27,8 @@ TEST(ClientServerTest, TransferData)
   auto client = std::make_shared<service_tutorial_cpp::Client>(1, 2);
 
   // // Check if data service is not requested and responeded yet
-  EXPECT_FALSE(client->srv_requested);
-  EXPECT_FALSE(server->srv_responded);
+  EXPECT_FALSE(client->srv_requested_);
+  EXPECT_FALSE(server->srv_responded_);
 
   // Spin for five seconds
   rclcpp::Rate loop_rate(1);
@@ -39,8 +39,13 @@ TEST(ClientServerTest, TransferData)
   }
 
   // Check if data service has been requested and responded
-  EXPECT_TRUE(client->srv_requested);
-  EXPECT_TRUE(server->srv_responded);
+  EXPECT_TRUE(client->srv_requested_);
+  EXPECT_TRUE(server->srv_responded_);
+
+  // Check if data service have been requested and responded correctly
+  EXPECT_EQ(client->requested_srv_a_, server->requested_srv_a_);
+  EXPECT_EQ(client->requested_srv_b_, server->requested_srv_b_);
+  EXPECT_EQ(client->responded_srv_, server->responded_srv_);
 }
 
 int main(int argc, char * argv[])
