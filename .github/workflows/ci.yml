@@ -42,6 +42,7 @@ jobs:
             ros2_tutorial_cpp
             topic_tutorial_cpp
             service_tutorial_cpp
+            parameter_tutorial_cpp
           vcs-repo-file-url: |
             https://raw.githubusercontent.com/ros2/ros2/master/ros2.repos
           colcon-mixin-name: coverage-gcc
