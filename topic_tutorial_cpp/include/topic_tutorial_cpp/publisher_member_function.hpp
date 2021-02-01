@@ -33,7 +33,7 @@ public:
     msg_published_(false),
     count_(0)
   {
-    publisher_ = this->create_publisher<std_msgs::msg::String>("topic", 10);
+    publisher_ = this->create_publisher<std_msgs::msg::String>("topic_member_function", 10);
     timer_ = this->create_wall_timer(
       std::chrono::microseconds(500),
       std::bind(&PublisherMemberFunction::timer_callback, this));  // std::bind to use a non
@@ -41,6 +41,7 @@ public:
   }
 
   bool msg_published_;
+  std::string published_msg_;
 
 private:
   void timer_callback()  // declare timer_callback as a member function
@@ -49,7 +50,10 @@ private:
     message.data = "Hello, world! " + std::to_string(count_++);
     RCLCPP_INFO(this->get_logger(), "Publishing '%s'", message.data.c_str());
     publisher_->publish(message);
-    msg_published_ = true;
+    if (msg_published_ == false) {
+      msg_published_ = true;
+      published_msg_ = message.data;
+    }
   }
   rclcpp::TimerBase::SharedPtr timer_;
   rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;

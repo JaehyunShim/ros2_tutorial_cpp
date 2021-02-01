@@ -33,15 +33,19 @@ public:
     msg_received_(false)
   {
     subscriber_ = this->create_subscription<std_msgs::msg::String>(
-      "topic",
+      "topic_lambda",
       10,
       [this](const std_msgs::msg::String::SharedPtr msg) {
         RCLCPP_INFO(this->get_logger(), "I heard '%s'", msg->data.c_str());
-        msg_received_ = true;
+        if (msg_received_ == false) {
+          msg_received_ = true;
+          received_msg_ = msg->data;
+        }
       });  // passing a callback function as a lambda expression
   }
 
   bool msg_received_;
+  std::string received_msg_;
 
 private:
   rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscriber_;  // declare a subscriber

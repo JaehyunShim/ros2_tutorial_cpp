@@ -35,16 +35,20 @@ public:
     msg_received_(false)
   {
     subscriber_ = this->create_subscription<std_msgs::msg::String>(
-      "topic", 10, std::bind(&SubscriberMemberFunction::topic_callback, this, _1));
+      "topic_member_function", 10, std::bind(&SubscriberMemberFunction::topic_callback, this, _1));
   }
 
   bool msg_received_;
+  std::string received_msg_;
 
 private:
   void topic_callback(const std_msgs::msg::String::SharedPtr msg)
   {
     RCLCPP_INFO(this->get_logger(), "I heard '%s'", msg->data.c_str());
-    msg_received_ = true;
+    if (msg_received_ == false) {
+      msg_received_ = true;
+      received_msg_ = msg->data;
+    }
   }
   rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscriber_;
 };

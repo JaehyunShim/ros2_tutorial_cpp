@@ -40,12 +40,12 @@ TEST(PublisherSubscriberTest, TransferMessage)
   EXPECT_FALSE(publisher_lambda->msg_published_);
   EXPECT_FALSE(subscriber_lambda->msg_received_);
 
-  // Spin for five seconds
+  // Spin five times
   rclcpp::Rate loop_rate(1);
   for (int i = 0; i < 5; i++) {
     rclcpp::spin_some(publisher_member_function);
-    rclcpp::spin_some(subscriber_member_function);
     rclcpp::spin_some(publisher_lambda);
+    rclcpp::spin_some(subscriber_member_function);
     rclcpp::spin_some(subscriber_lambda);
     loop_rate.sleep();
   }
@@ -55,6 +55,10 @@ TEST(PublisherSubscriberTest, TransferMessage)
   EXPECT_TRUE(subscriber_member_function->msg_received_);
   EXPECT_TRUE(publisher_lambda->msg_published_);
   EXPECT_TRUE(subscriber_lambda->msg_received_);
+
+  // Check if messages have been transferred correctly
+  EXPECT_EQ(publisher_member_function->published_msg_, subscriber_member_function->received_msg_);
+  EXPECT_EQ(publisher_lambda->published_msg_, subscriber_lambda->received_msg_);
 }
 
 int main(int argc, char * argv[])

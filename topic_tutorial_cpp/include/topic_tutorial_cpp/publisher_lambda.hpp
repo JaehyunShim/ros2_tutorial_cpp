@@ -36,15 +36,17 @@ public:
     msg_published_(false),
     count_(0)
   {
-    publisher_ = this->create_publisher<std_msgs::msg::String>("topic", 10);  // 'this pointer'
-                                                                              // can be omitted
+    publisher_ = this->create_publisher<std_msgs::msg::String>("topic_lambda", 10);
     auto timer_callback =  // declare timer_callback as a lambda expression
       [this]() -> void {  // [catch](parameter) -> return { body }
         auto message = std_msgs::msg::String();
         message.data = "Hello, world! " + std::to_string(count_++);  // int to string
         RCLCPP_INFO(this->get_logger(), "Publishing '%s'", message.data.c_str());  // str to char*
         this->publisher_->publish(message);
-        msg_published_ = true;
+        if (msg_published_ == false) {
+          msg_published_ = true;
+          published_msg_ = message.data;
+        }
       };
     timer_ = this->create_wall_timer(
       std::chrono::microseconds(500),  // call timer_callback every 500ms
@@ -52,6 +54,7 @@ public:
   }
 
   bool msg_published_;
+  std::string published_msg_;
 
 private:
   rclcpp::TimerBase::SharedPtr timer_;  // declare a timer
