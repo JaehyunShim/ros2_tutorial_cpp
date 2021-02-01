@@ -29,4 +29,5 @@ jobs:
             ros2_tutorial_cpp
             topic_tutorial_cpp
             service_tutorial_cpp
+            action_tutorial_cpp
             parameter_tutorial_cpp
