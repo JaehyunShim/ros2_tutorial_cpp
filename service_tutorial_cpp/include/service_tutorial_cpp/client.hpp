@@ -52,21 +52,23 @@ private:
     // Cancel timer and send a request only once
     timer_->cancel();
 
-    auto request = std::make_shared<example_interfaces::srv::AddTwoInts::Request>();
-    request->a = a;
-    request->b = b;
-
-    // wait for server to start up
+    // Wait for server to start up
     while (!client_->wait_for_service(std::chrono::seconds(1))) {
       if (!rclcpp::ok()) {
         RCLCPP_ERROR(this->get_logger(), "Interruped while waiting for the service.");
-        return;
+        rclcpp::shutdown();
       }
       RCLCPP_INFO(this->get_logger(), "service not available, waiting again...");
     }
 
+    // Define a service request
+    auto request = std::make_shared<example_interfaces::srv::AddTwoInts::Request>();
+    request->a = a;
+    request->b = b;
     requested_srv_a_ = request->a;
     requested_srv_b_ = request->b;
+
+    // Call async_send_request() method
     using ServiceResponseFuture = rclcpp::Client<example_interfaces::srv::AddTwoInts>::SharedFuture;
     auto response_received_callback = [this](ServiceResponseFuture future) {
         auto response = future.get();

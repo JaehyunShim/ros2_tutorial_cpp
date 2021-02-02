@@ -21,10 +21,10 @@
 ## Run
 ```sh
 # Topic examples
-$ ros2 run topic_tutorial_cpp publisher_lambda
-$ ros2 run topic_tutorial_cpp subscriber_lambda
 $ ros2 run topic_tutorial_cpp publisher_member_function
 $ ros2 run topic_tutorial_cpp subscriber_member_function
+$ ros2 run topic_tutorial_cpp publisher_lambda
+$ ros2 run topic_tutorial_cpp subscriber_lambda
 
 # Service examples
 $ ros2 run service_tutorial_cpp client 1 2
@@ -33,11 +33,15 @@ $ ros2 run service_tutorial_cpp server
 # Action examples
 $ ros2 run action_tutorial_cpp action_client
 $ ros2 run action_tutorial_cpp action_server
+$ ros2 action send_goal fibonacci action_tutorials_interfaces/action/Fibonacci "{order: 5}"
+$ ros2 action send_goal fibonacci action_tutorials_interfaces/action/Fibonacci "{order: 5}" --feedback
 
 # Parameter examples
 $ ros2 run parameter_tutorial_cpp parameter
 $ ros2 launch parameter_tutorial_cpp parameter.launch.py
 $ ros2 launch parameter_tutorial_cpp parameter2.launch.py
+$ ros2 param get /parameter my_parameter
+$ ros2 param set /parameter my_parameter "world"
 ```
 
 ## Reference

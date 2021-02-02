@@ -59,19 +59,21 @@ public:
 private:
   void send_goal()
   {
-    // to run only once
+    // Cancel timer and send an action goal only once
     this->timer_->cancel();
 
+    // Wait for action server to start up
     if (!this->action_client_->wait_for_action_server()) {
       RCLCPP_ERROR(this->get_logger(), "Action server not available after waiting");
       rclcpp::shutdown();
     }
 
+    // Define an action goal
     auto goal_msg = Fibonacci::Goal();
     goal_msg.order = 10;
 
+    // Call async_send_goal() method
     RCLCPP_INFO(this->get_logger(), "Sending goal");
-
     auto send_goal_options = rclcpp_action::Client<Fibonacci>::SendGoalOptions();
     send_goal_options.goal_response_callback =
       std::bind(&ActionClient::goal_response_callback, this, _1);
@@ -80,8 +82,6 @@ private:
     send_goal_options.result_callback =
       std::bind(&ActionClient::result_callback, this, _1);
     this->action_client_->async_send_goal(goal_msg, send_goal_options);
-
-    goal_sent_ = true;
   }
   rclcpp_action::Client<Fibonacci>::SharedPtr action_client_;
   rclcpp::TimerBase::SharedPtr timer_;
@@ -93,6 +93,8 @@ private:
       RCLCPP_ERROR(this->get_logger(), "Goal was rejected by server");
     } else {
       RCLCPP_INFO(this->get_logger(), "Goal accepted by server, waiting for result");
+
+      goal_sent_ = true;
     }
   }
 

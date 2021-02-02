@@ -35,7 +35,7 @@ class ActionServer : public rclcpp::Node  // public inherit from rclcpp::Node
 {
 public:
   ActionServer()
-  : Node("action_server"),
+  : Node("action_server"),  // initialize the Node with the name "action_server"
     goal_received_(false),
     action_accepted_(false),
     action_canceled_(false)

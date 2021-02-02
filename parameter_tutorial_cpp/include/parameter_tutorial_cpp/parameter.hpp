@@ -45,6 +45,7 @@ public:
     std::string new_parameter_string = "Korea";
     this->set_parameter(rclcpp::Parameter("my_parameter", new_parameter_string));
 
+    // For test codes
     if (parameter_updated_ == false) {
       parameter_updated_ = true;
       init_parameter_ = parameter_string_;
