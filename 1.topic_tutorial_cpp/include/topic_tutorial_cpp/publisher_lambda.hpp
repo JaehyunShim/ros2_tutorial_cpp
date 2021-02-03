@@ -49,7 +49,7 @@ public:
         }
       };
     timer_ = this->create_wall_timer(
-      std::chrono::microseconds(500),  // call timer_callback every 500ms
+      std::chrono::milliseconds(500),  // call timer_callback every 500ms
       timer_callback);
   }
 

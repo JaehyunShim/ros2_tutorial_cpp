@@ -35,7 +35,7 @@ public:
   {
     publisher_ = this->create_publisher<std_msgs::msg::String>("topic_member_function", 10);
     timer_ = this->create_wall_timer(
-      std::chrono::microseconds(500),
+      std::chrono::milliseconds(500),
       std::bind(&PublisherMemberFunction::timer_callback, this));  // std::bind to use a non
                                                                    // static member function
   }
