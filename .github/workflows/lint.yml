@@ -26,7 +26,6 @@ jobs:
           distribution: foxy
           linter: ${{ matrix.linter }}
           package-name: |
-            ros2_tutorial_cpp
             topic_tutorial_cpp
             service_tutorial_cpp
             action_tutorial_cpp

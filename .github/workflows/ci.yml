@@ -21,7 +21,6 @@ jobs:
           - {ROS_DISTRO: foxy, ROS_REPO: main}
           - {ROS_DISTRO: foxy, ROS_REPO: testing}
     steps:
-      - run: sudo apt-get update -qq && sudo apt-get upgrade
       - uses: actions/checkout@v1
       - uses: ros-industrial/industrial_ci@master
         env: ${{matrix.env}}
@@ -39,18 +38,17 @@ jobs:
         with:
           target-ros2-distro: foxy
           package-name:  |
-            ros2_tutorial_cpp
             topic_tutorial_cpp
             service_tutorial_cpp
             action_tutorial_cpp
             parameter_tutorial_cpp
-          vcs-repo-file-url: |
-            https://raw.githubusercontent.com/ros2/ros2/master/ros2.repos
+          # vcs-repo-file-url: |
+          #   https://raw.githubusercontent.com/ros2/ros2/master/ros2.repos
           colcon-mixin-name: coverage-gcc
           colcon-mixin-repository: https://raw.githubusercontent.com/colcon/colcon-mixin-repository/master/index.yaml
       - uses: codecov/codecov-action@v1
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+          # token: ${{ secrets.CODECOV_TOKEN }}
           file: ros_ws/lcov/total_coverage.info
           flags: unittests
           name: codecov-umbrella

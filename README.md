@@ -11,32 +11,32 @@
 - ROS2 C++ Service (Client/Server)
 - ROS2 C++ Action (Action Client/Action Server)
 - ROS2 C++ Parameter
-- ROS2 C++ Launch
-- ROS2 C++ Lifecycle
-- ROS2 C++ Plugin
-- ROS2 C++ Intra Process
-- ROS2 C++ RQT
+- ROS2 C++ Launch (TODO)
+- ROS2 C++ Lifecycle (TODO)
+- ROS2 C++ Plugin (TODO)
+- ROS2 C++ Intra Process (TODO)
+- ROS2 C++ RQT (TODO)
 - ROS2 C++ Test Code (TODO)
 
 ## Run
 ```sh
-# Topic examples
+# Topic tutorial example
 $ ros2 run topic_tutorial_cpp publisher_member_function
 $ ros2 run topic_tutorial_cpp subscriber_member_function
 $ ros2 run topic_tutorial_cpp publisher_lambda
 $ ros2 run topic_tutorial_cpp subscriber_lambda
 
-# Service examples
+# Service tutorial example
 $ ros2 run service_tutorial_cpp client 1 2
 $ ros2 run service_tutorial_cpp server
 
-# Action examples
+# Action tutorial example
 $ ros2 run action_tutorial_cpp action_client
 $ ros2 run action_tutorial_cpp action_server
 $ ros2 action send_goal fibonacci action_tutorials_interfaces/action/Fibonacci "{order: 5}"
 $ ros2 action send_goal fibonacci action_tutorials_interfaces/action/Fibonacci "{order: 5}" --feedback
 
-# Parameter examples
+# Parameter tutorial example
 $ ros2 run parameter_tutorial_cpp parameter
 $ ros2 launch parameter_tutorial_cpp parameter.launch.py
 $ ros2 launch parameter_tutorial_cpp parameter2.launch.py
@@ -55,4 +55,3 @@ $ ros2 param set /parameter my_parameter "world"
 ## Issue
 - arg does not work in launch.xml
 - pluginlib has an inner bug crash issue (commented out building process in CMakeLists.txt)
-- action_example has a ci build crash issue (commented out building process in CMakeLists.txt)

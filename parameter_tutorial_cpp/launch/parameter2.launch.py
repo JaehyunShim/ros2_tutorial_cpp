@@ -28,9 +28,9 @@ def generate_launch_description():
 
     return LaunchDescription([
         Node(
-            package="parameter_tutorial_cpp",
-            executable="parameter",
-            output="screen",
+            package='parameter_tutorial_cpp',
+            executable='parameter',
+            output='screen',
             parameters=[param_path],
         )
     ])
