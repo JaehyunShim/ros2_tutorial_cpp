@@ -21,6 +21,8 @@
 ## Run
 ```sh
 # Topic tutorial example
+$ ros2 run topic_tutorial_cpp publisher_old_school
+$ ros2 run topic_tutorial_cpp subscriber_old_school
 $ ros2 run topic_tutorial_cpp publisher_member_function
 $ ros2 run topic_tutorial_cpp subscriber_member_function
 $ ros2 run topic_tutorial_cpp publisher_lambda

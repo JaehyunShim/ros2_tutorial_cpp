@@ -31,7 +31,7 @@ int main(int argc, char * argv[])
   rclcpp::init(argc, argv);  // initialize rclcpp
   auto node = rclcpp::Node::make_shared("publisher_not_composable");  // initialize node
   auto publisher = node->create_publisher<std_msgs::msg::String>(
-    "topic", 10);  // initailize publisher
+    "topic_old_school", 10);  // initailize publisher
   std_msgs::msg::String message;
   auto publish_count = 0;
   // rclcpp::Rate loop_rate(500ms);  // use std::chrono::system_clock

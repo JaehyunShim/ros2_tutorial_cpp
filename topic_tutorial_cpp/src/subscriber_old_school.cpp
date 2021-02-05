@@ -33,7 +33,7 @@ int main(int argc, char * argv[])
   rclcpp::init(argc, argv);  // initialize rclcpp
   g_node = rclcpp::Node::make_shared("subscriber_not_composable");  // initialize node
   auto subscriber = g_node->create_subscription<std_msgs::msg::String>(
-    "topic", 10, topic_callback);  // initialize subscriber
+    "topic_old_school", 10, topic_callback);  // initialize subscriber
   rclcpp::spin(g_node);  // spin node
   rclcpp::shutdown();  // shutdown rclcpp
   return 0;
