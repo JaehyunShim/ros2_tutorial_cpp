@@ -22,6 +22,12 @@ set(dependencies
   rclcpp
   std_msgs)
 
+add_executable(publisher_not_composable src/publisher_not_composable.cpp)
+ament_target_dependencies(publisher_not_composable ${dependencies})
+
+add_executable(subscriber_not_composable src/subscriber_not_composable.cpp)
+ament_target_dependencies(subscriber_not_composable ${dependencies})
+
 add_executable(publisher_member_function src/publisher_member_function.cpp)
 ament_target_dependencies(publisher_member_function ${dependencies})
 
@@ -36,6 +42,8 @@ ament_target_dependencies(subscriber_lambda ${dependencies})
 
 # install
 install(TARGETS
+  publisher_not_composable
+  subscriber_not_composable
   publisher_member_function
   subscriber_member_function
   publisher_lambda
