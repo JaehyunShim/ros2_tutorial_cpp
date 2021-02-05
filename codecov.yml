@@ -1,4 +1,4 @@
 # https://github.com/ros2/sros2/blob/master/codecov.yml
 
 fixes:
- - "ros_ws/src/test/::"
+ - "ros_ws/src/ros2_tutorial_cpp/::"

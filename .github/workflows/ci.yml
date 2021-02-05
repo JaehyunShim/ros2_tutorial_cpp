@@ -42,14 +42,14 @@ jobs:
       #       parameter_tutorial_cpp
       #     colcon-mixin-name: coverage-gcc
       #     colcon-mixin-repository: https://raw.githubusercontent.com/colcon/colcon-mixin-repository/master/index.yaml
-      - uses: codecov/codecov-action@v1
-        with:
-          file: ros_ws/lcov/total_coverage.info
-          flags: unittests
-          name: codecov-umbrella
-          yml: ./codecov.yml
-          fail_ci_if_error: false
-      - uses: actions/upload-artifact@v1
-        with:
-          name: colcon-logs-${{ matrix.os }}
-          path: ros_ws/log
+      # - uses: codecov/codecov-action@v1
+      #   with:
+      #     file: ros_ws/lcov/total_coverage.info
+      #     flags: unittests
+      #     name: codecov-umbrella
+      #     yml: ./codecov.yml
+      #     fail_ci_if_error: false
+      # - uses: actions/upload-artifact@v1
+      #   with:
+      #     name: colcon-logs-${{ matrix.os }}
+      #     path: ros_ws/log
