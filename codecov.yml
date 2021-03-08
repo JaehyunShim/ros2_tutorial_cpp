@@ -1,4 +1,8 @@
 # https://github.com/ros2/sros2/blob/master/codecov.yml
 
 fixes:
- - "ros_ws/src/ros2_tutorial_cpp/::"
+  - "ros_ws/src/ros2_tutorial_cpp/::"
+
+ignore:
+  - "*/**/test/*"
+  - "*/test/**/*"
