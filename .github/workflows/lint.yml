@@ -17,7 +17,7 @@ jobs:
       matrix:
         linter: [copyright, cppcheck, cpplint, uncrustify, flake8, pep257, xmllint]
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: ros-tooling/setup-ros@v0.1
       - uses: ros-tooling/action-ros-lint@v0.1
         with:
