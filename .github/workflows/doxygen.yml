@@ -1,0 +1,19 @@
+# https://github.com/marketplace/actions/doxygen-action
+
+name: Doxygen
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  doxygen:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: mattnotmitt/doxygen-action@v1
+        with:
+          working-directory: 'submodule/'
+          # doxyfile-path: './Doxyfile'
+          doxyfile-path: 'docs/Doxygen'
