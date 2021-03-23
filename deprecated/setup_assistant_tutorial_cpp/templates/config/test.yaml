@@ -1,0 +1,4 @@
+test:
+  a: 100
+  b: 10.5
+  {robot_name}: 1
