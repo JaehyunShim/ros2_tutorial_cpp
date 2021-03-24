@@ -1,0 +1,8 @@
+# Goal
+string task
+---
+# Result
+bool answer
+---
+# Feeback
+int32 time_left

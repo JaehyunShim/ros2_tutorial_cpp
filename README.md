@@ -11,16 +11,18 @@
 - ROS2 C++ Service (Client/Server)
 - ROS2 C++ Action (Action Client/Action Server)
 - ROS2 C++ Parameter
-- ROS2 C++ Launch (TODO)
-- ROS2 C++ Lifecycle (TODO)
-- ROS2 C++ Plugin (TODO)
-- ROS2 C++ Intra Process (TODO)
-- ROS2 C++ RQT (TODO)
-- ROS2 C++ Test Code (TODO)
+- ROS2 C++ Interface (Message, Service, Action)
+- ROS2 C++ Launch
+- ROS2 C++ Composition
+- ROS2 C++ Intra Process
+- ROS2 C++ Lifecycle
+- ROS2 C++ Plugin
+- ROS2 C++ RQT
+- ROS2 C++ Setup Assistant
 
 ## Run
 ```sh
-# Topic tutorial example
+# Topic Tutorial CPP
 $ ros2 run topic_tutorial_cpp publisher_old_school
 $ ros2 run topic_tutorial_cpp subscriber_old_school
 $ ros2 run topic_tutorial_cpp publisher_member_function
@@ -28,22 +30,54 @@ $ ros2 run topic_tutorial_cpp subscriber_member_function
 $ ros2 run topic_tutorial_cpp publisher_lambda
 $ ros2 run topic_tutorial_cpp subscriber_lambda
 
-# Service tutorial example
+# Service Tutorial CPP
 $ ros2 run service_tutorial_cpp client 1 2
 $ ros2 run service_tutorial_cpp server
 
-# Action tutorial example
+# Action Tutorial CPP
 $ ros2 run action_tutorial_cpp action_client
 $ ros2 run action_tutorial_cpp action_server
 $ ros2 action send_goal fibonacci action_tutorials_interfaces/action/Fibonacci "{order: 5}"
 $ ros2 action send_goal fibonacci action_tutorials_interfaces/action/Fibonacci "{order: 5}" --feedback
 
-# Parameter tutorial example
+# Parameter Tutorial CPP
 $ ros2 run parameter_tutorial_cpp parameter
 $ ros2 launch parameter_tutorial_cpp parameter.launch.py
 $ ros2 launch parameter_tutorial_cpp parameter2.launch.py
 $ ros2 param get /parameter my_parameter
 $ ros2 param set /parameter my_parameter "world"
+
+# Launch Tutorial CPP
+$ ros2 launch launch_tutorial_cpp robot.launch.py
+$ ros2 launch launch_tutorial_cpp robot.launch.xml
+
+# Composition Tutorial CPP
+$ ros2 run composition_tutorial_cpp publisher
+
+# Intra Process Tutorial CPP
+$ ros2 run intra_process_tutorial_cpp intra_process
+
+# Lifecycle Tutorial CPP
+$ ros2 run lifecycle_tutorial_cpp lifecycle_publisher
+$ ros2 lifecycle set /lifecycle_publisher configure # activate, deactivate, cleanup, shutdown
+$ ros2 lifecycle get /lifecycle_publisher
+
+$ ros2 run lifecycle_tutorial_cpp lifecycle_subscriber
+$ ros2 lifecycle set /lifecycle_subscriber configure # activate, deactivate, cleanup, shutdown
+$ ros2 lifecycle get /lifecycle_subscriber
+
+$ ros2 launch lifecycle_tutorial_cpp lifecycle_publisher_lifecycle_subscriber.launch.py
+$ ros2 launch lifecycle_tutorial_cpp lifecycle_publisher_lifecycle_subscriber.launch.xml
+
+# Plugin Tutorial CPP
+$ ros2 run plugin_tutorial_cpp plugin_loader
+
+# RQT Tutorial CPP
+$ ros2 run rqt_tutorial_cpp rqt_node
+$ rqt --force-discover  # add --force-discover option when plugin is not found.
+
+# Setup Assistant Tutorial CPP
+$ ros2 run setup_assistant_tutorial_cpp setup_assistant_tutorial
 ```
 
 ## Reference

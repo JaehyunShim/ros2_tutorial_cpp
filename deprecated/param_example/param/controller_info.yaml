@@ -1,6 +1,0 @@
-param:  # Should be the same as the node name
-  ros__parameters:
-    name: "JaehyunBot"
-    sim: true
-    control_period: 0.010
-    control_mode: 1  # 1: position, 2: velocity, 3: Torque
