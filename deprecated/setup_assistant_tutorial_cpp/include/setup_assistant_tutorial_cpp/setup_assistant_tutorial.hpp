@@ -31,12 +31,11 @@ using std::placeholders::_1;
 
 namespace setup_assistant_tutorial
 {
-std::pair<std::string, std::string> p1 = std::make_pair("{package_name}", "test_config");
-std::pair<std::string, std::string> p2 = std::make_pair("{author_name}", "jaehyun");
-std::pair<std::string, std::string> p3 = std::make_pair(
-  "{author_email_address}",
-  "jhshim@robotis.com");
-std::pair<std::string, std::string> p4 = std::make_pair("{robot_name}", "jaehyunbot");
+std::array<std::pair<std::string, std::string>, 4> str_pair_arr = {
+  std::make_pair("{package_name}", "test_config"),
+  std::make_pair("{author_name}", "Jaehyun Shim"),
+  std::make_pair("{author_email_address}", "jhshim@robotis.com"),
+  std::make_pair("{robot_name}", "Jaehyunbot")};
 
 std::vector<std::string> read_file(std::string file_name)
 {
@@ -65,10 +64,9 @@ void write_file(std::string file_name, std::vector<std::string> write_lines)
 {
   std::ofstream MyWriteFile(file_name.c_str());
   for (std::string & line : write_lines) {
-    line = replace_line(line, p1);
-    line = replace_line(line, p2);
-    line = replace_line(line, p3);
-    line = replace_line(line, p4);
+    for (uint8_t i = 0; i < str_pair_arr.size(); i++) {
+      line = replace_line(line, str_pair_arr[i]);
+    }
     MyWriteFile << line << std::endl;
   }
   MyWriteFile.close();

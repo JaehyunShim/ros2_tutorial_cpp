@@ -51,6 +51,8 @@ void RqtExample::initPlugin(qt_gui_cpp::PluginContext & context)
   connect(ui_.pub_off_button, SIGNAL(clicked(bool)), this, SLOT(set_pub_off()));
   connect(ui_.sub_on_button, SIGNAL(clicked(bool)), this, SLOT(set_sub_on()));
   connect(ui_.sub_off_button, SIGNAL(clicked(bool)), this, SLOT(set_sub_off()));
+  connect(ui_.read_button, SIGNAL(clicked(bool)), this, SLOT(read_robot_name()));
+  connect(ui_.browse_button, SIGNAL(clicked(bool)), this, SLOT(browse_file_path()));
 
   // Run ros spin
   ros_timer_ = new QTimer(this);
@@ -100,6 +102,7 @@ void RqtExample::display_timer_callback()
 }
 
 QString RqtExample::get_pub_onff()
+
 {
   QString q_str;
   if (rqt_node_->pub_onoff_ == true) {
@@ -142,5 +145,18 @@ void RqtExample::set_sub_off()
 {
   rqt_node_->sub_onoff_ = false;
 }
+
+void RqtExample::read_robot_name()
+{
+  // convert to char *  !!
+  printf("robot name: %s \n", ui_.robot_name);
+}
+
+void RqtExample::browse_file_path()
+{
+  // convert to char *  !!
+  printf("robot name: %s \n", ui_.robot_name);
+}
+
 }  // namespace rqt_example
 PLUGINLIB_EXPORT_CLASS(rqt_example::RqtExample, rqt_gui_cpp::Plugin)

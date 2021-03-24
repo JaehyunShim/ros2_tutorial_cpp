@@ -60,6 +60,8 @@ private slots:
   void set_pub_off();
   void set_sub_on();
   void set_sub_off();
+  void read_robot_name();
+  void browse_file_path();
 };
 }  // namespace rqt_example
 #endif  // RQT_EXAMPLE__RQT_EXAMPLE_HPP_
