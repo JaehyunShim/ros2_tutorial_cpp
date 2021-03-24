@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>300</width>
-    <height>350</height>
+    <width>400</width>
+    <height>450</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -23,6 +23,12 @@
    <size>
     <width>300</width>
     <height>350</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>400</width>
+    <height>450</height>
    </size>
   </property>
   <property name="contextMenuPolicy">
@@ -143,7 +149,7 @@
        </property>
        <layout class="QGridLayout" name="gridLayout3">
         <item row="0" column="1">
-         <widget class="QPushButton" name="read_button">
+         <widget class="QPushButton" name="read_robot_name_button">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -183,9 +189,40 @@
          <widget class="QLineEdit" name="file_path"/>
         </item>
         <item row="0" column="1">
-         <widget class="QPushButton" name="browse_button">
+         <widget class="QPushButton" name="browse_file_path_button">
           <property name="text">
            <string>Browse</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox_5">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>200</width>
+         <height>70</height>
+        </size>
+       </property>
+       <property name="title">
+        <string> Selected Item Reader</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout5">
+        <item row="0" column="0">
+         <widget class="QListView" name="item_list"/>
+        </item>
+        <item row="0" column="1">
+         <widget class="QPushButton" name="read_selected_item_button">
+          <property name="text">
+           <string>Read</string>
           </property>
          </widget>
         </item>
