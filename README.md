@@ -48,6 +48,9 @@ $ ros2 param set /parameter my_parameter "world"
 # RQT Tutorial CPP
 $ ros2 run rqt_tutorial_cpp rqt_node
 $ rqt --force-discover  # add --force-discover option when plugin is not found.
+
+# Setup Assistant Tutorial CPP
+$ ros2 run setup_assistant_tutorial_cpp setup_assistant_tutorial
 ```
 
 ## Reference
