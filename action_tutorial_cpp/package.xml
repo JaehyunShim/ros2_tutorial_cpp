@@ -3,9 +3,11 @@
 <package format="3">
   <name>action_tutorial_cpp</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="jhshim@robotis.com">robotis</maintainer>
-  <license>TODO: License declaration</license>
+  <description>ROS 2 packages for action_tutorial_cpp</description>
+  <maintainer email="jhshim@robotis.com">Jaehyun Shim</maintainer>
+  <license>Apache 2.0</license>
+  <url type="repository">https://github.com/JaehyunShim/ros2_tutorial_cpp</url>
+  <author email="jhshim@robotis.com">Jaehyun Shim</author>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 

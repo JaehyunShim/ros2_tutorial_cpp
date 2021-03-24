@@ -1,5 +1,5 @@
 # Copyright 2018 Open Source Robotics Foundation, Inc.
-# Copyright 2020, Jaehyun Shim, ROBOTIS CO., LTD.
+# Copyright 2021 Jaehyun Shim
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -25,14 +25,6 @@ from launch.substitutions import LaunchConfiguration
 def generate_launch_description():
     robot_name = LaunchConfiguration('robot_name', default='JaehyunBot')
 
-    # Path to parameter files
-    param_path = LaunchConfiguration(
-        'param_path',
-        default=os.path.join(
-            get_package_share_directory('param_example'),
-            'param',
-            'controller_info.yaml'))
-
     return LaunchDescription([
         DeclareLaunchArgument(
             'robot_name',
@@ -40,11 +32,11 @@ def generate_launch_description():
             description='Robot Name'),
 
         Node(
-            package='launch_example',
-            executable='launch_example',
-            name='launch_example',
-            remappings=[('/chatter', '/remapped_chatter')],
+            package='topic_tutorial_cpp',
+            executable='publisher_old_school',
+            name='changed_publisher_name',
             arguments=[robot_name],
-            parameters=[param_path],
+            remappings=[('/topic_old_school', '/remapped_topic_name')],
+            parameters=[{'my_parameter': 'earth'}],  # more param usage info in param_tutorial_cpp
             output='screen'),
     ])

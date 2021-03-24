@@ -11,12 +11,14 @@
 - ROS2 C++ Service (Client/Server)
 - ROS2 C++ Action (Action Client/Action Server)
 - ROS2 C++ Parameter
-- ROS2 C++ Launch (TODO)
+- ROS2 C++ Interface (Message, Service, Action)
+- ROS2 C++ Launch
+- ROS2 C++ Composition (TODO)
 - ROS2 C++ Lifecycle (TODO)
 - ROS2 C++ Plugin (TODO)
 - ROS2 C++ Intra Process (TODO)
-- ROS2 C++ RQT (TODO)
-- ROS2 C++ Test Code (TODO)
+- ROS2 C++ RQT
+- ROS2 C++ Setup Assistant
 
 ## Run
 ```sh
@@ -44,6 +46,10 @@ $ ros2 launch parameter_tutorial_cpp parameter.launch.py
 $ ros2 launch parameter_tutorial_cpp parameter2.launch.py
 $ ros2 param get /parameter my_parameter
 $ ros2 param set /parameter my_parameter "world"
+
+# Launch Tutorial CPP
+$ ros2 launch launch_tutorial_cpp robot.launch.py
+$ ros2 launch launch_tutorial_cpp robot.launch.xml
 
 # RQT Tutorial CPP
 $ ros2 run rqt_tutorial_cpp rqt_node

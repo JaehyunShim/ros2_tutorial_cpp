@@ -1,8 +1,8 @@
 # Goal
-int32 task_time
+string task
 ---
 # Result
-string answer
+bool answer
 ---
 # Feeback
 int32 time_left

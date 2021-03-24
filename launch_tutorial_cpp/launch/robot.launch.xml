@@ -1,5 +1,5 @@
 <!--
-  Copyright 2020, Jaehyun Shim, ROBOTIS CO., LTD.
+  Copyright 2021 Jaehyun Shim
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -21,12 +21,8 @@
   <!-- <arg name="robot_name" default="JaehyunBot"/> -->
 
   <!-- <node pkg="launch_example" exec="launch_example" name="launch_example" output="screen" args="$(arg JaehyunBot)"> -->
-  <node pkg="launch_example" exec="launch_example" name="launch_example" output="screen">
-
-    <!--........................................................-->
-    <!-- no usage sample for coyping params from a yaml file... -->
-    <!--........................................................-->
-    <remap from="chatter" to="remapped_chatter"/>
+  <node pkg="topic_tutorial_cpp" exec="publisher_old_school" name="changed_publisher_name" output="screen">
+    <remap from="topic_old_school" to="remapped_topic_name"/>
     <!-- <param name="robot_name" value="$(arg robot_name)"/> -->
     <param name="robot_name" value="JaehyunBot"/>
   </node>

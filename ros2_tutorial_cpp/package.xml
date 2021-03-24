@@ -14,13 +14,17 @@
   <exec_depend>service_tutorial_cpp</exec_depend>
   <exec_depend>action_tutorial_cpp</exec_depend>
   <exec_depend>parameter_tutorial_cpp</exec_depend>
-  <!-- <exec_depend>interface_tutorial_cpp</exec_depend>
-  <exec_depend>intra_process_tutorial_cpp</exec_depend>
+  <exec_depend>interface_tutorial_cpp</exec_depend>
   <exec_depend>launch_tutorial_cpp</exec_depend>
+  <exec_depend>rqt_tutorial_cpp</exec_depend>
+  <exec_depend>setup_assistant_tutorial_cpp</exec_depend>
+
+  <!--
+  <exec_depend>composition_tutorial_cpp</exec_depend>
   <exec_depend>lifecycle_tutorial_cpp</exec_depend>
   <exec_depend>plugin_tutorial_cpp</exec_depend>
-  <exec_depend>rqt_tutorial_cpp</exec_depend>
-  <exec_depend>setup_assistant_tutorial_cpp</exec_depend> -->
+  <exec_depend>intra_process_tutorial_cpp</exec_depend>
+  -->
 
   <export>
     <build_type>ament_cmake</build_type>
