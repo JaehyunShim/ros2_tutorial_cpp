@@ -26,7 +26,7 @@
 
 using namespace std::chrono_literals;
 
-namespace lifecycle_example
+namespace lifecycle_tutorial_cpp
 {
 class LifecycleSubscriber : public rclcpp_lifecycle::LifecycleNode
 {
@@ -137,6 +137,6 @@ private:
   rclcpp::Subscription<std_msgs::msg::String>::SharedPtr msg_sub_;
   rclcpp::Subscription<lifecycle_msgs::msg::TransitionEvent>::SharedPtr notification_sub_;
 };
-}  // namespace lifecycle_example
+}  // namespace lifecycle_tutorial_cpp
 
-RCLCPP_COMPONENTS_REGISTER_NODE(lifecycle_example::LifecycleSubscriber)
+RCLCPP_COMPONENTS_REGISTER_NODE(lifecycle_tutorial_cpp::LifecycleSubscriber)

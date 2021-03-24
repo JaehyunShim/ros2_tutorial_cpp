@@ -13,8 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef TOPIC_EXAMPLE__PUBLISHER_HPP_
-#define TOPIC_EXAMPLE__PUBLISHER_HPP_
+#ifndef COMPOSITION_TUTORIAL_CPP__PUBLISHER_HPP_
+#define COMPOSITION_TUTORIAL_CPP__PUBLISHER_HPP_
 
 #include <chrono>
 #include <memory>
@@ -78,4 +78,4 @@ private:
 };
 }  // namespace composition_tutorial_cpp
 
-#endif  // TOPIC_EXAMPLE__PUBLISHER_HPP_
+#endif  // COMPOSITION_TUTORIAL_CPP__PUBLISHER_HPP_

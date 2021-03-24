@@ -28,7 +28,7 @@
 
 using namespace std::chrono_literals;
 
-namespace lifecycle_example
+namespace lifecycle_tutorial_cpp
 {
 class LifecyclePublisher : public rclcpp_lifecycle::LifecycleNode
 {
@@ -144,6 +144,6 @@ private:
   rclcpp_lifecycle::LifecyclePublisher<std_msgs::msg::String>::SharedPtr msg_pub_;
   rclcpp::TimerBase::SharedPtr timer_;
 };
-}  // namespace lifecycle_example
+}  // namespace lifecycle_tutorial_cpp
 
-RCLCPP_COMPONENTS_REGISTER_NODE(lifecycle_example::LifecyclePublisher)
+RCLCPP_COMPONENTS_REGISTER_NODE(lifecycle_tutorial_cpp::LifecyclePublisher)

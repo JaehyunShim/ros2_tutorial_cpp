@@ -21,8 +21,8 @@ include_directories(
 )
 
 set(dependencies
-  "rclcpp"
-  "std_msgs"
+  rclcpp
+  std_msgs
 )
 
 add_executable(intra_process src/intra_process.cpp)

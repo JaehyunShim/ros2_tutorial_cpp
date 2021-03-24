@@ -15,6 +15,6 @@
 -->
 
 <launch>
-  <node pkg="lifecycle_example" exec="lifecycle_publisher" output="screen" />
-  <node pkg="lifecycle_example" exec="lifecycle_subscriber" output="screen" />
+  <node pkg="lifecycle_tutorial_cpp" exec="lifecycle_publisher" output="screen" />
+  <node pkg="lifecycle_tutorial_cpp" exec="lifecycle_subscriber" output="screen" />
 </launch>

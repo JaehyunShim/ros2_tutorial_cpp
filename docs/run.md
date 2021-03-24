@@ -22,16 +22,16 @@ $ ros2 launch launch.launch.py
 $ ros2 launch launch.launch.xml
 
 # Lifecycle examples
-$ ros2 run lifecycle_example lifecycle_publisher
+$ ros2 run lifecycle_tutorial_cpp lifecycle_publisher
 $ ros2 lifecycle set /lifecycle_publisher configure # activate, deactivate, cleanup, shutdown
 $ ros2 lifecycle get /lifecycle_publisher
 
-$ ros2 run lifecycle_example lifecycle_subscriber
+$ ros2 run lifecycle_tutorial_cpp lifecycle_subscriber
 $ ros2 lifecycle set /lifecycle_subscriber configure # activate, deactivate, cleanup, shutdown
 $ ros2 lifecycle get /lifecycle_subscriber
 
-$ ros2 launch lifecycle_example lifecycle_publisher_lifecycle_subscriber.launch.py
-$ ros2 launch lifecycle_example lifecycle_publisher_lifecycle_subscriber.launch.xml
+$ ros2 launch lifecycle_tutorial_cpp lifecycle_publisher_lifecycle_subscriber.launch.py
+$ ros2 launch lifecycle_tutorial_cpp lifecycle_publisher_lifecycle_subscriber.launch.xml
 
 # Plugin examples
 $ ros2 run plugin_example plugin_loader

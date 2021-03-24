@@ -57,6 +57,18 @@ $ ros2 run composition_tutorial_cpp publisher
 # Intra Process Tutorial CPP
 $ ros2 run intra_process_tutorial_cpp intra_process
 
+# Lifecycle Tutorial CPP
+$ ros2 run lifecycle_tutorial_cpp lifecycle_publisher
+$ ros2 lifecycle set /lifecycle_publisher configure # activate, deactivate, cleanup, shutdown
+$ ros2 lifecycle get /lifecycle_publisher
+
+$ ros2 run lifecycle_tutorial_cpp lifecycle_subscriber
+$ ros2 lifecycle set /lifecycle_subscriber configure # activate, deactivate, cleanup, shutdown
+$ ros2 lifecycle get /lifecycle_subscriber
+
+$ ros2 launch lifecycle_tutorial_cpp lifecycle_publisher_lifecycle_subscriber.launch.py
+$ ros2 launch lifecycle_tutorial_cpp lifecycle_publisher_lifecycle_subscriber.launch.xml
+
 # RQT Tutorial CPP
 $ ros2 run rqt_tutorial_cpp rqt_node
 $ rqt --force-discover  # add --force-discover option when plugin is not found.

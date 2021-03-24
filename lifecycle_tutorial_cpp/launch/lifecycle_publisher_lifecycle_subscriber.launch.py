@@ -20,12 +20,12 @@ from launch_ros.actions import Node
 def generate_launch_description():
     return LaunchDescription([
         Node(
-            package='lifecycle_example',
+            package='lifecycle_tutorial_cpp',
             executable='lifecycle_publisher',
             output='screen'),
 
         Node(
-            package='lifecycle_example',
+            package='lifecycle_tutorial_cpp',
             executable='lifecycle_subscriber',
             output='screen'),
     ])
