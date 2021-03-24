@@ -13,7 +13,7 @@
 - ROS2 C++ Parameter
 - ROS2 C++ Interface (Message, Service, Action)
 - ROS2 C++ Launch
-- ROS2 C++ Composition (TODO)
+- ROS2 C++ Composition
 - ROS2 C++ Lifecycle (TODO)
 - ROS2 C++ Plugin (TODO)
 - ROS2 C++ Intra Process (TODO)
@@ -50,6 +50,9 @@ $ ros2 param set /parameter my_parameter "world"
 # Launch Tutorial CPP
 $ ros2 launch launch_tutorial_cpp robot.launch.py
 $ ros2 launch launch_tutorial_cpp robot.launch.xml
+
+# Composition Tutorial CPP
+$ ros2 run composition_tutorial_cpp publisher
 
 # RQT Tutorial CPP
 $ ros2 run rqt_tutorial_cpp rqt_node
