@@ -16,7 +16,7 @@
 - ROS2 C++ Composition
 - ROS2 C++ Lifecycle (TODO)
 - ROS2 C++ Plugin (TODO)
-- ROS2 C++ Intra Process (TODO)
+- ROS2 C++ Intra Process
 - ROS2 C++ RQT
 - ROS2 C++ Setup Assistant
 
@@ -53,6 +53,9 @@ $ ros2 launch launch_tutorial_cpp robot.launch.xml
 
 # Composition Tutorial CPP
 $ ros2 run composition_tutorial_cpp publisher
+
+# Intra Process Tutorial CPP
+$ ros2 run intra_process_tutorial_cpp intra_process
 
 # RQT Tutorial CPP
 $ ros2 run rqt_tutorial_cpp rqt_node

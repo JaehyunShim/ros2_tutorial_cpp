@@ -1,5 +1,5 @@
 // Copyright 2015 Open Source Robotics Foundation, Inc.
-// Copyright 2020, Jaehyun Shim, ROBOTIS CO., LTD.
+// Copyright 2021 Jaehyun Shim
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,8 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef INTRA_PROCESS_EXAMPLE__PUBLISHER_HPP_
-#define INTRA_PROCESS_EXAMPLE__PUBLISHER_HPP_
+#ifndef INTRA_PROCESS_TUTORIAL_CPP__PUBLISHER_HPP_
+#define INTRA_PROCESS_TUTORIAL_CPP__PUBLISHER_HPP_
 
 #include <chrono>
 #include <memory>
@@ -24,7 +24,7 @@
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/int64.hpp"
 
-namespace intra_process_example
+namespace intra_process_tutorial_cpp
 {
 class Publisher : public rclcpp::Node
 {
@@ -32,9 +32,6 @@ public:
   explicit Publisher(const std::string & name)
   : Node(name, rclcpp::NodeOptions().use_intra_process_comms(true))
   {
-    // Force flush of the stdout buffer
-    setvbuf(stdout, NULL, _IONBF, BUFSIZ);
-
     // ROS Publisher
     rclcpp::QoS qos(rclcpp::KeepLast(10));
     pub_ = this->create_publisher<std_msgs::msg::Int64>("chatter", qos);
@@ -64,6 +61,6 @@ private:
   rclcpp::Publisher<std_msgs::msg::Int64>::SharedPtr pub_;
   rclcpp::TimerBase::SharedPtr timer_;
 };
-}  // namespace intra_process_example
+}  // namespace intra_process_tutorial_cpp
 
-#endif  // INTRA_PROCESS_EXAMPLE__PUBLISHER_HPP_
+#endif  // INTRA_PROCESS_TUTORIAL_CPP__PUBLISHER_HPP_

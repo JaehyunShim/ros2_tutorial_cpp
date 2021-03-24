@@ -1,5 +1,5 @@
 // Copyright 2015 Open Source Robotics Foundation, Inc.
-// Copyright 2020, Jaehyun Shim, ROBOTIS CO., LTD.
+// Copyright 2021 Jaehyun Shim
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,8 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef INTRA_PROCESS_EXAMPLE__SUBSCRIBER_HPP_
-#define INTRA_PROCESS_EXAMPLE__SUBSCRIBER_HPP_
+#ifndef INTRA_PROCESS_TUTORIAL_CPP__SUBSCRIBER_HPP_
+#define INTRA_PROCESS_TUTORIAL_CPP__SUBSCRIBER_HPP_
 
 #include <memory>
 #include <string>
@@ -22,7 +22,7 @@
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/int64.hpp"
 
-namespace intra_process_example
+namespace intra_process_tutorial_cpp
 {
 class Subscriber : public rclcpp::Node
 {
@@ -30,9 +30,6 @@ public:
   explicit Subscriber(const std::string & name)
   : Node(name, rclcpp::NodeOptions().use_intra_process_comms(true))
   {
-    // Force flush of the stdout buffer
-    setvbuf(stdout, NULL, _IONBF, BUFSIZ);
-
     // ROS Subscriber
     auto sub_callback =
       [this](const std_msgs::msg::Int64::SharedPtr msg) -> void
@@ -52,6 +49,6 @@ public:
 private:
   rclcpp::Subscription<std_msgs::msg::Int64>::SharedPtr sub_;
 };
-}  // namespace intra_process_example
+}  // namespace intra_process_tutorial_cpp
 
-#endif  // INTRA_PROCESS_EXAMPLE__SUBSCRIBER_HPP_
+#endif  // INTRA_PROCESS_TUTORIAL_CPP__SUBSCRIBER_HPP_

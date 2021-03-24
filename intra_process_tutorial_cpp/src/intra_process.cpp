@@ -1,5 +1,5 @@
 // Copyright 2015 Open Source Robotics Foundation, Inc.
-// Copyright 2020, Jaehyun Shim, ROBOTIS CO., LTD.
+// Copyright 2021 Jaehyun Shim
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,18 +17,17 @@
 #include <memory>
 
 #include "rclcpp/rclcpp.hpp"
-#include "intra_process_example/publisher.hpp"
-#include "intra_process_example/subscriber.hpp"
+#include "intra_process_tutorial_cpp/publisher.hpp"
+#include "intra_process_tutorial_cpp/subscriber.hpp"
 
 int main(int argc, char ** argv)
 {
   // init
-  setvbuf(stdout, NULL, _IONBF, BUFSIZ);
   rclcpp::init(argc, argv);
 
   // ros nodes
-  auto pub_node = std::make_shared<intra_process_example::Publisher>("publisher");
-  auto sub_node = std::make_shared<intra_process_example::Subscriber>("subscriber");
+  auto pub_node = std::make_shared<intra_process_tutorial_cpp::Publisher>("publisher");
+  auto sub_node = std::make_shared<intra_process_tutorial_cpp::Subscriber>("subscriber");
 
   // ros executors
   rclcpp::executors::SingleThreadedExecutor executor;
