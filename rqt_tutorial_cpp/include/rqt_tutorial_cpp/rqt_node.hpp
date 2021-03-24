@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef RQT_EXAMPLE__RQT_NODE_HPP_
-#define RQT_EXAMPLE__RQT_NODE_HPP_
+#ifndef RQT_TUTORIAL_CPP__RQT_NODE_HPP_
+#define RQT_TUTORIAL_CPP__RQT_NODE_HPP_
 
 #include <QStringListModel>
 
@@ -22,13 +22,13 @@
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
 
-namespace rqt_example
+namespace rqt_tutorial_cpp
 {
-class RqtNode : public rclcpp::Node
+class RQTNode : public rclcpp::Node
 {
 public:
-  RqtNode();
-  virtual ~RqtNode();
+  RQTNode();
+  virtual ~RQTNode();
 
   bool pub_onoff_ = true;
   bool sub_onoff_ = false;
@@ -40,5 +40,5 @@ private:
   void chatter_callback(const std_msgs::msg::String::SharedPtr msg);
   void timer_callback();
 };
-}  // namespace rqt_example
-#endif  // RQT_EXAMPLE__RQT_NODE_HPP_
+}  // namespace rqt_tutorial_cpp
+#endif  // RQT_TUTORIAL_CPP__RQT_NODE_HPP_

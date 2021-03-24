@@ -19,15 +19,15 @@
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
 
-#include "rqt_example/rqt_node.hpp"
+#include "rqt_tutorial_cpp/rqt_node.hpp"
 
 using namespace std::placeholders;
 using namespace std::chrono_literals;
 
-namespace rqt_example
+namespace rqt_tutorial_cpp
 {
-RqtNode::RqtNode()
-: Node("rqt_example")
+RQTNode::RQTNode()
+: Node("rqt_tutorial_cpp")
 {
   // Force flush of the stdout buffer
   setvbuf(stdout, NULL, _IONBF, BUFSIZ);
@@ -39,21 +39,21 @@ RqtNode::RqtNode()
     this->create_subscription<std_msgs::msg::String>(
     "chatter",
     qos,
-    std::bind(&RqtNode::chatter_callback, this, std::placeholders::_1));
+    std::bind(&RQTNode::chatter_callback, this, std::placeholders::_1));
 
   // ROS Timer
   timer_ = this->create_wall_timer(
     1s,
-    std::bind(&RqtNode::timer_callback, this));
-  RCLCPP_INFO(this->get_logger(), "Initialized rqt example node");
+    std::bind(&RQTNode::timer_callback, this));
+  RCLCPP_INFO(this->get_logger(), "Initialized RQT node");
 }
 
-RqtNode::~RqtNode()
+RQTNode::~RQTNode()
 {
-  RCLCPP_INFO(this->get_logger(), "Terminated rqt example node");
+  RCLCPP_INFO(this->get_logger(), "Terminated RQT node");
 }
 
-void RqtNode::timer_callback()
+void RQTNode::timer_callback()
 {
   static int count = 0;
   if (pub_onoff_ == true) {
@@ -67,10 +67,10 @@ void RqtNode::timer_callback()
   }
 }
 
-void RqtNode::chatter_callback(const std_msgs::msg::String::SharedPtr msg)
+void RQTNode::chatter_callback(const std_msgs::msg::String::SharedPtr msg)
 {
   if (sub_onoff_ == true) {
     RCLCPP_INFO(this->get_logger(), "Subscriber: %s", msg->data.c_str());
   }
 }
-}  // namespace rqt_example
+}  // namespace rqt_tutorial_cpp

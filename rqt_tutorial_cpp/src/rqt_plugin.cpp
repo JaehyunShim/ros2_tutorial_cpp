@@ -19,19 +19,19 @@
 #include "pluginlib/class_list_macros.hpp"
 #include "rclcpp/rclcpp.hpp"
 
-#include "rqt_example/rqt_example.hpp"
+#include "rqt_tutorial_cpp/rqt_plugin.hpp"
 
-namespace rqt_example
+namespace rqt_tutorial_cpp
 {
-RqtExample::RqtExample()
+RQTPlugin::RQTPlugin()
 : rqt_gui_cpp::Plugin(),
   widget_(0),
-  rqt_node_(std::make_shared<rqt_example::RqtNode>())
+  rqt_node_(std::make_shared<rqt_tutorial_cpp::RQTNode>())
 {
-  setObjectName("RQT Example");
+  setObjectName("RQT Tutorial CPP");
 }
 
-void RqtExample::initPlugin(qt_gui_cpp::PluginContext & context)
+void RQTPlugin::initPlugin(qt_gui_cpp::PluginContext & context)
 {
   // Access standalone command line arguments
   QStringList argv = context.argv();
@@ -63,12 +63,12 @@ void RqtExample::initPlugin(qt_gui_cpp::PluginContext & context)
   display_timer_->start(10);
 }
 
-void RqtExample::shutdownPlugin()
+void RQTPlugin::shutdownPlugin()
 {
   // TODO(my_username): unregister all publishers here
 }
 
-void RqtExample::saveSettings(
+void RQTPlugin::saveSettings(
   qt_gui_cpp::Settings & plugin_settings,
   qt_gui_cpp::Settings & instance_settings) const
 {
@@ -78,7 +78,7 @@ void RqtExample::saveSettings(
   (void) instance_settings;
 }
 
-void RqtExample::restoreSettings(
+void RQTPlugin::restoreSettings(
   const qt_gui_cpp::Settings & plugin_settings,
   const qt_gui_cpp::Settings & instance_settings)
 {
@@ -88,18 +88,18 @@ void RqtExample::restoreSettings(
   (void) instance_settings;
 }
 
-void RqtExample::ros_timer_callback()
+void RQTPlugin::ros_timer_callback()
 {
   rclcpp::spin_some(rqt_node_);
 }
 
-void RqtExample::display_timer_callback()
+void RQTPlugin::display_timer_callback()
 {
   ui_.pub_onoff_state->setText(get_pub_onff());
   ui_.sub_onoff_state->setText(get_sub_onff());
 }
 
-QString RqtExample::get_pub_onff()
+QString RQTPlugin::get_pub_onff()
 {
   QString q_str;
   if (rqt_node_->pub_onoff_ == true) {
@@ -111,7 +111,7 @@ QString RqtExample::get_pub_onff()
   return q_str;
 }
 
-QString RqtExample::get_sub_onff()
+QString RQTPlugin::get_sub_onff()
 {
   QString q_str;
   if (rqt_node_->sub_onoff_ == true) {
@@ -123,24 +123,24 @@ QString RqtExample::get_sub_onff()
   return q_str;
 }
 
-void RqtExample::set_pub_on()
+void RQTPlugin::set_pub_on()
 {
   rqt_node_->pub_onoff_ = true;
 }
 
-void RqtExample::set_pub_off()
+void RQTPlugin::set_pub_off()
 {
   rqt_node_->pub_onoff_ = false;
 }
 
-void RqtExample::set_sub_on()
+void RQTPlugin::set_sub_on()
 {
   rqt_node_->sub_onoff_ = true;
 }
 
-void RqtExample::set_sub_off()
+void RQTPlugin::set_sub_off()
 {
   rqt_node_->sub_onoff_ = false;
 }
-}  // namespace rqt_example
-PLUGINLIB_EXPORT_CLASS(rqt_example::RqtExample, rqt_gui_cpp::Plugin)
+}  // namespace rqt_tutorial_cpp
+PLUGINLIB_EXPORT_CLASS(rqt_tutorial_cpp::RQTPlugin, rqt_gui_cpp::Plugin)

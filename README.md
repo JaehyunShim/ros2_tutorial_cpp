@@ -20,7 +20,7 @@
 
 ## Run
 ```sh
-# Topic tutorial example
+# Topic Tutorial CPP
 $ ros2 run topic_tutorial_cpp publisher_old_school
 $ ros2 run topic_tutorial_cpp subscriber_old_school
 $ ros2 run topic_tutorial_cpp publisher_member_function
@@ -28,22 +28,26 @@ $ ros2 run topic_tutorial_cpp subscriber_member_function
 $ ros2 run topic_tutorial_cpp publisher_lambda
 $ ros2 run topic_tutorial_cpp subscriber_lambda
 
-# Service tutorial example
+# Service Tutorial CPP
 $ ros2 run service_tutorial_cpp client 1 2
 $ ros2 run service_tutorial_cpp server
 
-# Action tutorial example
+# Action Tutorial CPP
 $ ros2 run action_tutorial_cpp action_client
 $ ros2 run action_tutorial_cpp action_server
 $ ros2 action send_goal fibonacci action_tutorials_interfaces/action/Fibonacci "{order: 5}"
 $ ros2 action send_goal fibonacci action_tutorials_interfaces/action/Fibonacci "{order: 5}" --feedback
 
-# Parameter tutorial example
+# Parameter Tutorial CPP
 $ ros2 run parameter_tutorial_cpp parameter
 $ ros2 launch parameter_tutorial_cpp parameter.launch.py
 $ ros2 launch parameter_tutorial_cpp parameter2.launch.py
 $ ros2 param get /parameter my_parameter
 $ ros2 param set /parameter my_parameter "world"
+
+# RQT Tutorial CPP
+$ ros2 run rqt_tutorial_cpp rqt_node
+$ rqt --force-discover  # add --force-discover option when plugin is not found.
 ```
 
 ## Reference
