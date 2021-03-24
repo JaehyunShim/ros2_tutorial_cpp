@@ -34,9 +34,6 @@ public:
   Plugin()
   // : Node("plugin")
   {
-    // Force flush of the stdout buffer
-    setvbuf(stdout, NULL, _IONBF, BUFSIZ);
-
     // ROS Publisher
     rclcpp::QoS qos(rclcpp::KeepLast(10));
     count_pub_ = this->create_publisher<std_msgs::msg::Int64>("chatter", qos);

@@ -22,6 +22,7 @@
   <exec_depend>plugin_tutorial_cpp</exec_depend>
   <exec_depend>rqt_tutorial_cpp</exec_depend>
   <exec_depend>setup_assistant_tutorial_cpp</exec_depend>
+  <exec_depend>gdb_tutorial_cpp</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>

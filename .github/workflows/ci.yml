@@ -38,6 +38,15 @@ jobs:
             service_tutorial_cpp
             action_tutorial_cpp
             parameter_tutorial_cpp
+            interface_tutorial_cpp
+            launch_tutorial_cpp
+            composition_tutorial_cpp
+            intra_process_tutorial_cpp
+            lifecycle_tutorial_cpp
+            plugin_tutorial_cpp
+            rqt_tutorial_cpp
+            setup_assistant_tutorial_cpp
+            gdb_tutorial_cpp
           vcs-repo-file-url: ""
           colcon-mixin-name: coverage-gcc
           colcon-mixin-repository: https://raw.githubusercontent.com/colcon/colcon-mixin-repository/master/index.yaml

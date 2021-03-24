@@ -19,6 +19,7 @@
 - ROS2 C++ Plugin
 - ROS2 C++ RQT
 - ROS2 C++ Setup Assistant
+- ROS2 C++ GDB
 
 ## Run
 ```sh
@@ -78,6 +79,9 @@ $ rqt --force-discover  # add --force-discover option when plugin is not found.
 
 # Setup Assistant Tutorial CPP
 $ ros2 run setup_assistant_tutorial_cpp setup_assistant_tutorial
+
+# GDB Tutorial CPP
+$ ros2 launch gdb_tutorial_cpp gdb.launch.py
 ```
 
 ## Reference
@@ -87,6 +91,7 @@ $ ros2 run setup_assistant_tutorial_cpp setup_assistant_tutorial
 - [ROS Pluginlib Foxy](https://github.com/ros/pluginlib/tree/foxy)
 - [Read the Docs official webpage](https://readthedocs.org)
 - [doxygen/doxygen/Doxyfile](https://github.com/doxygen/doxygen/blob/master/Doxyfile)
+- [gdb_test_pkg](https://github.com/samsung-ros/gdb_test_pkg)
 
 ## Issue
 - arg does not work in launch.xml
