@@ -1,4 +1,4 @@
-// Copyright 2020, Jaehyun Shim, ROBOTIS CO., LTD.
+// Copyright 2021 Jaehyun Shim
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.

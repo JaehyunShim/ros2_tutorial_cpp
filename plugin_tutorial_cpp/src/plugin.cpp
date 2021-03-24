@@ -1,5 +1,5 @@
 // Copyright (c) 2012, Willow Garage, Inc.
-// Copyright 2020, Jaehyun Shim, ROBOTIS CO., LTD.
+// Copyright 2021 Jaehyun Shim
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,11 +22,11 @@
 #include "std_msgs/msg/int64.hpp"
 
 
-#include "plugin_example/plugin_base.hpp"
+#include "plugin_tutorial_cpp/plugin_base.hpp"
 
 using namespace std::chrono_literals;
 
-namespace plugin_example
+namespace plugin_tutorial_cpp
 {
 class Plugin : public PluginBase
 {
@@ -70,6 +70,6 @@ private:
   rclcpp::Publisher<std_msgs::msg::Int64>::SharedPtr count_pub_;
   rclcpp::TimerBase::SharedPtr timer_;
 };
-}  // namespace plugin_example
+}  // namespace plugin_tutorial_cpp
 
-PLUGINLIB_EXPORT_CLASS(plugin_example::Plugin, plugin_example::PluginBase)
+PLUGINLIB_EXPORT_CLASS(plugin_tutorial_cpp::Plugin, plugin_tutorial_cpp::PluginBase)

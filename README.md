@@ -14,9 +14,9 @@
 - ROS2 C++ Interface (Message, Service, Action)
 - ROS2 C++ Launch
 - ROS2 C++ Composition
-- ROS2 C++ Lifecycle (TODO)
-- ROS2 C++ Plugin (TODO)
 - ROS2 C++ Intra Process
+- ROS2 C++ Lifecycle
+- ROS2 C++ Plugin
 - ROS2 C++ RQT
 - ROS2 C++ Setup Assistant
 
@@ -68,6 +68,9 @@ $ ros2 lifecycle get /lifecycle_subscriber
 
 $ ros2 launch lifecycle_tutorial_cpp lifecycle_publisher_lifecycle_subscriber.launch.py
 $ ros2 launch lifecycle_tutorial_cpp lifecycle_publisher_lifecycle_subscriber.launch.xml
+
+# Plugin Tutorial CPP
+$ ros2 run plugin_tutorial_cpp plugin_loader
 
 # RQT Tutorial CPP
 $ ros2 run rqt_tutorial_cpp rqt_node

@@ -1,5 +1,5 @@
 // Copyright (c) 2012, Willow Garage, Inc.
-// Copyright 2020, Jaehyun Shim, ROBOTIS CO., LTD.
+// Copyright 2021 Jaehyun Shim
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 
 #include "rclcpp/rclcpp.hpp"
 #include "pluginlib/class_loader.hpp"
-#include "plugin_example/plugin_base.hpp"
+#include "plugin_tutorial_cpp/plugin_base.hpp"
 
 #define UNUSED(x) (void)(x)
 
@@ -41,11 +41,11 @@ int main(int argc, char ** argv)
   rclcpp::init(argc, argv);
 
   // plugin
-  pluginlib::ClassLoader<plugin_example::PluginBase> class_loader_(
-    "plugin_example",
-    "plugin_example::PluginBase");
-  std::shared_ptr<plugin_example::PluginBase> plugin_class_ = nullptr;
-  plugin_class_ = class_loader_.createSharedInstance("plugin_example/Plugin");
+  pluginlib::ClassLoader<plugin_tutorial_cpp::PluginBase> class_loader_(
+    "plugin_tutorial_cpp",
+    "plugin_tutorial_cpp::PluginBase");
+  std::shared_ptr<plugin_tutorial_cpp::PluginBase> plugin_class_ = nullptr;
+  plugin_class_ = class_loader_.createSharedInstance("plugin_tutorial_cpp/Plugin");
 
   // ros executor
   rclcpp::executors::SingleThreadedExecutor executor;

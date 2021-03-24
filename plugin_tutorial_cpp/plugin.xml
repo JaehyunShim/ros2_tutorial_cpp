@@ -1,0 +1,7 @@
+<library path="plugin_tutorial_cpp">
+  <class name="plugin_tutorial_cpp/Plugin" type="plugin_tutorial_cpp::Plugin" base_class_type="plugin_tutorial_cpp::PluginBase">
+    <description>
+      Plugin Tutorial CPP
+    </description>
+  </class>
+</library>
