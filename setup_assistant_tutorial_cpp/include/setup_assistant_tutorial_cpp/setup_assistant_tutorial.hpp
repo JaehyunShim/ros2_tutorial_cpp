@@ -44,7 +44,7 @@ std::vector<std::string> read_file(std::string file_name)
   std::ifstream MyReadFile(file_name.c_str());
   while (getline(MyReadFile, read_line)) {
     read_lines.push_back(read_line);
-    std::cout << read_line << std::endl;
+    // std::cout << read_line << std::endl;
   }
   MyReadFile.close();
   return read_lines;
@@ -81,8 +81,8 @@ void generate_file(std::string file_name, std::string file_name2)
   std::string write_file_name(file_name2);
   std::string write_file_path = write_file_name;
 
-  std::cout << read_file_path << std::endl;
-  std::cout << write_file_path << std::endl;
+  // std::cout << read_file_path << std::endl;
+  // std::cout << write_file_path << std::endl;
 
   read_lines = read_file(read_file_path);
   write_file(write_file_path, read_lines);
@@ -105,18 +105,26 @@ public:
 
     std::string new_package_path("/home/robotis/colcon_ws/src/test_config");
 
-    generate_directory(new_package_path);
-    generate_directory(new_package_path + "/config");
+    // Check if the directory already exists
+    if (boost::filesystem::exists(new_package_path)) {
+      std::cout << "Already exists" << std::endl;
+      rclcpp::shutdown();
+    } else {
+      std::cout << "Create" << std::endl;
 
-    generate_file(
-      package_share_directory + "/templates/CMakeLists.txt.template",
-      new_package_path + "/CMakeLists.txt");
-    generate_file(
-      package_share_directory + "/templates/package.xml.template",
-      new_package_path + "/package.xml");
-    generate_file(
-      package_share_directory + "/templates/config/test.yaml",
-      new_package_path + "/config/test.yaml");
+      generate_directory(new_package_path);
+      generate_directory(new_package_path + "/config");
+
+      generate_file(
+        package_share_directory + "/templates/CMakeLists.txt.template",
+        new_package_path + "/CMakeLists.txt");
+      generate_file(
+        package_share_directory + "/templates/package.xml.template",
+        new_package_path + "/package.xml");
+      generate_file(
+        package_share_directory + "/templates/config/test.yaml",
+        new_package_path + "/config/test.yaml");
+    }
   }
 };
 }  // namespace setup_assistant_tutorial

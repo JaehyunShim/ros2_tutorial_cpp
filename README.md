@@ -81,6 +81,7 @@ $ rqt --force-discover  # add --force-discover option when plugin is not found.
 $ ros2 run setup_assistant_tutorial_cpp setup_assistant_tutorial
 
 # GDB Tutorial CPP
+$ ros2 run --prefix 'gdb -ex run --args' gdb_tutorial_cpp gdb
 $ ros2 launch gdb_tutorial_cpp gdb.launch.py
 ```
 

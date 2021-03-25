@@ -36,8 +36,7 @@ public:
   GDB()
   : Node("gdb")
   {
-
-  // Borrowed crash examples from (https://github.com/samsung-ros/gdb_test_pkg)
+    // Borrowed crash examples from (https://github.com/samsung-ros/gdb_test_pkg)
     // exit_crash();
     nullptr_crash();
     // vector_crash();
