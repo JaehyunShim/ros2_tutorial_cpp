@@ -1,3 +1,6 @@
+# https://github.com/ros-tooling/action-ros-ci#usage
+# https://github.com/ros-controls/ros2_control/blob/master/.github/workflows/ci.yml
+
 name: CI
 on:
   push:

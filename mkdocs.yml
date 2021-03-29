@@ -1,4 +1,4 @@
-site_name: ROS2 Tutorial
+site_name: ROS2 Tutorial CPP
 nav:
 - Home: index.md
 - Run Command: run.md
