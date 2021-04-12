@@ -45,6 +45,9 @@ int main(int argc, char ** argv)
     "plugin_tutorial_cpp",
     "plugin_tutorial_cpp::PluginBase");
   std::shared_ptr<plugin_tutorial_cpp::PluginBase> plugin_class_ = nullptr;
+  for (const auto & c : class_loader_.getDeclaredClasses()) {
+    printf("%s\n", c.c_str());
+  }
   plugin_class_ = class_loader_.createSharedInstance("plugin_tutorial_cpp/Plugin");
 
   // ros executor

@@ -51,9 +51,9 @@ public:
   void nullptr_crash()
   {
     RCLCPP_INFO(this->get_logger(), "Nullptr Crashing...");
-    PtrClass * ptr = nullptr;
 
     // Uncomment the following line to see gdb find carshing line.
+    // PtrClass * ptr = nullptr;
     // RCLCPP_INFO(this->get_logger(), "%f...", ptr->data);
   }
 
