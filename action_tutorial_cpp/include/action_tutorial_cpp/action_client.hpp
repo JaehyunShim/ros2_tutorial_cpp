@@ -86,7 +86,7 @@ private:
   rclcpp_action::Client<Fibonacci>::SharedPtr action_client_;
   rclcpp::TimerBase::SharedPtr timer_;
 
-  void goal_response_callback(std::shared_future<ClientGoalHandleFibonacci::SharedPtr> future)
+  void goal_response_callback(const ClientGoalHandleFibonacci::SharedPtr & future)
   {
     auto goal_handle = future.get();
     if (!goal_handle) {
